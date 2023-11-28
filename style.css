@@ -317,10 +317,19 @@ footer {
   height: 29.3125rem;
   flex-shrink: 0;
   border-radius: 1.5625rem;
-  background: rgba(0, 0, 0, 0.40);
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.08);
   margin:-0.6rem;
   overflow: hidden;
+  filter: brightness(40%);
+}
+
+.section_img3_sub{
+  margin:7rem 4.19rem 4.19rem 4.19rem;
+
+  position: absolute;
+  width: 26rem;
+  height: 16.9375rem;
+  flex-shrink: 0;
 }
 
 .section_img4{
@@ -359,6 +368,16 @@ footer {
   padding: 5.52rem auto 5.46rem;
   
   background: #f0f6ff 50% / cover no-repeat;
+}
+
+.section_img_background .dark{
+  width: 35.625rem;
+  height: 29.3125rem;
+  flex-shrink: 0;
+
+  border-radius: 1.5625rem;
+  background: rgba(0, 0, 0, 0.40);
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.08);
 }
 
 .section_img_background .card{
