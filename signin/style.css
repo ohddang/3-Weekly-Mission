@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  display: flex;
+  width: 90rem;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--linkbrary-bg, #F0F6FF);
+}
+
+header{
+  margin: 14.9rem 32.5rem 15.8rem;
+}
+
+.form_content{
+  width:100%;
+}
+
+.input_login{
+  display: flex;
+  width: 25rem;
+  padding: 1.125rem 0.9375rem;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
+  background: var(--linkbrary-white, #FFF);
+}
+
+.input_login_button{
+  display: flex;
+  width: 25rem;
+  padding: 1rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+
+  border-radius: 0.5rem;
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
+
+  
+}
+
+.link_linkbrary{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 13.16144rem;
+  height: 2.375rem;
+
+  margin: 0rem 0rem;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  gap: 1.88rem;
+}
+
+.content_title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title{
+  display: flex;
+}
+
+.title_des{
+  color: var(--black, #000);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  margin: 0rem 0rem;
+}
+
+.social_login{
+  display: flex;
+  width: 25rem;
+  padding: 0.75rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
+  background: var(--linkbrary-gray-10, #E7EFFB);
+}
