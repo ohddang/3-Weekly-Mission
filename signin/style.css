@@ -3,11 +3,6 @@
 }
 
 body{
-  display: flex;
-  width: 90rem;
-  justify-content: center;
-  align-items: center;
-
   background: var(--linkbrary-bg, #F0F6FF);
 }
 
@@ -15,8 +10,91 @@ header{
   margin: 14.9rem 32.5rem 15.8rem;
 }
 
-.form_content{
-  width:100%;
+.content_backgroud{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--linkbrary-bg, #F0F6FF);
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+  
+  flex-direction: column;
+}
+
+.top_logo{
+  margin-bottom: 1.88rem;
+}
+
+.link_linkbrary{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0rem 0rem;
+}
+
+.content_title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo_des_group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo_des{
+  color: var(--black, #000);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+
+  margin: 0rem;
+}
+
+.link_signup{
+  color: var(--linkbrary-primary-color, #6D6AFE);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.title_des{
+  color: var(--black, #000);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  margin: 0rem 0rem;
+}
+
+.login_form{
+  margin-bottom: 2rem;
+}
+
+.form_label{
+  color: var(--black, #000);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  margin-bottom: 0.75rem;
 }
 
 .input_login{
@@ -31,7 +109,46 @@ header{
   background: var(--linkbrary-white, #FFF);
 }
 
-.input_login_button{
+.input_email{
+  margin-bottom: 1.5rem;
+}
+
+.input_login:hover{
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
+  background: var(--linkbrary-white, #FFF);
+}
+
+.input_password_group{
+  position: relative;
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  padding-bottom: 1.88rem;
+}
+
+.input_password{
+}
+
+.input_password_toggle{
+  position: absolute;
+  display: flex;
+
+  width: 16px;
+  height: 16px;
+
+  margin-right: 0.94rem;
+}
+
+.input_button_group{
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.input_button{
   display: flex;
   width: 25rem;
   padding: 1rem 1.25rem;
@@ -39,49 +156,28 @@ header{
   align-items: center;
   gap: 0.625rem;
 
+  border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
   border-radius: 0.5rem;
   background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
-
-  
 }
 
-.link_linkbrary{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  width: 13.16144rem;
-  height: 2.375rem;
+.input_button_text{
+  position:absolute;
 
-  margin: 0rem 0rem;
-}
-
-.content{
-  display: flex;
-  flex-direction: column;
-  gap: 1.88rem;
-}
-
-.content_title{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.title{
-  display: flex;
-}
-
-.title_des{
-  color: var(--black, #000);
+  color: var(--grey-light, #F5F5F5);
   font-family: Pretendard;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem; /* 150% */
-  margin: 0rem 0rem;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.input_button:hover{
+  cursor: pointer;
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
 }
 
 .social_login{
@@ -94,4 +190,34 @@ header{
   border-radius: 0.5rem;
   border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
   background: var(--linkbrary-gray-10, #E7EFFB);
+}
+
+.sns_icon_group{
+  display: flex;
+  gap: 1rem;
+}
+
+.sns_icon{
+  position:relative;
+  display: flex;
+  
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.google_background{
+
+}
+
+.google{
+  position : absolute;
+}
+
+.kakao_background{
+
+}
+
+.kakao{
+  position : absolute;
 }

@@ -9,37 +9,52 @@
 </head>
 <body>
   <header>
-    <div class="content">
-      <div class="content_title">
-        <div class="link_linkbrary">
-          <a href="/"><img src="/resources/svg/linkbrary.svg"></a> 
+    <div class="content_backgroud">
+      <div class="content">
+          <div class="top_logo">
+            <div class="link_linkbrary">
+              <a href="/index.html"><img src="/resources/svg/linkbrary_big.svg"></a> 
+            </div>
+            <div class="logo_des_group">
+              <p class="logo_des">회원이 아니신가요?</p>
+              <a href="/signup/index.html" class="link_signup">회원 가입하기</a>
+            </div>
+          </div>
+          
+          <form class="login_form">
+            <p class="form_label">
+              <label name="email">이메일</label>
+            </p>
+            <p>
+              <input name="email" type="email" class="input_login input_email">
+            </p>
+            <p class="form_label">
+              <label name="password">비밀번호</label>
+            </p>
+            <div class="input_password_group">
+              <input name="password" type="password" class="input_login input_password">
+              <img src="/resources/svg/eye-off.svg" class="input_password_toggle">
+            </div>
+            <div class="input_button_group">
+              <input name="login" type="button" class="input_button">
+              <p class="input_button_text">로그인</p>
+            </div>
+          </form>
+        
+
+          <div class="social_login">
+            <div>소셜 로그인</div>
+            <div class="sns_icon_group">
+              <div class="sns_icon">
+                <img src="/resources/svg/google_background.svg" class="google_background">
+                <img src="/resources/image/google.png" class="google">
+              </div>
+              <div class="sns_icon">
+                <img src="/resources/svg/kakao_background.svg" class="kakao_background">
+                <img src="/resources/svg/kakao.svg" class="kakao">
+              </div>
+            </div>
         </div>
-        <p class="title_des">회원이 아니신가요?<a href="/signup/index.html">회원 가입하기</a></p>
-      </div>
-      <form class="login_form">
-        <p>
-          <label name="email" class="form_content">이메일</label>
-        </p>
-        <p>
-          <input name="email" type="email" class="form_content input_login">
-        </p>
-        <p>
-          <label name="password" class="form_content">비밀번호</label>
-        </p>
-        <p>
-          <input name="password" type="password" class="form_content input_login">
-        </p>
-        <p>
-          <input name="login" type="button" class="form_content input_login_button">
-        </p>
-        <div></div>
-      </form>
-      <div class="social_login">
-        <p>소셜 로그인</p>
-        <p>
-          <img src="/resources/image/google_icon.png">
-          <img src="/resources/svg/kakao_ico.svg">  
-        </p>
       </div>
     </div>
   </header>
