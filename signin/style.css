@@ -3,19 +3,14 @@
 }
 
 body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--linkbrary-bg, #F0F6FF);
 }
 
 header{
   margin: 14.9rem 32.5rem 15.8rem;
-}
-
-.content_backgroud{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: var(--linkbrary-bg, #F0F6FF);
 }
 
 .content{
@@ -170,6 +165,7 @@ header{
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  white-space: nowrap;
 }
 
 .input_button:hover{
