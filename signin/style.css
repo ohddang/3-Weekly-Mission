@@ -1,3 +1,15 @@
+:root{
+  --Primary: #6D6AFE;
+  --Red: #FF5B56;
+  --Black: #111322;
+  --White: #FFFFFF;
+  --Gray1: #3E3E43;
+  --Gray2: #9FA6B2;
+  --Gray3: #CCD5E3;
+  --Gray4: #E7EFFB;
+  --Gray5: #F0F6FF;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +18,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--linkbrary-bg, #F0F6FF);
+  background: var(--linkbrary-bg, var(--Gray5));
 }
 
 header{
@@ -59,7 +71,7 @@ header{
 }
 
 .link_signup{
-  color: var(--linkbrary-primary-color, #6D6AFE);
+  color: var(--linkbrary-primary-color, var(--Primary));
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;
@@ -100,8 +112,8 @@ header{
   align-items: center;
 
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
-  background: var(--linkbrary-white, #FFF);
+  border: 1px solid var(--linkbrary-gray-20, var(--Gray3));
+  background: var(--linkbrary-white, var(--White));
 }
 
 .input_email{
@@ -110,8 +122,8 @@ header{
 
 .input_login:hover{
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
-  background: var(--linkbrary-white, #FFF);
+  border: 1px solid var(--linkbrary-primary-color, var(--Primary));
+  background: var(--linkbrary-white, var(--White));
 }
 
 .input_password_group{
@@ -151,9 +163,9 @@ header{
   align-items: center;
   gap: 0.625rem;
 
-  border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
+  border: 1px solid var(--linkbrary-gray-20, var(--Gray3));
   border-radius: 0.5rem;
-  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--Primary) 0.12%, #6AE3FE 101.84%));
 }
 
 .input_button_text{
@@ -172,8 +184,8 @@ header{
   cursor: pointer;
 
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
-  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
+  border: 1px solid var(--linkbrary-primary-color, var(--Primary));
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--Primary) 0.12%, #6AE3FE 101.84%));
 }
 
 .social_login{
@@ -184,8 +196,8 @@ header{
   align-items: center;
 
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
-  background: var(--linkbrary-gray-10, #E7EFFB);
+  border: 1px solid var(--linkbrary-gray-20, var(--Gray3));
+  background: var(--linkbrary-gray-10, var(--Gary4));
 }
 
 .sns_icon_group{
