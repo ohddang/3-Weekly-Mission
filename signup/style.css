@@ -1,13 +1,13 @@
 :root{
-  --Primary: #6D6AFE;
-  --Red: #FF5B56;
-  --Black: #111322;
-  --White: #FFFFFF;
-  --Gray1: #3E3E43;
-  --Gray2: #9FA6B2;
-  --Gray3: #CCD5E3;
-  --Gray4: #E7EFFB;
-  --Gray5: #F0F6FF;
+  --primary: #6D6AFE;
+  --red: #FF5B56;
+  --black: #111322;
+  --white: #FFFFFF;
+  --gray1: #3E3E43;
+  --gray2: #9FA6B2;
+  --gray3: #CCD5E3;
+  --gray4: #E7EFFB;
+  --gray5: #F0F6FF;
 }
 
 * {
@@ -18,7 +18,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--linkbrary-bg, var(--Gray5));
+  background: var(--linkbrary-bg, var(--gray5));
 }
 
 header{
@@ -52,14 +52,14 @@ header{
   gap: 1rem;
 }
 
-.logo_des_group{
+.logo_desc_group{
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
 
-.logo_des{
+.logo_desc{
   color: var(--black, #000);
   font-family: Pretendard;
   font-size: 1rem;
@@ -71,7 +71,7 @@ header{
 }
 
 .link_signin{
-  color: var(--linkbrary-primary-color, var(--Primary));
+  color: var(--linkbrary-primary-color, var(--primary));
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;
@@ -79,7 +79,7 @@ header{
   line-height: normal;
 }
 
-.title_des{
+.title_desc{
   color: var(--black, #000);
   font-family: Pretendard;
   font-size: 1rem;
@@ -112,8 +112,8 @@ header{
   align-items: center;
 
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-gray-20, var(--Gray3));
-  background: var(--linkbrary-white, var(--White));
+  border: 1px solid var(--linkbrary-gray-20, var(--gray3));
+  background: var(--linkbrary-white, var(--white));
 }
 
 .input_email{
@@ -122,8 +122,8 @@ header{
 
 .input_login:hover{
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-primary-color, var(--Primary));
-  background: var(--linkbrary-white, var(--White));
+  border: 1px solid var(--linkbrary-primary-color, var(--primary));
+  background: var(--linkbrary-white, var(--white));
 }
 
 .input_password_group{
@@ -173,9 +173,9 @@ header{
   align-items: center;
   gap: 0.625rem;
 
-  border: 1px solid var(--linkbrary-gray-20, var(--Gray3));
+  border: 1px solid var(--linkbrary-gray-20, var(--gray3));
   border-radius: 0.5rem;
-  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--Primary) 0.12%, #6AE3FE 101.84%));
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--primary) 0.12%, #6AE3FE 101.84%));
 }
 
 .input_button_text{
@@ -188,14 +188,14 @@ header{
   font-weight: 600;
   line-height: normal;
   white-space: nowrap;
+
+  cursor: pointer;
 }
 
 .input_button:hover{
-  cursor: pointer;
-
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-primary-color, var(--Primary));
-  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--Primary) 0.12%, #6AE3FE 101.84%));
+  border: 1px solid var(--linkbrary-primary-color, var(--primary));
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--primary) 0.12%, #6AE3FE 101.84%));
 }
 
 .social_login{
@@ -206,8 +206,8 @@ header{
   align-items: center;
 
   border-radius: 0.5rem;
-  border: 1px solid var(--linkbrary-gray-20, var(--Gray3));
-  background: var(--linkbrary-gray-10, var(--Gray4));
+  border: 1px solid var(--linkbrary-gray-20, var(--gray3));
+  background: var(--linkbrary-gray-10, var(--gray4));
 }
 
 .sns_icon_group{
