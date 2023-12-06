@@ -67,6 +67,7 @@ footer {
   line-height: normal;
 }
 
+/* PC */
 @media (min-width: 1200px){
   .header_layout{
     width: 100%;
@@ -77,6 +78,8 @@ footer {
     justify-content: space-between;
   }
 }
+
+/* 테블릿 */
 @media (max-width: 1199px){
   .header_layout{
     width:100%;
@@ -102,6 +105,59 @@ footer {
   }
 }
 
+/* PC, 테블릿 */
+@media(min-width: 768px){
+  .section_content {
+    display: flex;
+    /* width: 18rem; */
+    height: 38.75rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin:3.12rem 0;
+    padding: 0 28.81rem;
+    gap: 9.81rem;
+  }
+
+  .section_desc{
+    width: 18rem;
+    height: 7.5rem;
+    
+  }
+
+  .section_sub_desc{
+    width: 18rem;
+    height: 4.5rem;
+
+    color: #6B6B6B;
+
+    font-family: Abel;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+  }
+
+  .desc_1_position{
+    padding-top : 7.88rem;
+  }
+  .sub_desc_1_position{
+    padding-bottom : 7.87rem;
+  }
+
+  .desc_2_position{
+    margin : 8.69rem;
+  }
+  .desc_3_position{
+    margin : 7.75rem;
+  }
+  .desc_4_position{
+    margin : 8.69rem;
+  }
+}
+
+/* 모바일 */
 @media (max-width: 767px){
   .header_layout{
     padding: 1.25rem 2rem;
@@ -110,6 +166,48 @@ footer {
 
   .header_dummy{
     justify-content: space-between;
+  }
+
+  .section_area{
+    width:100vw;
+    align-items: center;
+  }
+
+  .section_content{
+    align-items: center;
+  }
+
+  .section_content:nth-child(even){
+    flex-direction: column-reverse;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 0 2rem;
+  }
+
+  .section_content:nth-child(odd){
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 0 2rem;
+  }
+
+  .section_desc{
+    /* width: calc(100vw - 32px); */
+    /* height: calc(100vw - 32px); */
+    width: 100%;
+    margin: 0;
+  }
+
+  .desc_1_position{
+    width: 100%;
+    margin: 0;
+  }
+
+  .section_content_background{
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -232,17 +330,20 @@ footer {
   flex-direction: column;
 }
 
+.section_area > *{
+
+}
+
 .section_area .section_content:nth-child(1){
   margin-top: 7.5rem;
 }
 
-.section_content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin:3.12rem 0;
-  padding: 0 28.81rem;
-  gap: 9.81rem;
+.section_area .section_content:nth-child(odd){
+
+}
+
+.section_area .section_content:nth-child(even){
+
 }
 
 .section_desc{
@@ -272,15 +373,6 @@ footer {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: Pretendard;
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.desc_1_position{
-  margin : 7.87rem;
 }
 
 .section_desc_gradient2{
@@ -288,32 +380,15 @@ footer {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: Pretendard;
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.01875rem;
 }
 
-.desc_2_position{
-  margin : 8.69rem;
-}
+
 
 .section_desc_gradient3{
   background: linear-gradient(99deg, #6D7CCD 19.76%, rgba(82, 136, 133, 0.22) 52.69%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: Pretendard;
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.desc_3_position{
-  margin : 7.75rem;
 }
 
 .section_desc_gradient4{
@@ -321,15 +396,6 @@ footer {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: Pretendard;
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.desc_4_position{
-  margin : 8.69rem;
 }
 
 .section_img{
@@ -400,6 +466,7 @@ footer {
 
 .section_content_background{
   position:relative;
+  display: flex;
   flex-shrink: 0;
   
   width:34.375rem;
@@ -412,19 +479,16 @@ footer {
 .section_content_background .card_list{
   position: absolute;
   display: flex;
+  
+  justify-content: center;
+  align-items: center;
 
-  width: 17.4375rem;
-  height: 17.15256rem;
-
-  top:50%;
-  left:0%;
-  transform: translate(-50%, -50%);
-  padding: 5.52rem auto 5.46rem;
+  width: 100%;
+  height: 100%;
   
   background: var(--gray5) 50% / cover no-repeat;
   
   list-style-type: none;
-  float: left;
 }
 
 .section_content_background .dark{
@@ -438,6 +502,8 @@ footer {
 }
 
 .section_content_background .card{
+  
+
   width: 17.4375rem;
   height: 17.15256rem;
   
