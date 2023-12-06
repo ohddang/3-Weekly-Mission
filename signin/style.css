@@ -1,0 +1,230 @@
+:root{
+  --primary: #6D6AFE;
+  --red: #FF5B56;
+  --black: #111322;
+  --white: #FFFFFF;
+  --gray1: #3E3E43;
+  --gray2: #9FA6B2;
+  --gray3: #CCD5E3;
+  --gray4: #E7EFFB;
+  --gray5: #F0F6FF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--linkbrary-bg, var(--gray5));
+}
+
+header{
+  margin: 14.9rem 32.5rem 15.8rem;
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+  
+  flex-direction: column;
+}
+
+.top_logo{
+  margin-bottom: 1.88rem;
+}
+
+.link_linkbrary{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0rem 0rem;
+}
+
+.content_title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo_desc_group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo_desc{
+  color: var(--black, #000);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+
+  margin: 0rem;
+}
+
+.link_signup{
+  color: var(--linkbrary-primary-color, var(--primary));
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.title_desc{
+  color: var(--black, #000);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  margin: 0rem 0rem;
+}
+
+.login_form{
+  margin-bottom: 2rem;
+}
+
+.form_label{
+  color: var(--black, #000);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  margin-bottom: 0.75rem;
+}
+
+.input_login{
+  display: flex;
+  width: 25rem;
+  padding: 1.125rem 0.9375rem;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-gray-20, var(--gray3));
+  background: var(--linkbrary-white, var(--white));
+}
+
+.input_email{
+  margin-bottom: 1.5rem;
+}
+
+.input_login:hover{
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-primary-color, var(--primary));
+  background: var(--linkbrary-white, var(--white));
+}
+
+.input_password_group{
+  position: relative;
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  padding-bottom: 1.88rem;
+}
+
+.input_password{
+}
+
+.input_password_toggle{
+  position: absolute;
+  display: flex;
+
+  width: 16px;
+  height: 16px;
+
+  margin-right: 0.94rem;
+}
+
+.input_button_group{
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.input_button{
+  display: flex;
+  width: 25rem;
+  padding: 1rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+
+  border: 1px solid var(--linkbrary-gray-20, var(--gray3));
+  border-radius: 0.5rem;
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--primary) 0.12%, #6AE3FE 101.84%));
+}
+
+.input_button_text{
+  position:absolute;
+
+  color: var(--grey-light, #F5F5F5);
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.input_button:hover{
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-primary-color, var(--primary));
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--primary) 0.12%, #6AE3FE 101.84%));
+}
+
+.social_login{
+  display: flex;
+  width: 25rem;
+  padding: 0.75rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--linkbrary-gray-20, var(--gray3));
+  background: var(--linkbrary-gray-10, var(--Gary4));
+}
+
+.sns_icon_group{
+  display: flex;
+  gap: 1rem;
+}
+
+.sns_icon{
+  position:relative;
+  display: flex;
+  
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.google_background{
+
+}
+
+.google{
+  position : absolute;
+}
+
+.kakao_background{
+
+}
+
+.kakao{
+  position : absolute;
+}
