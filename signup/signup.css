@@ -21,15 +21,36 @@ body{
   background: var(--linkbrary-bg, var(--gray5));
 }
 
-header{
-  margin: 14.9rem 32.5rem 15.8rem;
+
+@media (375px <= width <= 767px){
+  .content{
+    width: 100%;
+    max-width: 25rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 14.9rem 2rem 15.8rem;
+  }
+
+  .input_element{
+    width: 100%;
+  }
 }
 
-.content{
-  display: flex;
-  justify-content: center;
-  
-  flex-direction: column;
+@media (min-width: 768px){
+  .content{
+    width: 25rem;
+    display: flex;
+    justify-content: center;
+    
+    flex-direction: column;
+    margin: 14.9rem 32.5rem 15.8rem;
+  }
+
+  .input_element{
+    width: 25rem;
+  }
 }
 
 .top_logo{
@@ -106,7 +127,7 @@ header{
 
 .input_login{
   display: flex;
-  width: 25rem;
+  width: 100%;
   padding: 1.125rem 0.9375rem;
   justify-content: center;
   align-items: center;
@@ -167,7 +188,7 @@ header{
 
 .input_button{
   display: flex;
-  width: 25rem;
+  width: 100%;
   padding: 1rem 1.25rem;
   justify-content: center;
   align-items: center;
@@ -200,7 +221,7 @@ header{
 
 .social_login{
   display: flex;
-  width: 25rem;
+  width: 100%;
   padding: 0.75rem 1.5rem;
   justify-content: space-between;
   align-items: center;
