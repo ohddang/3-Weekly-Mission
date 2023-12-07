@@ -109,12 +109,32 @@ footer {
 @media(min-width: 768px){
   .section_content {
     display: flex;
-    height: 38.75rem;
+    height: 30rem;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 3.19rem;
+    flex-wrap:wrap;
+    gap: 3rem;
+  }
+
+  .section_content:nth-child(odd) .section_desc{
+    order: 1
+  }
+  .section_content:nth-child(odd) .section_sub_desc{
+    order: 2
+  }
+  .section_content:nth-child(odd) .section_image_background{
+    order: 3
+  }
+
+  .section_content:nth-child(even) .section_desc{
+    order: 2
+  }
+  .section_content:nth-child(even) .section_sub_desc{
+    order: 3
+  }
+  .section_content:nth-child(even) .section_image_background{
+    order: 1
   }
 
   .section_area {
@@ -127,6 +147,12 @@ footer {
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;
+    gap: 3rem;
+  }
+
+  .section_image_background{
+    width:34.3745rem;
   }
 
   .section_desc{
@@ -165,35 +191,31 @@ footer {
   }
 
   .section_content{
-    align-items: center;
-  }
-
-  .section_content:nth-child(even){
-    flex-direction: column-reverse;
-    width: 100%;
-    height: auto;
     display: flex;
-    padding: 0 2rem;
-  }
-
-  .section_content:nth-child(odd){
     flex-direction: column;
-    width: 100%;
-    height: auto;
-    display: flex;
-    padding: 0 2rem;
+    align-items: center;
+    margin-top: 5rem;
+    padding: 2.5rem 2rem;
   }
 
+  .section_content .section_desc{
+    order: 1;
+    margin-bottom: 1.25rem;
+  }
+  .section_content .section_sub_desc{
+    order: 3;
+  }
+  .section_content .section_image_background{
+    order: 2;
+    margin-bottom: 1rem;
+  }
   .section_desc{
-    /* width: calc(100vw - 32px); */
-    /* height: calc(100vw - 32px); */
     width: 100%;
     margin: 0;
   }
 
-  .section_content_background{
-    width: 100%;
-    height: 100%;
+  .section_image_background{    
+    width:100%;
   }
 }
 
@@ -404,7 +426,7 @@ footer {
   flex-shrink: 0;
   overflow: hidden;
 
-  width: 38.6875rem;
+  width: 100%;
   height: 36.5rem;
   margin: 3.44rem auto auto 3.75rem;
 
@@ -414,9 +436,9 @@ footer {
 .section_image_background{
   position:relative;
   display: flex;
-  flex-shrink: 0;
   
-  width:34.375rem;
+  flex-grow: 1 0 auto;
+  
   height:28.125rem;
   border-radius: 0.9375rem;
   background-color: var(--gray5);
