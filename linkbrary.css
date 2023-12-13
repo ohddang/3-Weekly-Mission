@@ -460,11 +460,14 @@ footer {
 }
 
 .section_image_3_sub{
-  margin:7rem 4.19rem 4.19rem 4.19rem;
+  display: flex;
+  /* margin:7rem 4.19rem 4.19rem 4.19rem; */
 
   position: absolute;
-  width: 26rem;
-  height: 16.9375rem;
+  width: 80%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
   flex-shrink: 0;
 }
 
@@ -474,7 +477,7 @@ footer {
   overflow: hidden;
 
   width: 100%;
-  height: 36.5rem;
+  height: auto;
   margin: 3.44rem auto auto 3.75rem;
 
   background: var(--gray5) 50% / cover no-repeat;
@@ -490,6 +493,8 @@ footer {
   border-radius: 0.9375rem;
   background-color: var(--gray5);
   overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
 
 .section_image_background .card_list{

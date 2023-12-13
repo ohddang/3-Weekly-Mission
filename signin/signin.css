@@ -22,7 +22,7 @@ body{
 
 }
 
-@media (375px <= width <= 767px){
+@media screen and (min-width: 375px) and (max-width: 767px){
   .content{
     width: 100%;
     max-width: 25rem;
@@ -173,6 +173,7 @@ body{
 .input_button_group{
   display: flex;
   justify-content: center;
+  position: relative;
   align-items: center;  
 }
 
@@ -191,6 +192,9 @@ body{
 
 .input_button_text{
   position:absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   color: var(--grey-light, #F5F5F5);
   font-family: Pretendard;
@@ -198,6 +202,8 @@ body{
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  width:100%;
+  Height: 100%;
   white-space: nowrap;
   cursor: pointer;
 }
