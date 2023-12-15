@@ -125,6 +125,15 @@ body{
   margin-bottom: 0.75rem;
 }
 
+.form_label_error{
+  color: var(--red);
+}
+
+.input_layout{
+  display: flex;
+  flex-direction: column;
+}
+
 .input_login{
   display: flex;
   width: 100%;
@@ -137,7 +146,7 @@ body{
   background: var(--linkbrary-white, var(--white));
 }
 
-.input_email{
+.input_margin{
   margin-bottom: 1.5rem;
 }
 
@@ -145,6 +154,11 @@ body{
   border-radius: 0.5rem;
   border: 1px solid var(--linkbrary-primary-color, var(--primary));
   background: var(--linkbrary-white, var(--white));
+}
+
+.input_login_error{
+  border-radius: 0.5rem;
+  border: 1px solid var(--red, var(--primary)) !important;
 }
 
 .input_password_group{

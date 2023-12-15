@@ -23,9 +23,11 @@
             <p class="form_label">
               <label name="email">이메일</label>
             </p>
-            <p>
-              <input name="email" type="email" class="input_login input_email">
-            </p>
+            <div class="input_layout input_margin">
+              <input name="email" type="email" class="input_login" id="email">
+              <label class="input_error_desc form_label form_label_error" id="email_desc">이메일을 입력해주세요.</label>
+            </div>
+            
             <p class="form_label">
               <label name="password">비밀번호</label>
             </p>
@@ -58,5 +60,6 @@
             </div>
         </div>
     </div>
+    <script type="module" src="../src/signin.js"></script>
 </body>
 </html>
