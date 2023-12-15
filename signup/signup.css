@@ -19,10 +19,10 @@ body{
   justify-content: center;
   align-items: center;
   background: var(--linkbrary-bg, var(--gray5));
+
 }
 
-
-@media (375px <= width <= 767px){
+@media screen and (min-width: 375px) and (max-width: 767px){
   .content{
     width: 100%;
     max-width: 25rem;
@@ -125,6 +125,15 @@ body{
   margin-bottom: 0.75rem;
 }
 
+.form_label_error{
+  color: var(--red);
+}
+
+.input_layout{
+  display: flex;
+  flex-direction: column;
+}
+
 .input_login{
   display: flex;
   width: 100%;
@@ -137,7 +146,7 @@ body{
   background: var(--linkbrary-white, var(--white));
 }
 
-.input_email{
+.input_margin{
   margin-bottom: 1.5rem;
 }
 
@@ -147,24 +156,17 @@ body{
   background: var(--linkbrary-white, var(--white));
 }
 
+.input_login_error{
+  border-radius: 0.5rem;
+  border: 1px solid var(--red, var(--primary)) !important;
+}
+
 .input_password_group{
   position: relative;
   display: flex;
 
   justify-content: flex-end;
   align-items: center;
-
-  padding-bottom: 0.75rem;
-}
-
-.input_password_check_group{
-  position: relative;
-  display: flex;
-
-  justify-content: flex-end;
-  align-items: center;
-
-  padding-bottom: 3rem;
 }
 
 .input_password{
@@ -182,8 +184,8 @@ body{
 
 .input_button_group{
   display: flex;
-  position: relative;
   justify-content: center;
+  position: relative;
   align-items: center;  
 }
 
@@ -198,24 +200,31 @@ body{
   border: 1px solid var(--linkbrary-gray-20, var(--gray3));
   border-radius: 0.5rem;
   background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--primary) 0.12%, #6AE3FE 101.84%));
-}
-
-.input_button_text{
-  position:absolute;
-  display: flex;
 
   color: var(--grey-light, #F5F5F5);
   font-family: Pretendard;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.input_button_text{
+  position:absolute;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  line-height: normal;
-  white-space: nowrap;
 
+  color: var(--grey-light, #F5F5F5);
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width:100%;
+  Height: 100%;
+  white-space: nowrap;
   cursor: pointer;
 }
 

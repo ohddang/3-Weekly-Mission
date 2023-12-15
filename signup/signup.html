@@ -23,32 +23,41 @@
             <p class="form_label">
               <label name="email">이메일</label>
             </p>
-            <p>
-              <input name="email" type="email" class="input_login input_email">
-            </p>
+            <div class="input_layout input_margin">
+              <input name="email" type="email" class="input_login" id="email">
+              <label class="input_error_desc form_label form_label_error" id="email_desc"></label>
+            </div>
+            
             <p class="form_label">
               <label name="password">비밀번호</label>
             </p>
-            <div class="input_password_group">
-              <input name="password" type="password" class="input_login input_password">
-              <img src="../assets/eye-off.svg" class="input_password_toggle">
+            <div class="input_layout input_margin">
+              <div class="input_password_group">
+                <input name="password" type="password" class="input_login input_password" id="pw">
+                <img src="../assets/eye-off.svg" class="input_password_toggle" id="pw_icon">
+              </div>
+              <div>
+                <label class="input_error_desc form_label form_label_error" id="pw_desc"></label>
+              </div>
             </div>
 
             <p class="form_label">
-              <label name="password">비밀번호 확인</label>
+              <label name="password_check">비밀번호 확인</label>
             </p>
-            <div class="input_password_check_group">
-              <input name="password" type="password" class="input_login input_password">
-              <img src="../assets/eye-off.svg" class="input_password_toggle">
+            <div class="input_layout input_margin">
+              <div class="input_password_group">
+                <input name="password_check" type="password" class="input_login input_password" id="pw_check">
+                <img src="../assets/eye-off.svg" class="input_password_toggle" id="pw_check_icon">
+              </div>
+              <div>
+                <label class="input_error_desc form_label form_label_error" id="pw_check_desc"></label>
+              </div>
             </div>
 
-            <div class="input_button_group">
-              <input name="login" type="button" class="input_button">
-              <p class="input_button_text">회원가입</p>
-            </div>
+            <Button name="signup" type="button" class="input_button" id="signup">회원가입</Button>
+              
           </form>
         
-
           <div class="social_login input_element">
             <div>다른 방식으로 가입하기</div>
             <div class="sns_icon_group">
@@ -67,5 +76,6 @@
             </div>
         </div>
     </div>
+    <script type="module" src="../src/signup.js"></script>
 </body>
 </html>
