@@ -20,29 +20,23 @@
           </div>
           
           <form class="login_form input_element">
-            <p class="form_label">
-              <label name="email">이메일</label>
-            </p>
+            <label class="form_label">이메일</label>
             <div class="input_layout input_margin">
               <input name="email" type="email" class="input_login" id="email">
-              <label class="input_error_desc form_label form_label_error" id="email_desc"></label>
+              <label class="form_label form_label_error input_error_desc" id="email_desc"></label>
             </div>
+            <label class="form_label">비밀번호</label>
             
-            <p class="form_label">
-              <label name="password">비밀번호</label>
-            </p>
             <div class="input_layout input_margin">
               <div class="input_password_group">
                 <input name="password" type="password" class="input_login input_password" id="pw">
-                <img src="../assets/eye-off.svg" class="input_password_toggle" id="pw_icon">
+                <img src="../assets/eye-off.svg" class="input_password_toggle">
               </div>
               <div>
-                <label class="input_error_desc form_label form_label_error" id="pw_desc"></label>
+                <label class="form_label form_label_error input_error_desc" id="pw_desc"></label>
               </div>
             </div>
-            
-            <Button name="login" type="button" class="input_button" id="sign">로그인</Button>
-              
+            <button name="login" type="button" class="input_button" id="sign_btn">로그인</button>
           </form>
         
 

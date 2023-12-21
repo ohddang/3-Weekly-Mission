@@ -15,22 +15,26 @@ const btn_signup = document.getElementById("signup");
 
 input_email.addEventListener('focusout', ()=>{
 
-  if(false == sign.existTextContent(input_email, input_email_desc))
+  if(false == sign.existTextContent({input: input_email, desc: input_email_desc}))
     return;
 
-  if(false == sign.invaildTextContent(input_email, input_email_desc))
+  if(false == sign.invalidEmailContent(input_email, input_email_desc))
     return;  
 
-  if(false == sign.existEmail(input_email, input_email_desc))
+  if(false == sign.isEmailExist(input_email, input_email_desc))
     return;
+
+  sign.clearInputElement(input_email, input_email_desc);
 });
 
-input_pw.addEventListener('focusout', ()=>{
-  if(false == sign.existTextContent(input_pw, input_pw_desc))
+input_pw.addEventListener('input', ()=>{
+  if(false == sign.existTextContent({input: input_pw, desc: input_pw_desc}))
     return;
 
-  if(false == sign.correctPassword(input_pw, input_pw_desc))
+  if(false == sign.invalidPasswordContent(input_pw, input_pw_desc))
     return;
+
+  sign.clearInputElement(input_pw, input_pw_desc);
 });
 
 input_pw_icon.addEventListener('click', ()=>{
@@ -41,22 +45,24 @@ input_pw_check.addEventListener('focusout', ()=>{
   if(input_pw.value != input_pw_check.value)
     return;
 
-  if(false == sign.existTextContent(input_pw_check, input_pw_check_desc))
+  if(false == sign.existTextContent({input: input_pw_check, desc: input_pw_check_desc}))
     return;
 
-  if(false == sign.correctPassword(input_pw_check, input_pw_check_desc))
+  if(false == sign.invalidPasswordContent(input_pw_check, input_pw_check_desc))
     return;
+
+  sign.clearInputElement(input_pw_check, input_pw_check_desc);
 });
 
 input_pw_check.addEventListener('input', ()=>{
-
-  console.log(`${input_pw.value} vs ${input_pw_check.value}`);
   if(input_pw.value != input_pw_check.value)
   {
-    console.log("compare error");
     input_pw_check.classList.add("input_login_error");
-    input_pw_check_desc.textContent = "비밀번호가 일치하지 않아요.";
-  }  
+    input_pw_check_desc.textContent = sign.TEXT_PASSWORD_DIFFERENT;
+  }
+  else{
+    sign.clearInputElement(input_pw_check, input_pw_check_desc);
+  }
 })
 
 input_pw_check_icon.addEventListener('click', ()=>{
