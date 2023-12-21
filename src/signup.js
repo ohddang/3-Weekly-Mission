@@ -15,7 +15,7 @@ const btn_signup = document.getElementById("signup");
 
 input_email.addEventListener('focusout', ()=>{
 
-  if(false == sign.existTextContent({input: input_email, desc: input_email_desc}))
+  if(false == sign.existTextContent(input_email, input_email_desc))
     return;
 
   if(false == sign.invalidEmailContent(input_email, input_email_desc))
@@ -28,7 +28,7 @@ input_email.addEventListener('focusout', ()=>{
 });
 
 input_pw.addEventListener('input', ()=>{
-  if(false == sign.existTextContent({input: input_pw, desc: input_pw_desc}))
+  if(false == sign.existTextContent(input_pw, input_pw_desc))
     return;
 
   if(false == sign.invalidPasswordContent(input_pw, input_pw_desc))

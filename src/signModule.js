@@ -16,16 +16,16 @@ export const clearInputElement = (element, element_desc) => {
   element_desc.textContent = "";
 }
 
-export const existTextContent = (param) => {
-  if(param.input.value == ""){
-    param.input.classList.add("input_login_error");
+export const existTextContent = (element, element_desc) => {
+  if(element.value == ""){
+    element.classList.add("input_login_error");
 
     switch(element.id){
       case "email":
-        param.desc.textContent = TEXT_EMAIL_INSERT;
+        element_desc.textContent = TEXT_EMAIL_INSERT;
         break;
       case "pw":
-        param.desc.textContent = TEXT_PASSWORD_INSERT;
+        element_desc.textContent = TEXT_PASSWORD_INSERT;
         break;
       default:
         break; 
