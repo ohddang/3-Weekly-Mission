@@ -13,6 +13,10 @@ const input_pw_check_icon = document.getElementById("pw_check_icon");
 
 const btn_signup = document.getElementById("signup");
 
+const form_signup = document.querySelector(".form_signup");
+
+document.addEventListener("DOMContentLoaded", onPageLoad);
+
 input_email.addEventListener('focusout', ()=>{
 
   if(false == sign.existTextContent(input_email, input_email_desc))
@@ -69,12 +73,43 @@ input_pw_check_icon.addEventListener('click', ()=>{
   sign.showPasswordToggle(input_pw_check_icon, input_pw_check);
 });
 
-btn_signup.addEventListener('click', ()=>{
-  sign.checkSignupRequest(input_email, input_pw, input_pw_check);
-});
+// btn_signup.addEventListener('click', ()=>{
+//   sign.checkSignupRequest(input_email, input_pw, input_pw_check);
+// });
 
-btn_signup.addEventListener('keydown', (event)=>{
-  if(event.keyCode == 13){
-    sign.checkSignupRequest(input_email, input_pw, input_pw_check);
-  }
-});
+// btn_signup.addEventListener('keydown', (event)=>{
+//   if(event.keyCode == 13){
+//     sign.checkSignupRequest(input_email, input_pw, input_pw_check);
+//   }
+// });
+
+
+form_signup.addEventListener('submit', (event) => {
+  console.log("submit");
+  event.preventDefault();  
+  requestSignup(event.target);
+})
+
+function onPageLoad(){
+  if(sign.accessTokenExist()){
+    location.href = "../folder/folder.html";
+  }   
+}
+
+async function requestSignup(target){
+  const response = await fetch("https://bootcamp-api.codeit.kr/api/sign-up",{
+    method: 'POST',
+    headers:{ "Content-type": "application/json" },
+    body: JSON.stringify({
+      email: target['email'].value,
+      password: target['password'].value,
+    }),
+  }).then(
+    rsp => {
+      if(rsp.status === 200) {
+        window.localStorage.setItem('accessToken', result.data['accessToken']);
+        location.href = "../folder/folder.html";
+      }
+    }
+  ).catch(error => console.log(error));
+}

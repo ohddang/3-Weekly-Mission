@@ -110,7 +110,7 @@ body{
   margin: 0rem 0rem;
 }
 
-.login_form{
+.form_signup{
   margin-bottom: 2rem;
 }
 
@@ -196,6 +196,7 @@ body{
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
+  text-align: center;
 
   border: 1px solid var(--linkbrary-gray-20, var(--gray3));
   border-radius: 0.5rem;

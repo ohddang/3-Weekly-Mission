@@ -72,7 +72,6 @@ export const invalidPasswordContent = (element, element_desc) => {
 }
 
 export const showPasswordToggle = (element_icon, element_input) => {
-  console.log(`pw toggle : ${element_input.type}`);
   const img_path = "../assets/eye-off.svg";
 
   if(element_input.type == "text"){
@@ -113,4 +112,10 @@ export const checkSignupRequest = (element_email, element_pw, element_pw_check) 
   }
   else
     return false;
+}
+
+export const accessTokenExist = () => {
+  if(null === window.localStorage.getItem("accessToken"))
+    return false;
+  return true;
 }
