@@ -11,21 +11,25 @@ const TEXT_PASSWORD_POLICY = "비밀번호는 영문, 숫자 조합 8자 이상 
 const TEXT_PASSWORD_CHECK = "비밀번호를 확인해주세요.";
 export const TEXT_PASSWORD_DIFFERENT = "비밀번호가 일치하지 않습니다.";
 
-export const clearInputElement = (element, element_desc) => {
-  element.classList.remove("input_login_error");
-  element_desc.textContent = "";
+export const clearInputElement = (elements) => {
+  const {input, desc} = elements;
+
+  input.classList.remove("input_login_error");
+  desc.textContent = "";
 }
 
-export const existTextContent = (element, element_desc) => {
-  if(element.value == ""){
-    element.classList.add("input_login_error");
+export const existTextContent = (elements) => {
+  const {input, desc} = elements;
 
-    switch(element.id){
+  if(input.value == ""){
+    input.classList.add("input_login_error");
+
+    switch(input.id){
       case "email":
-        element_desc.textContent = TEXT_EMAIL_INSERT;
+        desc.textContent = TEXT_EMAIL_INSERT;
         break;
       case "pw":
-        element_desc.textContent = TEXT_PASSWORD_INSERT;
+        desc.textContent = TEXT_PASSWORD_INSERT;
         break;
       default:
         break; 
@@ -37,35 +41,41 @@ export const existTextContent = (element, element_desc) => {
   }
 }
 
-export const invalidEmailContent = (element, element_desc) => {
-  const emailVal = element.value;
+export const invalidEmailContent = (elements) => {
+  const {input, desc} = elements;
+
+  const emailVal = input.value;
 
   const regExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (emailVal.match(regExp) != null) {
     return true;
   }
   else {
-    element.classList.add("input_login_error");
-    element_desc.textContent = TEXT_EMAIL_INCORRECT;
+    input.classList.add("input_login_error");
+    desc.textContent = TEXT_EMAIL_INCORRECT;
     return false;
   }
 }
 
-export const isEmailExist = (element, element_desc) => {
-  if(ADMIN_EMAIL === element.value){
-    element.classList.add("input_login_error");
-    element_desc.textContent = TEXT_EMAIL_EXIST;
+export const isEmailExist = (elements) => {
+  const {input, desc} = elements;
+
+  if(ADMIN_EMAIL === input.value){
+    input.classList.add("input_login_error");
+    desc.textContent = TEXT_EMAIL_EXIST;
     return false;
   }
   return true;
 }
 
-export const invalidPasswordContent = (element, element_desc) => {
+export const invalidPasswordContent = (elements) => {
+  const {input, desc} = elements;
+
   let regPass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-  if(!regPass.test(element.value)){
-    element.classList.add("input_login_error");
-    element_desc.textContent = TEXT_PASSWORD_POLICY;
+  if(!regPass.test(input.value)){
+    input.classList.add("input_login_error");
+    desc.textContent = TEXT_PASSWORD_POLICY;
     return false;
   }
   return true;
@@ -118,4 +128,29 @@ export const accessTokenExist = () => {
   if(null === window.localStorage.getItem("accessToken"))
     return false;
   return true;
+}
+
+export const InputEmailAddListener = (emails) => {
+  emails.input.addEventListener('focusout', () => {
+    if (false == existTextContent(emails))
+      return;
+
+    if (false == invalidEmailContent(emails))
+      return;
+
+    clearInputElement(emails);
+    return true;
+  })
+}
+
+export const InputPasswordAddListener = (passwords) => {
+  passwords.input.addEventListener('input', () => {
+    if (false == existTextContent(passwords))
+      return;
+
+    if (false == invalidPasswordContent(passwords))
+      return;
+
+    clearInputElement(passwords);
+  })
 }
