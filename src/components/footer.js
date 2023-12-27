@@ -1,16 +1,17 @@
-import "./css/contents.css";
+import "./css/common.css";
+import "./css/footer.css";
 
 export default function Footer() {
   return (
     <>
       <footer>
         <ul className="footer_list">
-          <li className="codeit">©codeit - 2023</li>
+          <li className="codeit footer_font">©codeit - 2023</li>
           <li className="policy_faq">
-            <a href="policy/index.html" className="policy">
+            <a href="policy/index.html" className="policy footer_font">
               Privacy Policy
             </a>
-            <a href="faq/index.html" className="faq">
+            <a href="faq/index.html" className="faq footer_font">
               FAQ
             </a>
           </li>
