@@ -24,6 +24,7 @@
 
 .card:hover {
   background: #f0f6ff;
+  cursor: pointer;
 }
 
 .card:hover > .card_image_container > .card_image {
