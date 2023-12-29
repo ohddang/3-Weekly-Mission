@@ -55,8 +55,12 @@ export default function Cards(items) {
     }
   }
 
+  function onClickCard(event, url) {
+    window.open(url);
+  }
+
   items.items.map((item, index) => {
-    const { id, createdAt, description, imageSource } = item;
+    const { id, createdAt, url, description, imageSource } = item;
 
     const newCreatedAt = convertCreateAt(createdAt);
     const createdAtAfter = calculateCreateAtAfter(createdAt);
@@ -64,7 +68,7 @@ export default function Cards(items) {
 
     item_list.push(
       <li key={id}>
-        <div className="card">
+        <div className="card" onClick={(event) => onClickCard(event, url)}>
           <div className="card_image_container">
             {isImageUrl && <img src={imageSource} className="card_image" />}
             {!isImageUrl && (
