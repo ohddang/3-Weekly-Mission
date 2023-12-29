@@ -12,7 +12,10 @@ export default function Contents() {
         <div className="card_list_container">
           <div className="search_bar">
             <img src="/images/search.svg" className="search_image" />
-            <input className="search_input"></input>
+            <input
+              className="search_input"
+              placeholder="링크를 검색해 보세요."
+            ></input>
           </div>
           <ul className="card_list">
             <Cards items={links} />

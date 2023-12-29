@@ -12,7 +12,7 @@ export default function Header() {
     <>
       <header>
         <section className="navagation_bar">
-          <a href="./linkbrary.html" className="linkbrary">
+          <a href="/" className="linkbrary">
             <img src="/images/linkbrary.svg" />
           </a>
           {!isExistProfile && (

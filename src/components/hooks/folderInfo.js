@@ -15,11 +15,6 @@ export default function UseFolderInfo() {
     const data = await response.json();
     const { name, owner, links } = data.folder;
 
-    console.log(name);
-    console.log(owner.name);
-    console.log(owner.profileImageSource);
-    console.log(links);
-
     setFolderInfo({
       folder_name: name,
       owner_name: owner.name,

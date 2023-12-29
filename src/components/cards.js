@@ -2,7 +2,6 @@ import "./css/cards.css";
 
 export default function Cards(items) {
   let item_list = [];
-  console.log("Cards");
 
   function calculateCreateAtAfter(createAt) {
     const today = new Date();
@@ -41,16 +40,37 @@ export default function Cards(items) {
     return `${year}. ${Number(month)}. ${Number(day)}`;
   }
 
+  function isImageSourceUrl(imageSource) {
+    if (imageSource == null) {
+      return false;
+    } else {
+      const extension = imageSource.split(".").pop();
+      return extension.includes("jpg") ||
+        extension.includes("png") ||
+        extension.includes("jpeg") ||
+        extension.includes("gif") ||
+        extension.includes("svg")
+        ? true
+        : false;
+    }
+  }
+
   items.items.map((item, index) => {
     const { id, createdAt, description, imageSource } = item;
 
     const newCreatedAt = convertCreateAt(createdAt);
     const createdAtAfter = calculateCreateAtAfter(createdAt);
+    const isImageUrl = isImageSourceUrl(imageSource);
 
     item_list.push(
       <li key={id}>
         <div className="card">
-          <img src={imageSource} className="card_image" />
+          <div className="card_image_container">
+            {isImageUrl && <img src={imageSource} className="card_image" />}
+            {!isImageUrl && (
+              <img src="/images/default_card.svg" className="card_image_none" />
+            )}
+          </div>
           <div className="card_badge_container">
             {/* <div className="card_title">{item.title}</div> */}
             <div className="card_createdAt_after">{createdAtAfter}</div>
