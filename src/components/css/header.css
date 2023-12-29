@@ -89,6 +89,7 @@ header {
   flex-direction: column;
   justify-content: center;
   margin: 1.25rem 39rem 3.75rem;
+  width: max-content;
 }
 
 .profile_image_folder {

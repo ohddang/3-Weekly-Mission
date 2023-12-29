@@ -9,12 +9,12 @@ export default function Contents() {
   return (
     <>
       <div className="contents">
-        <div className="search_bar">
-          <img src="/images/search.svg" className="search_image" />
-          <input className="search_input"></input>
-        </div>
-        <div className="card_list">
-          <ul>
+        <div className="card_list_container">
+          <div className="search_bar">
+            <img src="/images/search.svg" className="search_image" />
+            <input className="search_input"></input>
+          </div>
+          <ul className="card_list">
             <Cards items={links} />
           </ul>
         </div>

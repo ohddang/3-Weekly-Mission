@@ -1,0 +1,80 @@
+.card_list_container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  justify-content: space-between;
+  width: max-content;
+}
+
+.card_list {
+  display: grid;
+  flex-direction: row;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, 21.25rem);
+  list-style-type: none;
+  padding: 0px;
+  width: max-content;
+}
+
+.card {
+  height: 20.875rem;
+  width: 21.25rem;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 5%;
+  overflow: hidden;
+}
+
+.card_image {
+  background: #dddfff;
+  flex-shrink: 0;
+  height: 12.5rem;
+  object-fit: cover;
+  width: 21.25rem;
+}
+
+.card_badge_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  justify-content: flex-start;
+  padding: 0.625rem 1.25rem;
+}
+
+.card_createdAt_after {
+  color: #666;
+
+  font-family: Pretendard;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card_description {
+  height: 3.0625rem;
+  align-self: stretch;
+
+  overflow: hidden;
+  color: #000;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.card_createdAt {
+  overflow: hidden;
+  color: #333;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
