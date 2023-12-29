@@ -8,7 +8,7 @@ export default function Contents() {
 
   return (
     <>
-      <div className="contents">
+      <section className="contents">
         <div className="card_list_container">
           <div className="search_bar">
             <img src="/images/search.svg" className="search_image" />
@@ -21,7 +21,7 @@ export default function Contents() {
             <Cards items={links} />
           </ul>
         </div>
-      </div>
+      </section>
     </>
   );
 }

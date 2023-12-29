@@ -72,7 +72,6 @@ export default function Cards(items) {
             )}
           </div>
           <div className="card_badge_container">
-            {/* <div className="card_title">{item.title}</div> */}
             <div className="card_createdAt_after">{createdAtAfter}</div>
             <div className="card_description">{description}</div>
             <div className="card_createdAt">{newCreatedAt}</div>
