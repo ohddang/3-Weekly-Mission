@@ -51,6 +51,7 @@
   height: 100%;
   object-fit: fill;
   width: 100%;
+  background: #ffffff;
 }
 
 .card_badge_container {
