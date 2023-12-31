@@ -1,11 +1,11 @@
 import "./css/common.css";
 import "./css/header.css";
-import UseUserProfile from "./hooks/userProfile";
-import UseFolderInfo from "./hooks/folderInfo";
+import useUserProfile from "./hooks/userProfile";
+import useFolderInfo from "./hooks/folderInfo";
 
 export default function Header() {
-  const { name, email, profileImageSource } = UseUserProfile();
-  const { owner_name, owner_profile_image, folder_name } = UseFolderInfo();
+  const { name, email, profileImageSource } = useUserProfile();
+  const { owner_name, owner_profile_image, folder_name } = useFolderInfo();
   const isExistProfile = name !== "" && email !== "";
 
   return (

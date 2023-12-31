@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function UseFolderInfo() {
+export default function useFolderInfo() {
   const [folderInfo, setFolderInfo] = useState({
     owner_name: "",
     owner_profile_image: "",

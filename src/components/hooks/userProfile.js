@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function UseUserProfile() {
+export default function useUserProfile() {
   const [userProfile, setUserProfile] = useState({
     name: "",
     email: "",

@@ -1,10 +1,10 @@
 import "./css/common.css";
 import "./css/contents.css";
 import Cards from "./cards";
-import UseFolderInfo from "./hooks/folderInfo";
+import useFolderInfo from "./hooks/folderInfo";
 
 export default function Contents() {
-  const { links } = UseFolderInfo();
+  const { links } = useFolderInfo();
 
   return (
     <>
