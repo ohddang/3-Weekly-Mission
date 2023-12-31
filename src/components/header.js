@@ -11,21 +11,23 @@ export default function Header() {
   return (
     <>
       <header>
-        <section className="navagation_bar">
-          <a href="/" className="linkbrary">
-            <img src="/images/linkbrary.svg" />
-          </a>
-          {!isExistProfile && (
-            <a href="signin/signin.html" className="login font_button">
-              로그인
+        <section className="navigation_background">
+          <div className="navigation_bar">
+            <a href="/" className="linkbrary">
+              <img src="/images/linkbrary.svg" />
             </a>
-          )}
-          {isExistProfile && (
-            <div className="profile">
-              <img src={profileImageSource} className="profile_image" />
-              <span className="font_profile">{email}</span>
-            </div>
-          )}
+            {!isExistProfile && (
+              <a href="signin/signin.html" className="login font_button">
+                로그인
+              </a>
+            )}
+            {isExistProfile && (
+              <div className="profile">
+                <img src={profileImageSource} className="profile_image" />
+                <span className="font_profile">{email}</span>
+              </div>
+            )}
+          </div>
         </section>
 
         <section className="folder_title">
