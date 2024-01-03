@@ -1,7 +1,7 @@
-import "./css/cards.css";
+import "./cardList.css";
 
-export default function Cards(items) {
-  let item_list = [];
+export default function CardList(items) {
+  const item_list = [];
 
   function calculateCreateAtAfter(createAt) {
     const today = new Date();
@@ -41,22 +41,20 @@ export default function Cards(items) {
   }
 
   function isImageSourceUrl(imageSource) {
+    const extensions = ["jpg", "png", "jpeg", "gif", "svg"];
+
     if (imageSource == null) {
       return false;
     } else {
-      const extension = imageSource.split(".").pop();
-      return extension.includes("jpg") ||
-        extension.includes("png") ||
-        extension.includes("jpeg") ||
-        extension.includes("gif") ||
-        extension.includes("svg")
+      const ext = imageSource.split(".").pop();
+      return extensions.find((item) => ext.includes(item)).length > 0
         ? true
         : false;
     }
   }
 
-  function onClickCard(event, url) {
-    window.open(url);
+  function onClickCard(...args) {
+    window.open(args[1]);
   }
 
   items.items.map((item, index) => {
@@ -70,8 +68,9 @@ export default function Cards(items) {
       <li key={id}>
         <div className="card" onClick={(event) => onClickCard(event, url)}>
           <div className="card_image_container">
-            {isImageUrl && <img src={imageSource} className="card_image" />}
-            {!isImageUrl && (
+            {isImageUrl ? (
+              <img src={imageSource} className="card_image" />
+            ) : (
               <img src="/images/default_card.svg" className="card_image_none" />
             )}
           </div>

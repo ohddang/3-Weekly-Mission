@@ -1,10 +1,10 @@
-import "./css/common.css";
-import "./css/contents.css";
-import Cards from "./cards";
-import useFolderInfo from "./hooks/folderInfo";
+import "../css/common.css";
+import "./contents.css";
+import CardList from "../cardList/cardList";
+import useFolderInfo from "../hooks/folderInfo";
 
-export default function Contents() {
-  const { links } = useFolderInfo();
+export default function Contents({ folderInfo }) {
+  const { links } = folderInfo;
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function Contents() {
             ></input>
           </div>
           <ul className="card_list">
-            <Cards items={links} />
+            <CardList items={links} />
           </ul>
         </div>
       </section>

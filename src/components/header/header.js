@@ -1,11 +1,11 @@
-import "./css/common.css";
-import "./css/header.css";
-import useUserProfile from "./hooks/userProfile";
-import useFolderInfo from "./hooks/folderInfo";
+import "../css/common.css";
+import "./header.css";
+import useUserProfile from "../hooks/userProfile";
+import useFolderInfo from "../hooks/folderInfo";
 
-export default function Header() {
-  const { name, email, profileImageSource } = useUserProfile();
-  const { owner_name, owner_profile_image, folder_name } = useFolderInfo();
+export default function Header(props) {
+  const { name, email, profileImageSource } = props.userProfile;
+  const { owner_name, owner_profile_image, folder_name } = props.folderInfo;
   const isExistProfile = name !== "" && email !== "";
 
   return (
