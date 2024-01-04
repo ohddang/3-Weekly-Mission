@@ -3,8 +3,23 @@ import "./contents.css";
 import CardList from "../cardList/cardList";
 import useFolderInfo from "../hooks/folderInfo";
 
+import { useLocation } from "react-router-dom";
+
 export default function Contents({ folderInfo }) {
+  const location = useLocation();
   const { links } = folderInfo;
+
+  function createCardItems() {
+    if (location.pathname.includes("shared")) {
+      return (
+        <ul className="card_list">
+          <CardList items={links} />
+        </ul>
+      );
+    } else {
+      return <div className="empty_card_list">저장된 링크가 없습니다.</div>;
+    }
+  }
 
   return (
     <>
@@ -17,9 +32,7 @@ export default function Contents({ folderInfo }) {
               placeholder="링크를 검색해 보세요."
             ></input>
           </div>
-          <ul className="card_list">
-            <CardList items={links} />
-          </ul>
+          {createCardItems()}
         </div>
       </section>
     </>

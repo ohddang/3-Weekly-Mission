@@ -3,7 +3,14 @@ import "./header.css";
 import useUserProfile from "../hooks/userProfile";
 import useFolderInfo from "../hooks/folderInfo";
 
+import { useLocation } from "react-router-dom";
+
 export default function Header({ userProfile, folderInfo }) {
+  const location = useLocation();
+  const navi_element_position = location.pathname.includes("shared")
+    ? "fixed"
+    : "relative";
+
   const { name, email, profileImageSource } = userProfile;
   const { owner_name, owner_profile_image, folder_name } = folderInfo;
   const isExistProfile = name !== "" && email !== "";
@@ -11,7 +18,10 @@ export default function Header({ userProfile, folderInfo }) {
   return (
     <>
       <header>
-        <section className="navigation_background">
+        <section
+          className="navigation_container"
+          style={{ position: navi_element_position }}
+        >
           <div className="navigation_bar">
             <a href="/" className="linkbrary">
               <img src="/images/linkbrary.svg" />
