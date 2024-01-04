@@ -1,17 +1,16 @@
-import "../css/common.css";
+import "../../styles/common.css";
 import "./header.css";
-import useUserProfile from "../hooks/userProfile";
-import useFolderInfo from "../hooks/folderInfo";
+import useUserProfile from "../../api/useUserProfile";
+import useSharedFolderInfo from "../../api/useSharedFolderInfo";
 
 import { useLocation } from "react-router-dom";
 
 export default function Header({ userProfile, folderInfo }) {
   const location = useLocation();
-  const navi_element_position = location.pathname.includes("shared")
-    ? "fixed"
-    : "relative";
+  const isShared = location.pathname.includes("shared");
+  const navi_element_position = isShared ? "fixed" : "relative";
 
-  const { name, email, profileImageSource } = userProfile;
+  const { name, email, image_source } = userProfile;
   const { owner_name, owner_profile_image, folder_name } = folderInfo;
   const isExistProfile = name !== "" && email !== "";
 
@@ -26,24 +25,40 @@ export default function Header({ userProfile, folderInfo }) {
             <a href="/" className="linkbrary">
               <img src="/images/linkbrary.svg" />
             </a>
-            {!isExistProfile && (
+            {isExistProfile ? (
+              <div className="profile">
+                <img src={image_source} className="profile_image" />
+                <span className="font_profile">{email}</span>
+              </div>
+            ) : (
               <a href="signin/signin.html" className="login font_button">
                 로그인
               </a>
             )}
-            {isExistProfile && (
-              <div className="profile">
-                <img src={profileImageSource} className="profile_image" />
-                <span className="font_profile">{email}</span>
-              </div>
-            )}
           </div>
         </section>
 
-        <section className="folder_title">
-          <img src={owner_profile_image} className="profile_image_folder" />
-          <div className="owner_name">{owner_name}</div>
-          <div className="folder_name">{folder_name}</div>
+        <section className="title_container">
+          {isShared ? (
+            <div className="shared_title_container">
+              <img src={owner_profile_image} className="profile_image_folder" />
+              <div className="owner_name">{owner_name}</div>
+              <div className="folder_name">{folder_name}</div>
+            </div>
+          ) : (
+            <div className="folder_title_container">
+              <div className="folder_title_input_container">
+                <img src="./images/link.svg" className="link_image" />
+                <input
+                  className="folder_title_input"
+                  placeholder="링크를 추가해 보세요."
+                />
+                <div className="folder_title_button">
+                  <div>추가하기</div>
+                </div>
+              </div>
+            </div>
+          )}
         </section>
       </header>
     </>

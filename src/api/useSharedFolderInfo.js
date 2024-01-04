@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 async function getFolderInfo() {
   const response = await fetch(
-    "https://bootcamp-api.codeit.kr/api/sample/folder"
+    "https://bootcamp-api.codeit.kr/api/sample/folder" // sample api
   );
   const rsp = await response.json();
   const rspFolder = rsp.folder;
@@ -14,7 +14,7 @@ async function getFolderInfo() {
   };
 }
 
-const useFolderInfo = () => {
+const useSharedFolderInfo = () => {
   const [folderInfo, setFolderInfo] = useState({
     owner_name: "",
     owner_profile_image: "",
@@ -38,4 +38,4 @@ const useFolderInfo = () => {
   return folderInfo;
 };
 
-export default useFolderInfo;
+export default useSharedFolderInfo;

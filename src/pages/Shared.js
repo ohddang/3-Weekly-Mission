@@ -1,5 +1,5 @@
-import Header from "../header/header";
-import Contents from "../contents/contents";
+import Header from "../components/header/header";
+import Contents from "../components/contents/contents";
 
 const Shared = ({ userProfile, folderInfo }) => {
   return (

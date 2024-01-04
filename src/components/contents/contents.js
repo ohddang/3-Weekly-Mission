@@ -1,7 +1,6 @@
-import "../css/common.css";
 import "./contents.css";
-import CardList from "../cardList/cardList";
-import useFolderInfo from "../hooks/folderInfo";
+import CardList from "./cardList/cardList";
+import useSharedFolderInfo from "../../api/useSharedFolderInfo";
 
 import { useLocation } from "react-router-dom";
 

@@ -1,5 +1,5 @@
-import Header from "../header/header";
-import Contents from "../contents/contents";
+import Header from "../components/header/header";
+import Contents from "../components/contents/contents";
 
 const Folder = ({ userProfile, folderInfo }) => {
   return (

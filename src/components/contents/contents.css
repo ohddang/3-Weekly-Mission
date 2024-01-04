@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: 2.5rem;
   justify-content: flex-start;
   padding: 2.5rem 0 6.25rem 0;

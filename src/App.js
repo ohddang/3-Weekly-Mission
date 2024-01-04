@@ -4,22 +4,22 @@ import Header from "./components/header/header";
 import Contents from "./components/contents/contents";
 import Footer from "./components/footer/footer";
 
-import Shared from "./components/pages/Shared";
-import Folder from "./components/pages/Folder";
-import Home from "./components/pages/Home";
+import Shared from "./pages/Shared";
+import Folder from "./pages/Folder";
+import Home from "./pages/Home";
 
-import useUserProfile from "./components/hooks/userProfile";
-import useFolderInfo from "./components/hooks/folderInfo";
+import useUserProfile from "./api/useUserProfile";
+import useSharedFolderInfo from "./api/useSharedFolderInfo";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const rspUser = useUserProfile();
-  const rspFolder = useFolderInfo();
+  const rspFolder = useSharedFolderInfo();
 
   const userProfile = {
     name: rspUser?.name,
     email: rspUser?.email,
-    profileImageSource: rspUser?.profileImageSource,
+    image_source: rspUser?.image_source,
   };
 
   const folderInfo = {
