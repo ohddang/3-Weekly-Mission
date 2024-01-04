@@ -4,10 +4,14 @@ async function getFolderInfo() {
   const response = await fetch(
     "https://bootcamp-api.codeit.kr/api/sample/folder"
   );
-  const data = await response.json();
-  const { name, owner, links } = data.folder;
+  const rsp = await response.json();
+  const rspFolder = rsp.folder;
 
-  return { name, owner, links };
+  return {
+    name: rspFolder.name,
+    owner: rspFolder.owner,
+    links: rspFolder.links,
+  };
 }
 
 const useFolderInfo = () => {
@@ -19,7 +23,6 @@ const useFolderInfo = () => {
   });
 
   useEffect(() => {
-    console.log("useFolderInfo");
     getFolderInfo().then((result) => {
       const { name, owner, links } = result;
 

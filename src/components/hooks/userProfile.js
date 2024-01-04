@@ -4,9 +4,13 @@ async function getUserProfile() {
   const response = await fetch(
     "https://bootcamp-api.codeit.kr/api/sample/user"
   );
-  const { name, email, profileImageSource } = await response.json();
+  const rsp = await response.json();
 
-  return { name, email, profileImageSource };
+  return {
+    name: rsp.name,
+    email: rsp.email,
+    profileImageSource: rsp.profileImageSource,
+  };
 }
 
 const useUserProfile = () => {
@@ -17,7 +21,6 @@ const useUserProfile = () => {
   });
 
   useEffect(() => {
-    console.log("useUserProfile");
     getUserProfile().then((result) => {
       const { name, email, profileImageSource } = result;
       setUserProfile({

@@ -3,9 +3,9 @@ import "./header.css";
 import useUserProfile from "../hooks/userProfile";
 import useFolderInfo from "../hooks/folderInfo";
 
-export default function Header(props) {
-  const { name, email, profileImageSource } = props.userProfile;
-  const { owner_name, owner_profile_image, folder_name } = props.folderInfo;
+export default function Header({ userProfile, folderInfo }) {
+  const { name, email, profileImageSource } = userProfile;
+  const { owner_name, owner_profile_image, folder_name } = folderInfo;
   const isExistProfile = name !== "" && email !== "";
 
   return (

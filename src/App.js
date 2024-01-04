@@ -10,8 +10,6 @@ function App() {
   const { owner_name, owner_profile_image, folder_name, links } =
     useFolderInfo();
 
-  console.log(name + " " + email + " " + profileImageSource);
-
   const userProfile = {
     name: name,
     email: email,
@@ -32,7 +30,7 @@ function App() {
 
   return (
     <>
-      <Header props={props} />
+      <Header userProfile={userProfile} folderInfo={folderInfo} />
       <Contents folderInfo={folderInfo} />
       <Footer />
     </>
