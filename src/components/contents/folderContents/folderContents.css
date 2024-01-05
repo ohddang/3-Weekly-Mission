@@ -1,0 +1,67 @@
+.folder_contents {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.folder_group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flext-start;
+  gap: 0.5rem;
+  padding: 0;
+
+  list-style: none;
+}
+
+.folder_group > * {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  border-radius: 0.3125rem;
+  border: 1px solid var(--Linkbrary-primary-color, #6d6afe);
+  background: #fff;
+}
+
+.folder_group_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.folder_title {
+}
+
+.folder_editor {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+}
+
+.empty_card_list {
+  width: 20.3rem;
+  color: #000;
+
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+/* layout mobile-first */
+@media (min-width: 768px) {
+  .empty_card_list {
+    width: 44rem;
+  }
+}
+
+@media (min-width: 1124px) {
+  .empty_card_list {
+    width: 66.25rem;
+  }
+}

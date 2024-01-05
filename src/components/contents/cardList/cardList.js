@@ -1,6 +1,6 @@
 import "./cardList.css";
 
-export default function CardList(items) {
+export default function CardList({ items }) {
   const item_list = [];
 
   function calculateCreateAtAfter(createAt) {
@@ -57,19 +57,21 @@ export default function CardList(items) {
     window.open(args[1]);
   }
 
-  items.items.map((item, index) => {
-    const { id, createdAt, url, description, imageSource } = item;
+  console.log(items);
 
-    const newCreatedAt = convertCreateAt(createdAt);
-    const createdAtAfter = calculateCreateAtAfter(createdAt);
-    const isImageUrl = isImageSourceUrl(imageSource);
+  items.map((item, index) => {
+    const { id, created_at, url, description, image_source } = item;
+
+    const newCreatedAt = convertCreateAt(created_at);
+    const createdAtAfter = calculateCreateAtAfter(created_at);
+    const isImageUrl = isImageSourceUrl(image_source);
 
     item_list.push(
       <li key={id}>
         <div className="card" onClick={(event) => onClickCard(event, url)}>
           <div className="card_image_container">
             {isImageUrl ? (
-              <img src={imageSource} className="card_image" />
+              <img src={image_source} className="card_image" />
             ) : (
               <img src="/images/default_card.svg" className="card_image_none" />
             )}

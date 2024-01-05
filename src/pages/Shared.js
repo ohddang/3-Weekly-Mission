@@ -1,11 +1,13 @@
 import Header from "../components/header/header";
 import Contents from "../components/contents/contents";
+import NavigatorBar from "../components/navigatorBar/NavigatorBar";
 
-const Shared = ({ userProfile, folderInfo }) => {
+const Shared = () => {
   return (
     <>
-      <Header userProfile={userProfile} folderInfo={folderInfo} />
-      <Contents folderInfo={folderInfo} />
+      <NavigatorBar />
+      <Header />
+      <Contents />
     </>
   );
 };

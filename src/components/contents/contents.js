@@ -1,24 +1,13 @@
 import "./contents.css";
-import CardList from "./cardList/cardList";
-import useSharedFolderInfo from "../../api/useSharedFolderInfo";
 
 import { useLocation } from "react-router-dom";
+import SharedContents from "./sharedContents/SharedContents";
+import FolderContents from "./folderContents/FolderContents";
 
-export default function Contents({ folderInfo }) {
+export default function Contents() {
   const location = useLocation();
-  const { links } = folderInfo;
 
-  function createCardItems() {
-    if (location.pathname.includes("shared")) {
-      return (
-        <ul className="card_list">
-          <CardList items={links} />
-        </ul>
-      );
-    } else {
-      return <div className="empty_card_list">저장된 링크가 없습니다.</div>;
-    }
-  }
+  const isShared = location.pathname.includes("shared");
 
   return (
     <>
@@ -31,7 +20,7 @@ export default function Contents({ folderInfo }) {
               placeholder="링크를 검색해 보세요."
             ></input>
           </div>
-          {createCardItems()}
+          {isShared ? <SharedContents /> : <FolderContents />}
         </div>
       </section>
     </>
