@@ -58,10 +58,6 @@ const FolderContents = () => {
     setToggleIndex(key);
 
     const selection_folder = folderGroup.find((folder) => key === folder.id);
-
-    //
-    // update title layout
-    //
     titleRef.current.innerHTML = selection_folder.name;
 
     if (selection_folder.linkCount > 0) {
@@ -146,6 +142,10 @@ const FolderContents = () => {
             </div>
           </div>
         )}
+      </div>
+      <div className="add_folder_button_floating">
+        <div>폴더 추가</div>
+        <img src="/images/floating_add.svg" />
       </div>
       {folderLinks.length === 0 ? (
         <div className="empty_card_list">저장된 링크가 없습니다.</div>

@@ -1,6 +1,11 @@
 import "./cardList.css";
 
+import { useLocation } from "react-router-dom";
+
 export default function CardList({ items }) {
+  const location = useLocation();
+  const isFolder = location.pathname.includes("folder");
+
   const item_list = [];
 
   function calculateCreateAtAfter(createAt) {
@@ -73,13 +78,15 @@ export default function CardList({ items }) {
             ) : (
               <img src="/images/default_card.svg" className="card_image_none" />
             )}
-            <img src="/images/star.svg" className="star_image" />
+            {isFolder && <img src="/images/star.svg" className="star_image" />}
           </div>
           <div className="card_badge_container">
             <div className="card_createdAt_after">{createdAtAfter}</div>
             <div className="card_description">{description}</div>
             <div className="card_createdAt">{newCreatedAt}</div>
-            <img src="/images/kebab.svg" className="kebab_image" />
+            {isFolder && (
+              <img src="/images/kebab.svg" className="kebab_image" />
+            )}
           </div>
         </div>
       </li>
