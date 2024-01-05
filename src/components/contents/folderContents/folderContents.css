@@ -1,16 +1,18 @@
-.folder_contents {
+.folder_group_container {
+  width: 20rem;
+
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .folder_group {
   display: flex;
   flex-direction: row;
   justify-content: flext-start;
+  flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0;
-
   list-style: none;
 }
 
@@ -26,6 +28,29 @@
   background: #fff;
 }
 
+.folder_group_item {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 0.3125rem;
+  border: 1px solid var(--Linkbrary-primary-color, #6d6afe);
+  background: #fff;
+}
+
+.folder_toggle {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+
+  border-radius: 0.3125rem;
+  border: 1px solid var(--Linkbrary-primary-color, #6d6afe);
+  background: var(--Linkbrary-primary-color, #6d6afe);
+}
+
 .folder_group_title {
   display: flex;
   flex-direction: row;
@@ -33,12 +58,43 @@
 }
 
 .folder_title {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.0125rem;
 }
 
 .folder_editor {
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
+}
+
+.folder_editor > div {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.folder_editor > div > img {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.folder_editor > div > div {
+  color: var(--Linkbrary-gray60, #9fa6b2);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.add_folder_button {
+  display: none;
 }
 
 .empty_card_list {
@@ -58,10 +114,26 @@
   .empty_card_list {
     width: 44rem;
   }
+
+  .add_folder_button {
+    display: block;
+  }
+
+  .folder_group_container {
+    width: 44rem;
+  }
 }
 
 @media (min-width: 1124px) {
   .empty_card_list {
     width: 66.25rem;
+  }
+
+  .add_folder_button {
+    display: block;
+  }
+
+  .folder_group_container {
+    width: 66rem;
   }
 }

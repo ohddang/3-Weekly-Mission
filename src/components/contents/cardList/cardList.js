@@ -57,8 +57,6 @@ export default function CardList({ items }) {
     window.open(args[1]);
   }
 
-  console.log(items);
-
   items.map((item, index) => {
     const { id, created_at, url, description, image_source } = item;
 
