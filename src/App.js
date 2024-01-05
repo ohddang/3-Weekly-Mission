@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/header/header";
+import Contents from "./components/contents/contents";
+import Footer from "./components/footer/footer";
+
+import useUserProfile from "./components/hooks/userProfile";
+import useFolderInfo from "./components/hooks/folderInfo";
 
 function App() {
+  const { name, email, profileImageSource } = useUserProfile();
+  const { owner_name, owner_profile_image, folder_name, links } =
+    useFolderInfo();
+
+  const userProfile = {
+    name: name,
+    email: email,
+    profileImageSource: profileImageSource,
+  };
+
+  const folderInfo = {
+    owner_name: owner_name,
+    owner_profile_image: owner_profile_image,
+    folder_name: folder_name,
+    links: links,
+  };
+
+  const props = {
+    userProfile: userProfile,
+    folderInfo: folderInfo,
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header userProfile={userProfile} folderInfo={folderInfo} />
+      <Contents folderInfo={folderInfo} />
+      <Footer />
+    </>
   );
 }
 
