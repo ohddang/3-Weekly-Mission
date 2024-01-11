@@ -2,8 +2,7 @@ import "./cardList.css";
 import "../../../index.css";
 
 import { useState, useEffect } from "react";
-import Modal from "../../modal/modal";
-
+import KebabPopover from "./KebebPopover";
 export default function CardList({ items, isFunctional }) {
   const [popoverKey, setPopoverKey] = useState(null);
 
@@ -58,6 +57,8 @@ export default function CardList({ items, isFunctional }) {
   };
 
   const onClickCard = (...args) => {
+    if (popoverKey) return;
+
     window.open(args[1]);
   };
 
@@ -66,9 +67,6 @@ export default function CardList({ items, isFunctional }) {
 
     popoverKey === id ? setPopoverKey(null) : setPopoverKey(id);
   };
-
-  const onClickDelete = (event) => {};
-  const onClickAdd = (event) => {};
 
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -108,21 +106,7 @@ export default function CardList({ items, isFunctional }) {
               />
             )}
           </div>
-          {id === popoverKey && (
-            <div className="kebab_popover">
-              <div className="kebab_popover_item" onClick={onClickDelete}>
-                삭제하기
-              </div>
-              <div className="kebab_popover_item" onClick={onClickAdd}>
-                폴더에 추가
-              </div>
-              <Modal>
-                <div className="modal">
-                  <div> Hi </div>
-                </div>
-              </Modal>
-            </div>
-          )}
+          {id === popoverKey && <KebabPopover />}
         </div>
       </li>
     );

@@ -1,0 +1,156 @@
+.modal_container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+
+  border-radius: 0.9375rem;
+  border: 1px solid var(--Linkbrary-gray20, #ccd5e3);
+  background: var(--Linkbrary-white, #fff);
+}
+
+.modal_title {
+  color: var(--Linkbrary-gray100, #373740);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.modal_sub_title {
+  color: var(--Linkbrary-gray60, #9fa6b2);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem; /* 157.143% */
+}
+
+.modal_input {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+
+  display: flex;
+  width: 17.5rem;
+  padding: 1.125rem 0.9375rem;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--Linkbrary-gray100, #373740);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--Linkbrary-primary-color, #6d6afe);
+  background: var(--Linkbrary-white, #fff);
+}
+
+.modal_button {
+  display: flex;
+  width: 17.5rem;
+  padding: 1rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+
+  color: var(--Grey-Light, #f5f5f5);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  border-radius: 0.5rem;
+  background: var(
+    --gra-purpleblue-to-skyblue,
+    linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%)
+  );
+}
+
+.modal_button_delete {
+  border-radius: 0.5rem;
+  background: var(--Linkbrary-red, #ff5b56);
+}
+
+.modal_close {
+  position: absolute;
+
+  top: 1rem;
+  right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+// modal share
+.modal_add_container {
+  display: flex;
+  flex-direction: row;
+  width: 16.5rem;
+  align-items: center;
+  gap: 0.5rem;
+
+  border-radius: 0.9375rem;
+  border: 1px solid var(--Linkbrary-gray20, #ccd5e3);
+  background: var(--Linkbrary-white, #fff);
+}
+
+.modal_add_folder {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 16.5rem;
+  padding: 0.5rem;
+}
+
+.folder_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  gap: 0.5rem;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.folder_info > .folder_name {
+  color: var(--Linkbrary-gray100, #373740);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+}
+
+.folder_info > .folder_link_count {
+  color: var(--Linkbrary-gray60, #9fa6b2);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.folder_select_icon {
+  /* position: absolute; */
+
+  right: 0;
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
