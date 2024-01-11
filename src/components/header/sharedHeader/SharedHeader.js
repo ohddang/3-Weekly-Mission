@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
+import { getFolderInfo } from "../header";
 
-async function getFolderInfo() {
-  const response = await fetch(
-    "https://bootcamp-api.codeit.kr/api/sample/folder" // sample api
-  );
-  const rsp = await response.json();
-  const rspFolder = rsp.folder;
+// async function getFolderInfo() {
+//   const response = await fetch(
+//     "https://bootcamp-api.codeit.kr/api/sample/folder" // sample api
+//   );
+//   const rsp = await response.json();
+//   const rspFolder = rsp.folder;
 
-  return {
-    name: rspFolder.name,
-    owner: rspFolder.owner,
-    links: rspFolder.links,
-  };
-}
+//   return {
+//     name: rspFolder.name,
+//     owner: rspFolder.owner,
+//     links: rspFolder.links,
+//   };
+// }
 
 const SharedHeader = () => {
   const [sharedInfo, setSharedInfo] = useState({

@@ -2,9 +2,9 @@ import "./folderContents.css";
 
 import { useEffect, useState, useRef } from "react";
 import CardList from "../cardList/cardList";
+import FolderGroup from "./FolderGroup";
 
-const getFolderGroup = async () => {
-  const user_id = 1;
+const getFolderGroup = async (user_id = 1) => {
   const response = await fetch(
     `https://bootcamp-api.codeit.kr/api/users/${user_id}/folders`
   );
@@ -12,8 +12,7 @@ const getFolderGroup = async () => {
   return rsp;
 };
 
-const getAllFolderLinks = async () => {
-  const user_id = 1;
+const getAllFolderLinksOfUser = async (user_id = 1) => {
   const response = await fetch(
     `https://bootcamp-api.codeit.kr/api/users/${user_id}/links`
   );
@@ -21,8 +20,7 @@ const getAllFolderLinks = async () => {
   return rsp;
 };
 
-const getSelectionFolderLinks = async (folder_id) => {
-  const user_id = 1;
+const getSelectionFolderLinks = async (folder_id, user_id = 1) => {
   const response = await fetch(
     `https://bootcamp-api.codeit.kr/api/users/${user_id}/links?folderId=${folder_id}`
   );
@@ -36,7 +34,6 @@ const FolderContents = () => {
   const [folderLinks, setFolderLinks] = useState([]);
   const [toggleIndex, setToggleIndex] = useState("");
   const titleRef = useRef();
-  const folderGroupRef = useRef();
 
   // rest api로 받아온 데이터로 상태값을 변경
   const setFolderLinksFromItems = (links) => {
@@ -57,38 +54,20 @@ const FolderContents = () => {
     event.preventDefault();
     setToggleIndex(key);
 
-    const selection_folder = folderGroup.find((folder) => key === folder.id);
-    titleRef.current.innerHTML = selection_folder.name;
+    const selectionFolder = folderGroup.find((folder) => key === folder.id);
+    titleRef.current.innerHTML = selectionFolder.name;
 
-    if (selection_folder.linkCount > 0) {
-      selection_folder.id === "전체"
-        ? getAllFolderLinks().then((rsp) => setFolderLinksFromItems(rsp.data))
-        : getSelectionFolderLinks(selection_folder.id).then((rsp) =>
+    if (selectionFolder.linkCount > 0) {
+      selectionFolder.id === "전체"
+        ? getAllFolderLinksOfUser().then((rsp) =>
+            setFolderLinksFromItems(rsp.data)
+          )
+        : getSelectionFolderLinks(selectionFolder.id).then((rsp) =>
             setFolderLinksFromItems(rsp.data)
           );
     } else {
       setFolderLinks([]);
     }
-  };
-
-  // 폴더 목록 ui 생성
-  const createFolderGroup = () => {
-    return folderGroup.map((folder) => {
-      const toggleClass =
-        toggleIndex === folder.id
-          ? "folder_group_item folder_toggle"
-          : "folder_group_item";
-
-      return (
-        <li
-          className={toggleClass}
-          key={folder.id}
-          onClick={(event) => onClickFolderGroup(event, folder.id)}
-        >
-          <div>{folder.name}</div>
-        </li>
-      );
-    });
   };
 
   // 생성 시 폴더 목록을 가져옴
@@ -104,7 +83,6 @@ const FolderContents = () => {
           linkCount: folder.link.count,
         };
       });
-      setFolderGroup(folderGroupInfo);
 
       // 서버에서 넣어주는 데이터가 없어서 임시로 넣어줌
       folderGroupInfo.unshift({
@@ -113,15 +91,19 @@ const FolderContents = () => {
         linkCount: allLinkCount,
       });
       setFolderLinks([]);
+
+      setFolderGroup(folderGroupInfo);
     });
   }, []);
 
   return (
     <>
       <div className="folder_group_container">
-        <ul className="folder_group" ref={folderGroupRef}>
-          {createFolderGroup()}
-        </ul>
+        <FolderGroup
+          folderGroup={folderGroup}
+          onClickFolderGroup={onClickFolderGroup}
+          toggleIndex={toggleIndex}
+        />
         <img src="/images/add.svg" className="add_folder_button" />
       </div>
       <div className="folder_group_title">
@@ -151,7 +133,7 @@ const FolderContents = () => {
         <div className="empty_card_list">저장된 링크가 없습니다.</div>
       ) : (
         <ul className="card_list">
-          <CardList items={folderLinks} />
+          <CardList items={folderLinks} isFunctional={true} />
         </ul>
       )}
     </>

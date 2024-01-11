@@ -2,11 +2,10 @@ import "./cardList.css";
 
 import { useLocation } from "react-router-dom";
 
-export default function CardList({ items }) {
+export default function CardList({ items, isFunctional }) {
   const location = useLocation();
-  const isFolder = location.pathname.includes("folder");
 
-  const item_list = [];
+  // const item_list = items.map;
 
   function calculateCreateAtAfter(createAt) {
     const today = new Date();
@@ -62,14 +61,14 @@ export default function CardList({ items }) {
     window.open(args[1]);
   }
 
-  items.map((item, index) => {
+  const item_list = items.map((item, index) => {
     const { id, created_at, url, description, image_source } = item;
 
     const newCreatedAt = convertCreateAt(created_at);
     const createdAtAfter = calculateCreateAtAfter(created_at);
     const isImageUrl = isImageSourceUrl(image_source);
 
-    item_list.push(
+    return (
       <li key={id}>
         <div className="card" onClick={(event) => onClickCard(event, url)}>
           <div className="card_image_container">
@@ -78,13 +77,15 @@ export default function CardList({ items }) {
             ) : (
               <img src="/images/default_card.svg" className="card_image_none" />
             )}
-            {isFolder && <img src="/images/star.svg" className="star_image" />}
+            {isFunctional && (
+              <img src="/images/star.svg" className="star_image" />
+            )}
           </div>
           <div className="card_badge_container">
             <div className="card_createdAt_after">{createdAtAfter}</div>
             <div className="card_description">{description}</div>
             <div className="card_createdAt">{newCreatedAt}</div>
-            {isFolder && (
+            {isFunctional && (
               <img src="/images/kebab.svg" className="kebab_image" />
             )}
           </div>

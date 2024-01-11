@@ -18,7 +18,7 @@ header {
   justify-content: center;
   top: 0;
   width: 100%;
-  z-index: 0;
+  z-index: 1;
 }
 
 .navigation_bar {
@@ -30,7 +30,6 @@ header {
   padding: 1.25rem 2rem;
   top: 0;
   width: 100%;
-  z-index: 1;
   gap: 0;
 }
 
