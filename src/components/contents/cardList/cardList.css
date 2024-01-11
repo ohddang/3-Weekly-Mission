@@ -11,11 +11,13 @@
 }
 
 .card {
+  position: relative;
+
   height: 20.875rem;
   width: 21.25rem;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
   border-radius: 5%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .card:hover {
@@ -111,11 +113,45 @@
 
 .kebab_image {
   position: absolute;
+  dispaly: flex;
 
-  width: 1.3125rem;
-  height: 1.0625rem;
   top: 0.625rem;
   right: 1.25rem;
+
+  height: 1.0625rem;
+  top: 0.625rem;
+}
+
+.kebab_popover {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  top: 70%;
+  left: 87%;
+  background: #ffffff;
+  width: max-content;
+}
+
+.kebab_popover > div {
+  background: #ffffff;
+  padding: 0.44rem 0.75rem;
+  text-align: center;
+  box-shadow: 0px 2px 8px 0px rgba(51, 50, 54, 0.1);
+
+  color: var(--gray-light-gray-100, #333236);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  z-index: 1;
+}
+
+.kebab_popover > div:hover {
+  background: #f0f6ff;
+  cursor: pointer;
 }
 
 /* layout mobile-first */

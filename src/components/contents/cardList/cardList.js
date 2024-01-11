@@ -1,11 +1,9 @@
 import "./cardList.css";
 
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function CardList({ items, isFunctional }) {
-  const location = useLocation();
-
-  // const item_list = items.map;
+  const [popoverKey, setPopoverKey] = useState(null);
 
   function calculateCreateAtAfter(createAt) {
     const today = new Date();
@@ -61,6 +59,18 @@ export default function CardList({ items, isFunctional }) {
     window.open(args[1]);
   }
 
+  const onKebabClick = (event, id) => {
+    event.stopPropagation();
+
+    popoverKey === id ? setPopoverKey(null) : setPopoverKey(id);
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", () => {
+      setPopoverKey(null);
+    });
+  });
+
   const item_list = items.map((item, index) => {
     const { id, created_at, url, description, image_source } = item;
 
@@ -86,9 +96,19 @@ export default function CardList({ items, isFunctional }) {
             <div className="card_description">{description}</div>
             <div className="card_createdAt">{newCreatedAt}</div>
             {isFunctional && (
-              <img src="/images/kebab.svg" className="kebab_image" />
+              <img
+                src="/images/kebab.svg"
+                className="kebab_image"
+                onClick={(event) => onKebabClick(event, id)}
+              />
             )}
           </div>
+          {id === popoverKey && (
+            <div className="kebab_popover">
+              <div className="kebab_popover_item">수정하기</div>
+              <div className="kebab_popover_item">폴더에 추가</div>
+            </div>
+          )}
         </div>
       </li>
     );
