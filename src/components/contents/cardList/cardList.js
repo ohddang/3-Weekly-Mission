@@ -1,11 +1,13 @@
 import "./cardList.css";
+import "../../../index.css";
 
 import { useState, useEffect } from "react";
+import Modal from "../../modal/modal";
 
 export default function CardList({ items, isFunctional }) {
   const [popoverKey, setPopoverKey] = useState(null);
 
-  function calculateCreateAtAfter(createAt) {
+  const calculateCreateAtAfter = (createAt) => {
     const today = new Date();
     const createAtDate = new Date(createAt);
     const diff = today.getTime() - createAtDate.getTime();
@@ -35,14 +37,14 @@ export default function CardList({ items, isFunctional }) {
     } else if (diffMin < 2) {
       return `1 minute age`;
     }
-  }
+  };
 
-  function convertCreateAt(createAt) {
+  const convertCreateAt = (createAt) => {
     const [year, month, day] = createAt.slice(0, 10).split("-");
     return `${year}. ${Number(month)}. ${Number(day)}`;
-  }
+  };
 
-  function isImageSourceUrl(imageSource) {
+  const isImageSourceUrl = (imageSource) => {
     const extensions = ["jpg", "png", "jpeg", "gif", "svg"];
 
     if (imageSource == null) {
@@ -53,17 +55,20 @@ export default function CardList({ items, isFunctional }) {
         ? true
         : false;
     }
-  }
+  };
 
-  function onClickCard(...args) {
+  const onClickCard = (...args) => {
     window.open(args[1]);
-  }
+  };
 
-  const onKebabClick = (event, id) => {
+  const onClickKebab = (event, id) => {
     event.stopPropagation();
 
     popoverKey === id ? setPopoverKey(null) : setPopoverKey(id);
   };
+
+  const onClickDelete = (event) => {};
+  const onClickAdd = (event) => {};
 
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -99,14 +104,23 @@ export default function CardList({ items, isFunctional }) {
               <img
                 src="/images/kebab.svg"
                 className="kebab_image"
-                onClick={(event) => onKebabClick(event, id)}
+                onClick={(event) => onClickKebab(event, id)}
               />
             )}
           </div>
           {id === popoverKey && (
             <div className="kebab_popover">
-              <div className="kebab_popover_item">수정하기</div>
-              <div className="kebab_popover_item">폴더에 추가</div>
+              <div className="kebab_popover_item" onClick={onClickDelete}>
+                삭제하기
+              </div>
+              <div className="kebab_popover_item" onClick={onClickAdd}>
+                폴더에 추가
+              </div>
+              <Modal>
+                <div className="modal">
+                  <div> Hi </div>
+                </div>
+              </Modal>
             </div>
           )}
         </div>
