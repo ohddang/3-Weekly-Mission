@@ -3,7 +3,6 @@ import "../modal.css";
 const AddModal = () => {
   const onClick = () => {};
 
-  // TODO : css 수정
   return (
     <>
       <div className="modal_title">폴더에 추가</div>

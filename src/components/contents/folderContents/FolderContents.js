@@ -3,6 +3,8 @@ import "./folderContents.css";
 import { useEffect, useState, useRef } from "react";
 import CardList from "../cardList/cardList";
 import FolderGroup from "./FolderGroup";
+import Modal from "../../modal/modal";
+import BaseModal, { ModalType } from "../../modal/BaseModal";
 
 const getFolderGroup = async (user_id = 1) => {
   const response = await fetch(
@@ -33,6 +35,9 @@ const FolderContents = () => {
   const [folderGroup, setFolderGroup] = useState([]);
   const [folderLinks, setFolderLinks] = useState([]);
   const [toggleIndex, setToggleIndex] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState(0);
+
   const titleRef = useRef();
 
   // rest api로 받아온 데이터로 상태값을 변경
@@ -70,6 +75,17 @@ const FolderContents = () => {
     }
   };
 
+  const onShowModal = (event, modalType) => {
+    event.stopPropagation();
+
+    setShowModal(true);
+    setModalType(modalType);
+  };
+
+  const onCloseModal = () => {
+    setShowModal(false);
+  };
+
   // 생성 시 폴더 목록을 가져옴
   useEffect(() => {
     getFolderGroup().then((rsp) => {
@@ -104,28 +120,37 @@ const FolderContents = () => {
           onClickFolderGroup={onClickFolderGroup}
           toggleIndex={toggleIndex}
         />
-        <img src="/images/add.svg" className="add_folder_button" />
+        <img
+          src="/images/add.svg"
+          className="add_folder_button"
+          onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
+        />
       </div>
       <div className="folder_group_title">
         <div className="folder_title" ref={titleRef}></div>
         {"전체" !== toggleIndex && (
           <div className="folder_editor">
-            <div>
+            <div onClick={(event) => onShowModal(event, ModalType.SHARE)}>
               <img src="/images/share.svg" />
               <div>공유</div>
             </div>
-            <div>
+            <div onClick={(event) => onShowModal(event, ModalType.EDIT)}>
               <img src="/images/pen.svg" />
               <div>이름변경</div>
             </div>
-            <div>
+            <div
+              onClick={(event) => onShowModal(event, ModalType.DELETE_FOLDER)}
+            >
               <img src="/images/delete.svg" />
               <div>삭제</div>
             </div>
           </div>
         )}
       </div>
-      <div className="add_folder_button_floating">
+      <div
+        className="add_folder_button_floating"
+        onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
+      >
         <div>폴더 추가</div>
         <img src="/images/floating_add.svg" />
       </div>
@@ -135,6 +160,12 @@ const FolderContents = () => {
         <ul className="card_list">
           <CardList items={folderLinks} isFunctional={true} />
         </ul>
+      )}
+
+      {showModal && (
+        <Modal>
+          {<BaseModal modalType={modalType} onClose={onCloseModal} />}
+        </Modal>
       )}
     </>
   );

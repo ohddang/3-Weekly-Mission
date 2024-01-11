@@ -68,11 +68,16 @@ export default function CardList({ items, isFunctional }) {
     popoverKey === id ? setPopoverKey(null) : setPopoverKey(id);
   };
 
+  const onCloseKebabPopover = () => {
+    setPopoverKey(null);
+  };
+
   useEffect(() => {
-    window.addEventListener("click", () => {
+    document.addEventListener("click", () => {
+      console.log("popoverKey", popoverKey);
       setPopoverKey(null);
     });
-  });
+  }, []);
 
   const item_list = items.map((item, index) => {
     const { id, created_at, url, description, image_source } = item;
@@ -106,7 +111,7 @@ export default function CardList({ items, isFunctional }) {
               />
             )}
           </div>
-          {id === popoverKey && <KebabPopover />}
+          {id === popoverKey && <KebabPopover onClose={onCloseKebabPopover} />}
         </div>
       </li>
     );

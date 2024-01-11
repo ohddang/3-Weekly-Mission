@@ -10,7 +10,6 @@ const DeleteModal = (props) => {
 
   const onClick = () => {};
 
-  console.log(props);
   useEffect(() => {
     switch (modalType) {
       case ModalType.DELETE_FOLDER:
@@ -21,7 +20,6 @@ const DeleteModal = (props) => {
       case ModalType.DELETE_LINK:
         setTitle("링크 삭제");
         setSubTitle("https://www.delete-link.com");
-        console.log("링크 삭제");
         break;
       default:
         break;
