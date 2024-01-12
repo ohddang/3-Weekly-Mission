@@ -1,14 +1,11 @@
-import "../contents.css";
+import "components/contents/contents.css";
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import CardList from "../cardList/cardList";
-import {
-  getSelectionFolderLinks,
-  setFolderLinksFromItems,
-} from "../../../api/api";
-import SearchBar from "../searchBar/SearchBar";
+import CardList from "components/contents/cardList/cardList";
+import { getSelectionFolderLinks, setFolderLinksFromItems } from "api/api";
+import SearchBar from "components/contents/searchBar/SearchBar";
 
 const SharedContents = () => {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,7 +1,7 @@
 import "./header.css";
 
 import { useState, useRef } from "react";
-import Modal from "../modal/modal";
+import Modal from "components/modal/modal";
 import BaseModal, { ModalType } from "../modal/BaseModal";
 
 const FolderHeader = () => {

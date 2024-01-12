@@ -1,7 +1,7 @@
 import "./header.css";
 
 import { useEffect, useState } from "react";
-import { getFolderInfo, getFolderGroup } from "../../api/api";
+import { getFolderInfo, getFolderGroup } from "api/api";
 import { useSearchParams } from "react-router-dom";
 
 const SharedHeader = () => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Modal from "../../modal/modal";
-import BaseModal, { ModalType } from "../../modal/BaseModal";
+import Modal from "components/modal/modal";
+import BaseModal, { ModalType } from "components/modal/BaseModal";
 
 const KebabPopover = (props) => {
   const [showModal, setShowModal] = useState(false);

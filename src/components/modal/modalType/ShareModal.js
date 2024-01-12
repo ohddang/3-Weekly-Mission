@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import {
   getSharedCurrentFolderLocalURL,
   getSharedCurrentFolderDevURL,
-} from "../../../api/api";
+} from "api/api";
 
-import shareKakao from "../../../utils/share/shareKakao";
+import shareKakao from "utils/share/shareKakao";
 
 const ShareModal = (props) => {
   const { userId, folderId } = props.params;

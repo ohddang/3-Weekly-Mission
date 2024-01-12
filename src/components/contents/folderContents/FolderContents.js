@@ -1,18 +1,19 @@
 import "./folderContents.css";
-import "../contents.css";
+import "components/contents/contents.css";
 
 import { useEffect, useState, useRef } from "react";
-import CardList from "../cardList/cardList";
-import FolderGroup from "./FolderGroup";
-import Modal from "../../modal/modal";
+
 import {
   getFolderGroup,
   getAllFolderLinksOfUser,
   getSelectionFolderLinks,
   setFolderLinksFromItems,
-} from "../../../api/api";
-import BaseModal, { ModalType } from "../../modal/BaseModal";
-import SearchBar from "../searchBar/SearchBar";
+} from "api/api";
+import CardList from "components/contents/cardList/cardList";
+import FolderGroup from "./FolderGroup";
+import Modal from "components/modal/modal";
+import BaseModal, { ModalType } from "components/modal/BaseModal";
+import SearchBar from "components/contents/searchBar/SearchBar";
 
 // component
 const FolderContents = () => {

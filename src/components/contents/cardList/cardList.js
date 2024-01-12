@@ -1,5 +1,5 @@
 import "./cardList.css";
-import "../../../index.css";
+import "index.css";
 
 import { useState, useEffect } from "react";
 import KebabPopover from "./KebebPopover";
