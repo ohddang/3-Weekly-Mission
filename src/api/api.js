@@ -1,5 +1,6 @@
 const BASE_URL = "https://bootcamp-api.codeit.kr";
 const LOCAL_URL = "http://localhost:3000";
+const DEV_URL = "http://10.130.100.229:3000";
 
 export const getFolderInfo = async () => {
   const response = await fetch(
@@ -47,6 +48,10 @@ export const setFolderLinksFromItems = (links) => {
   });
 };
 
-export const getSharedCurrentFolderURL = (folderId, userId = 1) => {
+export const getSharedCurrentFolderLocalURL = (folderId, userId = 1) => {
   return `${LOCAL_URL}/shared?user=${userId}&folder=${folderId}`;
+};
+
+export const getSharedCurrentFolderDevURL = (folderId, userId = 1) => {
+  return `${DEV_URL}/shared?user=${userId}&folder=${folderId}`;
 };
