@@ -1,4 +1,5 @@
 import "./folderContents.css";
+import "../contents.css";
 
 import { useEffect, useState, useRef } from "react";
 import CardList from "../cardList/cardList";
@@ -11,6 +12,7 @@ import {
   setFolderLinksFromItems,
 } from "../../../api/api";
 import BaseModal, { ModalType } from "../../modal/BaseModal";
+import SearchBar from "../searchBar/SearchBar";
 
 // component
 const FolderContents = () => {
@@ -97,65 +99,72 @@ const FolderContents = () => {
 
   return (
     <>
-      <div className="folder_group_container">
-        <FolderGroup
-          folderGroup={folderGroup}
-          onClickFolderGroup={onClickFolderGroup}
-          toggleIndex={folderId}
-        />
-        <img
-          src="/images/add.svg"
-          className="add_folder_button"
-          onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
-        />
-      </div>
-      <div className="folder_group_title">
-        <div className="folder_title" ref={titleRef}></div>
-        {"전체" !== folderId && (
-          <div className="folder_editor">
-            <div onClick={(event) => onShowModal(event, ModalType.SHARE)}>
-              <img src="/images/share.svg" />
-              <div>공유</div>
-            </div>
-            <div onClick={(event) => onShowModal(event, ModalType.EDIT)}>
-              <img src="/images/pen.svg" />
-              <div>이름변경</div>
-            </div>
-            <div
-              onClick={(event) => onShowModal(event, ModalType.DELETE_FOLDER)}
-            >
-              <img src="/images/delete.svg" />
-              <div>삭제</div>
-            </div>
-          </div>
-        )}
-      </div>
-      <div
-        className="add_folder_button_floating"
-        onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
-      >
-        <div>폴더 추가</div>
-        <img src="/images/floating_add.svg" />
-      </div>
-      {folderLinks.length === 0 ? (
-        <div className="empty_card_list">저장된 링크가 없습니다.</div>
-      ) : (
-        <ul className="card_list">
-          <CardList items={folderLinks} isFunctional={true} />
-        </ul>
-      )}
-
-      {showModal && (
-        <Modal>
-          {
-            <BaseModal
-              modalType={modalType}
-              onClose={onCloseModal}
-              params={modalParams}
+      <section className="contents">
+        <div className="card_list_container">
+          <SearchBar />
+          <div className="folder_group_container">
+            <FolderGroup
+              folderGroup={folderGroup}
+              onClickFolderGroup={onClickFolderGroup}
+              toggleIndex={folderId}
             />
-          }
-        </Modal>
-      )}
+            <img
+              src="/images/add.svg"
+              className="add_folder_button"
+              onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
+            />
+          </div>
+          <div className="folder_group_title">
+            <div className="folder_title" ref={titleRef}></div>
+            {"전체" !== folderId && (
+              <div className="folder_editor">
+                <div onClick={(event) => onShowModal(event, ModalType.SHARE)}>
+                  <img src="/images/share.svg" />
+                  <div>공유</div>
+                </div>
+                <div onClick={(event) => onShowModal(event, ModalType.EDIT)}>
+                  <img src="/images/pen.svg" />
+                  <div>이름변경</div>
+                </div>
+                <div
+                  onClick={(event) =>
+                    onShowModal(event, ModalType.DELETE_FOLDER)
+                  }
+                >
+                  <img src="/images/delete.svg" />
+                  <div>삭제</div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div
+            className="add_folder_button_floating"
+            onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
+          >
+            <div>폴더 추가</div>
+            <img src="/images/floating_add.svg" />
+          </div>
+          {folderLinks.length === 0 ? (
+            <div className="empty_card_list">저장된 링크가 없습니다.</div>
+          ) : (
+            <ul className="card_list">
+              <CardList items={folderLinks} isFunctional={true} />
+            </ul>
+          )}
+
+          {showModal && (
+            <Modal>
+              {
+                <BaseModal
+                  modalType={modalType}
+                  onClose={onCloseModal}
+                  params={modalParams}
+                />
+              }
+            </Modal>
+          )}
+        </div>
+      </section>
     </>
   );
 };
