@@ -16,7 +16,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shared" element={<Shared />} />
-          <Route path="/shared/*" element={<Shared />} />
           <Route path="/folder" element={<Folder />} />
           <Route path="/*" element={<Home />} />
         </Routes>

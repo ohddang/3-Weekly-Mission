@@ -1,16 +1,33 @@
 import "./header.css";
 
 import { useEffect, useState } from "react";
-import { getFolderInfo } from "../../api/api";
+import { getFolderInfo, getFolderGroup } from "../../api/api";
+import { useSearchParams } from "react-router-dom";
 
 const SharedHeader = () => {
   const [sharedInfo, setSharedInfo] = useState({
     owner_name: "",
     owner_profile_image: "",
-    folder_name: "",
   });
+  const [folderName, setFolderName] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const userParam = searchParams.get("user");
+  const folderParam = searchParams.get("folder");
 
   useEffect(() => {
+    getFolderGroup(userParam).then((result) => {
+      if (result.data == undefined) return;
+
+      const items = result.data;
+      console.log(items);
+      const findItem = items.find(
+        (item) => String(item.id) == String(folderParam)
+      );
+
+      findItem == undefined ? setFolderName("") : setFolderName(findItem.name);
+    });
+
     getFolderInfo().then((result) => {
       const { name, owner } = result;
 
@@ -31,7 +48,7 @@ const SharedHeader = () => {
             className="profile_image_folder"
           />
           <div className="owner_name">{sharedInfo.owner_name}</div>
-          <div className="folder_name">{sharedInfo.folder_name}</div>
+          <div className="folder_name">{folderName}</div>
         </div>
       </section>
     </>

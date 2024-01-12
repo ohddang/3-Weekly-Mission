@@ -31,7 +31,7 @@ const BaseModal = (props) => {
   };
 
   useEffect(() => {
-    document.addEventListener("click", onModalClose);
+    document.addEventListener("click", onModalClose); // document click event only
   }, []);
 
   return (
@@ -51,7 +51,7 @@ const BaseModal = (props) => {
           <img
             src="/images/modal-close.png"
             className="modal_close"
-            onClick={onModalClose}
+            onClick={props.onClose}
           />
         </div>
       </div>
