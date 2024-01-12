@@ -7,17 +7,14 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.el = document.createElement("div");
-    console.log("modal 생성");
   }
 
   componentDidMount() {
     modalRoot.appendChild(this.el);
-    console.log("modal child 추가");
   }
 
   componentWillUnmount() {
     modalRoot.removeChild(this.el);
-    console.log("modal child unmount");
   }
 
   render() {

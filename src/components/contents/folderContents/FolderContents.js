@@ -67,9 +67,10 @@ const FolderContents = () => {
         ? getAllFolderLinksOfUser().then((rsp) =>
             setFolderLinksFromItems(rsp.data)
           )
-        : getSelectionFolderLinks(selectionFolder.id).then((rsp) =>
-            setFolderLinksFromItems(rsp.data)
-          );
+        : getSelectionFolderLinks(selectionFolder.id).then((rsp) => {
+            setFolderLinksFromItems(rsp.data);
+            console.log(rsp.data);
+          });
     } else {
       setFolderLinks([]);
     }

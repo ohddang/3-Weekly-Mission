@@ -74,7 +74,6 @@ export default function CardList({ items, isFunctional }) {
 
   useEffect(() => {
     document.addEventListener("click", () => {
-      console.log("popoverKey", popoverKey);
       setPopoverKey(null);
     });
   }, []);

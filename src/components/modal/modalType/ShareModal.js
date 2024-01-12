@@ -1,13 +1,18 @@
+import shareKakao from "../../../utils/share/shareKakao";
 import "../modal.css";
 
 const ShareModal = () => {
+  const onKakoShare = () => {
+    shareKakao();
+  };
+
   return (
     <>
       <div className="modal_title">폴더 공유</div>
       <div className="modal_sub_title">폴더명</div>
       <div className="share_container">
         <div>
-          <div className="share_item">
+          <div className="share_item" id="kakao_link_btn" onClick={onKakoShare}>
             <div className="share_icon kakao">
               <img src="./images/kakao.svg" />
             </div>
