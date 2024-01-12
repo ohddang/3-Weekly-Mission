@@ -1,9 +1,20 @@
-import shareKakao from "../../../utils/share/shareKakao";
 import "../modal.css";
+import { useState, useEffect } from "react";
+import { getSharedCurrentFolderURL } from "../../../api/api";
 
-const ShareModal = () => {
+import shareKakao from "../../../utils/share/shareKakao";
+
+const ShareModal = (props) => {
+  const { userId, folderId } = props.params;
+  const [shareURL, setShareURL] = useState("");
+
+  console.log(userId, folderId);
+  useEffect(() => {
+    setShareURL(getSharedCurrentFolderURL(folderId, userId));
+  }, [userId, folderId]);
+
   const onKakoShare = () => {
-    shareKakao();
+    shareKakao(shareURL);
   };
 
   return (

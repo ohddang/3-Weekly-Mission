@@ -1,6 +1,9 @@
+const BASE_URL = "https://bootcamp-api.codeit.kr";
+const LOCAL_URL = "http://localhost:3000";
+
 export const getFolderInfo = async () => {
   const response = await fetch(
-    "https://bootcamp-api.codeit.kr/api/sample/folder" // sample api
+    `${BASE_URL}/api/sample/folder` // sample api
   );
   const rsp = await response.json();
   const rspFolder = rsp.folder;
@@ -12,26 +15,38 @@ export const getFolderInfo = async () => {
   };
 };
 
-export const getFolderGroup = async (user_id = 1) => {
+export const getFolderGroup = async (userId = 1) => {
+  const response = await fetch(`${BASE_URL}/api/users/${userId}/folders`);
+  const rsp = await response.json();
+  return rsp;
+};
+
+export const getAllFolderLinksOfUser = async (userId = 1) => {
+  const response = await fetch(`${BASE_URL}/api/users/${userId}/links`);
+  const rsp = await response.json();
+  return rsp;
+};
+
+export const getSelectionFolderLinks = async (folderId, userId = 1) => {
   const response = await fetch(
-    `https://bootcamp-api.codeit.kr/api/users/${user_id}/folders`
+    `${BASE_URL}/api/users/${userId}/links?folderId=${folderId}`
   );
   const rsp = await response.json();
   return rsp;
 };
 
-export const getAllFolderLinksOfUser = async (user_id = 1) => {
-  const response = await fetch(
-    `https://bootcamp-api.codeit.kr/api/users/${user_id}/links`
-  );
-  const rsp = await response.json();
-  return rsp;
+export const setFolderLinksFromItems = (links) => {
+  return links.map((link) => {
+    return {
+      id: link.id,
+      created_at: link.created_at,
+      url: link.url,
+      description: link.description,
+      image_source: link.image_source,
+    };
+  });
 };
 
-export const getSelectionFolderLinks = async (folder_id, user_id = 1) => {
-  const response = await fetch(
-    `https://bootcamp-api.codeit.kr/api/users/${user_id}/links?folderId=${folder_id}`
-  );
-  const rsp = await response.json();
-  return rsp;
+export const getSharedCurrentFolderURL = (folderId, userId = 1) => {
+  return `${LOCAL_URL}/shared?user=${userId}&folder=${folderId}`;
 };

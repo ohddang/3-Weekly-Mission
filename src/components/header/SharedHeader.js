@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 const SharedHeader = () => {
   const [sharedInfo, setSharedInfo] = useState({
     owner_name: "",
-    owner_profile_image: "",
+    owner_profile_image: "./images/profile.svg", // default image
   });
   const [folderName, setFolderName] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,6 +16,8 @@ const SharedHeader = () => {
   const folderParam = searchParams.get("folder");
 
   useEffect(() => {
+    if (userParam == undefined || folderParam == undefined) return;
+
     getFolderGroup(userParam).then((result) => {
       if (result.data == undefined) return;
 
@@ -29,10 +31,9 @@ const SharedHeader = () => {
     });
 
     getFolderInfo().then((result) => {
-      const { name, owner } = result;
+      const { owner } = result;
 
       setSharedInfo({
-        folder_name: name,
         owner_name: owner.name,
         owner_profile_image: owner.profileImageSource,
       });

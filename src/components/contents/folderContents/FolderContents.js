@@ -8,6 +8,7 @@ import {
   getFolderGroup,
   getAllFolderLinksOfUser,
   getSelectionFolderLinks,
+  setFolderLinksFromItems,
 } from "../../../api/api";
 import BaseModal, { ModalType } from "../../modal/BaseModal";
 
@@ -15,30 +16,17 @@ import BaseModal, { ModalType } from "../../modal/BaseModal";
 const FolderContents = () => {
   const [folderGroup, setFolderGroup] = useState([]);
   const [folderLinks, setFolderLinks] = useState([]);
-  const [toggleIndex, setToggleIndex] = useState("");
+  const [folderId, setFolderId] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(0);
+  const [modalParams, setModalParams] = useState({});
 
   const titleRef = useRef();
-
-  // rest api로 받아온 데이터로 상태값을 변경
-  const setFolderLinksFromItems = (links) => {
-    const folderLinks = links.map((link) => {
-      return {
-        id: link.id,
-        created_at: link.created_at,
-        url: link.url,
-        description: link.description,
-        image_source: link.image_source,
-      };
-    });
-    setFolderLinks(folderLinks);
-  };
 
   // 폴더를 클릭했을 때 해당하는 링크목록을 가져옴
   const onClickFolderGroup = (event, key) => {
     event.preventDefault();
-    setToggleIndex(key);
+    setFolderId(key);
 
     const selectionFolder = folderGroup.find((folder) => key === folder.id);
     titleRef.current.innerHTML = selectionFolder.name;
@@ -46,20 +34,33 @@ const FolderContents = () => {
     if (selectionFolder.linkCount > 0) {
       selectionFolder.id === "전체"
         ? getAllFolderLinksOfUser().then((rsp) =>
-            setFolderLinksFromItems(rsp.data)
+            setFolderLinks(setFolderLinksFromItems(rsp.data))
           )
         : getSelectionFolderLinks(selectionFolder.id).then((rsp) => {
-            setFolderLinksFromItems(rsp.data);
-            console.log(rsp.data);
+            setFolderLinks(setFolderLinksFromItems(rsp.data));
           });
     } else {
       setFolderLinks([]);
     }
   };
 
+  const updateModalParams = (modalType) => {
+    switch (modalType) {
+      case ModalType.SHARE:
+        setModalParams({
+          userId: 1, // TODO : context
+          folderId: folderId,
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
   const onShowModal = (event, modalType) => {
     event.stopPropagation();
 
+    updateModalParams(modalType);
     setShowModal(true);
     setModalType(modalType);
   };
@@ -100,7 +101,7 @@ const FolderContents = () => {
         <FolderGroup
           folderGroup={folderGroup}
           onClickFolderGroup={onClickFolderGroup}
-          toggleIndex={toggleIndex}
+          toggleIndex={folderId}
         />
         <img
           src="/images/add.svg"
@@ -110,7 +111,7 @@ const FolderContents = () => {
       </div>
       <div className="folder_group_title">
         <div className="folder_title" ref={titleRef}></div>
-        {"전체" !== toggleIndex && (
+        {"전체" !== folderId && (
           <div className="folder_editor">
             <div onClick={(event) => onShowModal(event, ModalType.SHARE)}>
               <img src="/images/share.svg" />
@@ -146,7 +147,13 @@ const FolderContents = () => {
 
       {showModal && (
         <Modal>
-          {<BaseModal modalType={modalType} onClose={onCloseModal} />}
+          {
+            <BaseModal
+              modalType={modalType}
+              onClose={onCloseModal}
+              params={modalParams}
+            />
+          }
         </Modal>
       )}
     </>

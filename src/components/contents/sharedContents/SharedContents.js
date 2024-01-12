@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import CardList from "../cardList/cardList";
-import { getSelectionFolderLinks } from "../../../api/api";
+import {
+  getSelectionFolderLinks,
+  setFolderLinksFromItems,
+} from "../../../api/api";
 
 const SharedContents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -11,24 +14,11 @@ const SharedContents = () => {
   const userParam = searchParams.get("user");
   const folderParam = searchParams.get("folder");
 
-  const setFolderLinksFromItems = (links) => {
-    const folderLinks = links.map((link) => {
-      return {
-        id: link.id,
-        created_at: link.created_at,
-        url: link.url,
-        description: link.description,
-        image_source: link.image_source,
-      };
-    });
-    setFolderLinks(folderLinks);
-  };
-
   useEffect(() => {
     getSelectionFolderLinks(folderParam, userParam).then((rsp) => {
       if (rsp.data == undefined) return;
 
-      setFolderLinksFromItems(rsp.data);
+      setFolderLinks(setFolderLinksFromItems(rsp.data));
     });
   }, []);
 

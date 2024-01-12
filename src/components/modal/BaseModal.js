@@ -18,7 +18,7 @@ export const ModalType = {
 };
 
 const BaseModal = (props) => {
-  const { modalType, onClose } = props;
+  const { modalType, onClose, params } = props;
 
   const onModal = (event) => {
     event.stopPropagation();
@@ -42,7 +42,7 @@ const BaseModal = (props) => {
             {
               [ModalType.EDIT]: <EditModal />,
               [ModalType.ADD_FOLDER]: <AddFolderModal />,
-              [ModalType.SHARE]: <ShareModal />,
+              [ModalType.SHARE]: <ShareModal params={params} />,
               [ModalType.DELETE_FOLDER]: <DeleteModal modalType={modalType} />,
               [ModalType.DELETE_LINK]: <DeleteModal modalType={modalType} />,
               [ModalType.ADD]: <AddModal />,
