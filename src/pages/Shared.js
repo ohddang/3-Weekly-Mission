@@ -1,12 +1,12 @@
-import Header from "../components/header/header";
 import Contents from "../components/contents/contents";
 import NavigatorBar from "../components/navigatorBar/NavigatorBar";
+import SharedHeader from "../components/header/SharedHeader";
 
 const Shared = () => {
   return (
     <>
       <NavigatorBar />
-      <Header />
+      <SharedHeader />
       <Contents />
     </>
   );

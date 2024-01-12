@@ -2,11 +2,7 @@
   box-sizing: border-box;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.title_container {
   background-color: var(--gray5);
 }
 

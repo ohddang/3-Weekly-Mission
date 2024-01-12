@@ -1,12 +1,12 @@
-import Header from "../components/header/header";
 import Contents from "../components/contents/contents";
 import NavigatorBar from "../components/navigatorBar/NavigatorBar";
+import FolderHeader from "../components/header/FolderHeader";
 
 const Folder = () => {
   return (
     <>
       <NavigatorBar />
-      <Header />
+      <FolderHeader />
       <Contents />
     </>
   );

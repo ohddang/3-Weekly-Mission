@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import CardList from "../cardList/cardList";
-import { getFolderInfo } from "../../header/header";
+import { getFolderInfo } from "../../../api/api";
 
 const SharedContents = () => {
   const [sharedLinks, setSharedLinks] = useState([]);

@@ -1,5 +1,7 @@
+import "./header.css";
+
 import { useEffect, useState } from "react";
-import { getFolderInfo } from "../header";
+import { getFolderInfo } from "../../api/api";
 
 const SharedHeader = () => {
   const [sharedInfo, setSharedInfo] = useState({
@@ -22,14 +24,16 @@ const SharedHeader = () => {
 
   return (
     <>
-      <div className="shared_title_container">
-        <img
-          src={sharedInfo.owner_profile_image}
-          className="profile_image_folder"
-        />
-        <div className="owner_name">{sharedInfo.owner_name}</div>
-        <div className="folder_name">{sharedInfo.folder_name}</div>
-      </div>
+      <section className="title_container">
+        <div className="shared_title_container">
+          <img
+            src={sharedInfo.owner_profile_image}
+            className="profile_image_folder"
+          />
+          <div className="owner_name">{sharedInfo.owner_name}</div>
+          <div className="folder_name">{sharedInfo.folder_name}</div>
+        </div>
+      </section>
     </>
   );
 };

@@ -19,6 +19,8 @@ const KebabPopover = (props) => {
   const onCloseModal = () => {
     setShowModal(false);
     onClose();
+    // 지금 현재 컴포넌트에서 전달받은 props(상태)값을 변경하고 변경된 상태를 부모 컴포넌트에 전달함
+    // 자식에서 변경로직
   };
 
   return (

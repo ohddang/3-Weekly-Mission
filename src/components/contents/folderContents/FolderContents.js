@@ -4,31 +4,12 @@ import { useEffect, useState, useRef } from "react";
 import CardList from "../cardList/cardList";
 import FolderGroup from "./FolderGroup";
 import Modal from "../../modal/modal";
+import {
+  getFolderGroup,
+  getAllFolderLinksOfUser,
+  getSelectionFolderLinks,
+} from "../../../api/api";
 import BaseModal, { ModalType } from "../../modal/BaseModal";
-
-const getFolderGroup = async (user_id = 1) => {
-  const response = await fetch(
-    `https://bootcamp-api.codeit.kr/api/users/${user_id}/folders`
-  );
-  const rsp = await response.json();
-  return rsp;
-};
-
-const getAllFolderLinksOfUser = async (user_id = 1) => {
-  const response = await fetch(
-    `https://bootcamp-api.codeit.kr/api/users/${user_id}/links`
-  );
-  const rsp = await response.json();
-  return rsp;
-};
-
-const getSelectionFolderLinks = async (folder_id, user_id = 1) => {
-  const response = await fetch(
-    `https://bootcamp-api.codeit.kr/api/users/${user_id}/links?folderId=${folder_id}`
-  );
-  const rsp = await response.json();
-  return rsp;
-};
 
 // component
 const FolderContents = () => {

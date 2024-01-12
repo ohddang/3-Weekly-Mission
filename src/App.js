@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// TODO : router 세련되게 바꾸기
 function App() {
   return (
     <>
@@ -15,8 +16,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shared" element={<Shared />} />
+          <Route path="/shared/*" element={<Shared />} />
           <Route path="/folder" element={<Folder />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/*" element={<Home />} />
         </Routes>
       </BrowserRouter>
       <Footer />
