@@ -1,37 +1,24 @@
-import Header from "./components/header/header";
-import Contents from "./components/contents/contents";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Footer from "./components/footer/footer";
 
-import useUserProfile from "./components/hooks/userProfile";
-import useFolderInfo from "./components/hooks/folderInfo";
+import Shared from "./pages/Shared";
+import Folder from "./pages/Folder";
+import Home from "./pages/Home";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const { name, email, profileImageSource } = useUserProfile();
-  const { owner_name, owner_profile_image, folder_name, links } =
-    useFolderInfo();
-
-  const userProfile = {
-    name: name,
-    email: email,
-    profileImageSource: profileImageSource,
-  };
-
-  const folderInfo = {
-    owner_name: owner_name,
-    owner_profile_image: owner_profile_image,
-    folder_name: folder_name,
-    links: links,
-  };
-
-  const props = {
-    userProfile: userProfile,
-    folderInfo: folderInfo,
-  };
-
   return (
     <>
-      <Header userProfile={userProfile} folderInfo={folderInfo} />
-      <Contents folderInfo={folderInfo} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shared" element={<Shared />} />
+          <Route path="/folder" element={<Folder />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
       <Footer />
     </>
   );

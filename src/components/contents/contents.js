@@ -1,10 +1,13 @@
-import "../css/common.css";
 import "./contents.css";
-import CardList from "../cardList/cardList";
-import useFolderInfo from "../hooks/folderInfo";
 
-export default function Contents({ folderInfo }) {
-  const { links } = folderInfo;
+import { useLocation } from "react-router-dom";
+import SharedContents from "./sharedContents/SharedContents";
+import FolderContents from "./folderContents/FolderContents";
+
+export default function Contents() {
+  const location = useLocation();
+
+  const isShared = location.pathname.includes("shared");
 
   return (
     <>
@@ -17,9 +20,7 @@ export default function Contents({ folderInfo }) {
               placeholder="링크를 검색해 보세요."
             ></input>
           </div>
-          <ul className="card_list">
-            <CardList items={links} />
-          </ul>
+          {isShared ? <SharedContents /> : <FolderContents />}
         </div>
       </section>
     </>

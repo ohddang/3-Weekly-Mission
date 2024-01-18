@@ -1,17 +1,13 @@
-.card_list_container {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  justify-content: space-between;
-}
-
 .card_list {
   display: grid;
   flex-direction: row;
+  flex: 0 0 auto;
   gap: 1.25rem;
-  grid-template-columns: repeat(3, 21.25rem);
+  grid-template-columns: repeat(1, 21.25rem);
   list-style-type: none;
   padding: 0px;
+
+  justify-content: center;
 }
 
 .card {
@@ -36,6 +32,8 @@
 }
 
 .card_image_container {
+  position: relative;
+
   align-items: center;
   background: #dddfff;
   display: flex;
@@ -54,7 +52,17 @@
   transition: transform 0.5s ease-in-out;
 }
 
+.star_image {
+  position: absolute;
+
+  width: 2.125rem;
+  height: 2.125rem;
+  top: 0.94rem;
+  right: 0.94rem;
+}
+
 .card_badge_container {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
@@ -101,21 +109,24 @@
   line-height: normal;
 }
 
-/* layout mobile-first */
-@media (min-width: 1124px) {
-  .card_list {
-    grid-template-columns: repeat(3, 21.25rem);
-  }
+.kebab_image {
+  position: absolute;
+
+  width: 1.3125rem;
+  height: 1.0625rem;
+  top: 0.625rem;
+  right: 1.25rem;
 }
 
-@media (max-width: 1123px) {
+/* layout mobile-first */
+@media (min-width: 768px) {
   .card_list {
     grid-template-columns: repeat(2, 21.25rem);
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 1124px) {
   .card_list {
-    grid-template-columns: repeat(1, 21.25rem);
+    grid-template-columns: repeat(3, 21.25rem);
   }
 }
