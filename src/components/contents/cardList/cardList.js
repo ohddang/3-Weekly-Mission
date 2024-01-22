@@ -72,10 +72,15 @@ export default function CardList({ items, isFunctional }) {
     setPopoverKey(null);
   };
 
+  const onClick = () => {
+    setPopoverKey(null);
+  };
+
   useEffect(() => {
-    document.addEventListener("click", () => {
-      setPopoverKey(null);
-    });
+    document.addEventListener("click", onClick);
+    return () => {
+      document.removeEventListener("click", onClick);
+    };
   }, []);
 
   const item_list = items.map((item, index) => {

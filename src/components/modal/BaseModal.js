@@ -31,7 +31,10 @@ const BaseModal = (props) => {
   };
 
   useEffect(() => {
-    document.addEventListener("click", onModalClose); // document click event only
+    document.addEventListener("click", onModalClose);
+    return () => {
+      document.removeEventListener("click", onModalClose);
+    }; // document click event only
   }, []);
 
   return (

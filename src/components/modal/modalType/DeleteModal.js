@@ -24,7 +24,7 @@ const DeleteModal = (props) => {
       default:
         break;
     }
-  }, []);
+  }, [modalType]);
 
   return (
     <>

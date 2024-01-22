@@ -11,9 +11,8 @@ import {
 } from "api/api";
 import CardList from "components/contents/cardList/cardList";
 import FolderGroup from "./FolderGroup";
-import Modal from "components/modal/modal";
-import BaseModal, { ModalType } from "components/modal/BaseModal";
 import SearchBar from "components/contents/searchBar/SearchBar";
+import { Modal, BaseModal, ModalType } from "components/modal";
 
 // component
 const FolderContents = () => {

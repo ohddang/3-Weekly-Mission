@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const FolderGroup = ({ folderGroup, onClickFolderGroup, toggleIndex }) => {
   const createFolderGroup = () => {
     return folderGroup.map((folder) => {

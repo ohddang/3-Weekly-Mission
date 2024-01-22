@@ -1,11 +1,10 @@
 import { useState } from "react";
 
-import Modal from "components/modal/modal";
-import BaseModal, { ModalType } from "components/modal/BaseModal";
+import { Modal, BaseModal, ModalType } from "components/modal";
 
 const KebabPopover = (props) => {
   const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState(0);
+  const [modalType, setModalType] = useState(ModalType.EDIT);
 
   const { onClose } = props;
 
