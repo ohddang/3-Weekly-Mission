@@ -8,13 +8,15 @@ import { getSelectionFolderLinks, setFolderLinksFromItems } from "api/api";
 import SearchBar from "components/contents/searchBar/SearchBar";
 
 const SharedContents = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _setSearchParams] = useSearchParams();
   const [folderLinks, setFolderLinks] = useState([]);
 
-  const userParam = searchParams.get("user");
+  const userParam = Number(searchParams.get("user"));
   const folderParam = searchParams.get("folder");
 
   useEffect(() => {
+    if (userParam == undefined || folderParam == undefined) return;
+
     getSelectionFolderLinks(folderParam, userParam).then((rsp) => {
       if (rsp.data == undefined) return;
 

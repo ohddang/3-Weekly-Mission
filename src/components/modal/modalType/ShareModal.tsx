@@ -1,13 +1,17 @@
 import "../modal.css";
 import { useState, useEffect } from "react";
-import {
-  getSharedCurrentFolderLocalURL,
-  getSharedCurrentFolderDevURL,
-} from "api/api";
+import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL } from "api/api";
 
 import shareKakao from "utils/share/shareKakao";
 
-const ShareModal = (props) => {
+interface ShareModalProps {
+  params: {
+    userId: number;
+    folderId: string;
+  };
+}
+
+const ShareModal: React.FC<ShareModalProps> = (props) => {
   const { userId, folderId } = props.params;
   const [shareURL, setShareURL] = useState("");
 
@@ -32,7 +36,7 @@ const ShareModal = (props) => {
         alert("링크가 복사되었습니다.");
         return rsp;
       })
-      .catch((rsp) => alert("링크 복사에 실패했습니다."));
+      .catch((_rsp) => alert("링크 복사에 실패했습니다."));
   };
 
   return (
@@ -41,11 +45,7 @@ const ShareModal = (props) => {
       <div className="modal_sub_title">폴더명</div>
       <div className="share_container">
         <div>
-          <div
-            className="share_item"
-            id="kakao_link_btn"
-            onClick={onKakaoShare}
-          >
+          <div className="share_item" id="kakao_link_btn" onClick={onKakaoShare}>
             <div className="share_icon kakao">
               <img src="./images/kakao.svg" />
             </div>

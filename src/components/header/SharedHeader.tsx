@@ -10,9 +10,9 @@ const SharedHeader = () => {
     owner_profile_image: "./images/profile.svg", // default image
   });
   const [folderName, setFolderName] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _setSearchParams] = useSearchParams();
 
-  const userParam = searchParams.get("user");
+  const userParam = Number(searchParams.get("user"));
   const folderParam = searchParams.get("folder");
 
   useEffect(() => {
@@ -23,9 +23,7 @@ const SharedHeader = () => {
 
       const items = result.data;
       console.log(items);
-      const findItem = items.find(
-        (item) => String(item.id) == String(folderParam)
-      );
+      const findItem = items.find((item: any) => String(item.id) == String(folderParam)); // FixME: type any
 
       findItem == undefined ? setFolderName("") : setFolderName(findItem.name);
     });
@@ -44,10 +42,7 @@ const SharedHeader = () => {
     <>
       <section className="title_container">
         <div className="shared_title_container">
-          <img
-            src={sharedInfo.owner_profile_image}
-            className="profile_image_folder"
-          />
+          <img src={sharedInfo.owner_profile_image} className="profile_image_folder" />
           <div className="owner_name">{sharedInfo.owner_name}</div>
           <div className="folder_name">{folderName}</div>
         </div>

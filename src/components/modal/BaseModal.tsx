@@ -17,14 +17,20 @@ export const ModalType = {
   ADD: 5,
 };
 
-const BaseModal = (props) => {
+interface BaseModalProps {
+  modalType: number;
+  onClose: () => void;
+  params?: any;
+}
+
+const BaseModal: React.FC<BaseModalProps> = (props) => {
   const { modalType, onClose, params } = props;
 
-  const onModal = (event) => {
+  const onModal = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
   };
 
-  const onModalClose = (event) => {
+  const onModalClose = (event: MouseEvent) => {
     event.stopPropagation();
 
     onClose();
@@ -51,11 +57,7 @@ const BaseModal = (props) => {
               [ModalType.ADD]: <AddModal />,
             }[modalType]
           }
-          <img
-            src="/images/modal-close.png"
-            className="modal_close"
-            onClick={props.onClose}
-          />
+          <img src="/images/modal-close.png" className="modal_close" onClick={props.onClose} />
         </div>
       </div>
     </>

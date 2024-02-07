@@ -3,10 +3,22 @@ import "index.css";
 
 import { useState, useEffect } from "react";
 import KebabPopover from "./KebebPopover";
-export default function CardList({ items, isFunctional }) {
-  const [popoverKey, setPopoverKey] = useState(null);
 
-  const calculateCreateAtAfter = (createAt) => {
+interface CardListProps {
+  items: {
+    id: number;
+    created_at: string;
+    url: string;
+    description: string;
+    image_source: string;
+  }[];
+  isFunctional: boolean;
+}
+
+const CardList: React.FC<CardListProps> = ({ items, isFunctional }) => {
+  const [popoverKey, setPopoverKey] = useState<number>(0);
+
+  const calculateCreateAtAfter = (createAt: string) => {
     const today = new Date();
     const createAtDate = new Date(createAt);
     const diff = today.getTime() - createAtDate.getTime();
@@ -38,42 +50,44 @@ export default function CardList({ items, isFunctional }) {
     }
   };
 
-  const convertCreateAt = (createAt) => {
+  const convertCreateAt = (createAt: string) => {
     const [year, month, day] = createAt.slice(0, 10).split("-");
     return `${year}. ${Number(month)}. ${Number(day)}`;
   };
 
-  const isImageSourceUrl = (imageSource) => {
+  const isImageSourceUrl = (imageSource: string) => {
     const extensions = ["jpg", "png", "jpeg", "gif", "svg"];
 
     if (imageSource == null) {
       return false;
     } else {
       const ext = imageSource.split(".").pop();
-      return extensions.find((item) => ext.includes(item)).length > 0
-        ? true
-        : false;
+      if (ext == undefined) return false;
+      const extFind = extensions.find((item: string) => ext.includes(item));
+      if (extFind == undefined) return false;
+
+      return extFind.length > 0 ? true : false;
     }
   };
 
-  const onClickCard = (...args) => {
+  const onClickCard = (_event: React.MouseEvent<HTMLDivElement, MouseEvent>, url: string) => {
     if (popoverKey) return;
 
-    window.open(args[1]);
+    window.open(url);
   };
 
-  const onClickKebab = (event, id) => {
+  const onClickKebab = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, id: number) => {
     event.stopPropagation();
 
-    popoverKey === id ? setPopoverKey(null) : setPopoverKey(id);
+    popoverKey === id ? setPopoverKey(0) : setPopoverKey(id);
   };
 
   const onCloseKebabPopover = () => {
-    setPopoverKey(null);
+    setPopoverKey(0);
   };
 
   const onClick = () => {
-    setPopoverKey(null);
+    setPopoverKey(0);
   };
 
   useEffect(() => {
@@ -83,7 +97,7 @@ export default function CardList({ items, isFunctional }) {
     };
   }, []);
 
-  const item_list = items.map((item, index) => {
+  const item_list = items.map((item, _index) => {
     const { id, created_at, url, description, image_source } = item;
 
     const newCreatedAt = convertCreateAt(created_at);
@@ -99,20 +113,14 @@ export default function CardList({ items, isFunctional }) {
             ) : (
               <img src="/images/default_card.svg" className="card_image_none" />
             )}
-            {isFunctional && (
-              <img src="/images/star.svg" className="star_image" />
-            )}
+            {isFunctional && <img src="/images/star.svg" className="star_image" />}
           </div>
           <div className="card_badge_container">
             <div className="card_createdAt_after">{createdAtAfter}</div>
             <div className="card_description">{description}</div>
             <div className="card_createdAt">{newCreatedAt}</div>
             {isFunctional && (
-              <img
-                src="/images/kebab.svg"
-                className="kebab_image"
-                onClick={(event) => onClickKebab(event, id)}
-              />
+              <img src="/images/kebab.svg" className="kebab_image" onClick={(event) => onClickKebab(event, id)} />
             )}
           </div>
           {id === popoverKey && <KebabPopover onClose={onCloseKebabPopover} />}
@@ -122,4 +130,6 @@ export default function CardList({ items, isFunctional }) {
   });
 
   return <>{item_list}</>;
-}
+};
+
+export default CardList;

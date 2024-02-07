@@ -4,11 +4,9 @@ import { useLocation } from "react-router-dom";
 async function getUserProfile() {
   const user_id = 1;
 
-  const response = await fetch(
-    `https://bootcamp-api.codeit.kr/api/users/${user_id}`
-  );
+  const response = await fetch(`https://bootcamp-api.codeit.kr/api/users/${user_id}`);
   const find_user = await response.json().then((result) => {
-    return result.data?.find((user) => user.id === user_id);
+    return result.data?.find((user: any) => user.id === user_id);
   });
 
   return {
@@ -43,10 +41,7 @@ const NavigatorBar = () => {
 
   return (
     <>
-      <section
-        className="navigation_container"
-        style={{ position: position_property }}
-      >
+      <section className="navigation_container" style={{ position: position_property }}>
         <div className="navigation_bar">
           <a href="/" className="linkbrary">
             <img src="/images/linkbrary.svg" />

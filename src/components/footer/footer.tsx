@@ -1,4 +1,3 @@
-import "styles/common.css";
 import "./footer.css";
 
 export default function Footer() {
@@ -17,32 +16,16 @@ export default function Footer() {
           </li>
           <li className="sns">
             <a target="_blank" href="https://www.facebook.com/">
-              <img
-                src="/images/facebook.svg"
-                className="facebook"
-                alt="facebook"
-              />
+              <img src="/images/facebook.svg" className="facebook" alt="facebook" />
             </a>
             <a target="_blank" href="https://twitter.com/">
-              <img
-                src="/images/twitter.svg"
-                className="twitter"
-                alt="twitter"
-              />
+              <img src="/images/twitter.svg" className="twitter" alt="twitter" />
             </a>
             <a target="_blank" href="https://www.youtube.com/">
-              <img
-                src="/images/youtube.svg"
-                className="youtube"
-                alt="youtube"
-              />
+              <img src="/images/youtube.svg" className="youtube" alt="youtube" />
             </a>
             <a target="_blank" href="https://www.instagram.com/">
-              <img
-                src="/images/instargram.svg"
-                className="instargram"
-                alt="instargram"
-              />
+              <img src="/images/instargram.svg" className="instargram" alt="instargram" />
             </a>
           </li>
         </ul>

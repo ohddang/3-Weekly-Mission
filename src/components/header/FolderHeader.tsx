@@ -1,18 +1,18 @@
 import "./header.css";
 
-import { useState, useRef } from "react";
-import Modal from "components/modal/modal";
-import BaseModal, { ModalType } from "../modal/BaseModal";
+import { useState, useRef, MouseEvent } from "react";
+import ModalPortal from "components/modal/ModalPortal";
+import { BaseModal, ModalType } from "../modal";
 
 const FolderHeader = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(0);
-  const linkRef = useRef();
+  const linkRef = useRef<HTMLInputElement>(null);
 
-  const onShowModal = (event, modalType) => {
+  const onShowModal = (event: MouseEvent<HTMLDivElement | MouseEvent>, modalType: number) => {
     event.stopPropagation();
 
-    if (linkRef.current.value === "") {
+    if (linkRef.current && linkRef.current.value === "") {
       alert("링크를 입력해주세요.");
       return;
     } else {
@@ -31,24 +31,13 @@ const FolderHeader = () => {
         <div className="folder_title_container">
           <div className="folder_title_input_container">
             <img src="./images/link.svg" className="link_image" />
-            <input
-              ref={linkRef}
-              className="folder_title_input"
-              placeholder="링크를 추가해 보세요."
-            />
-            <div
-              className="folder_title_button"
-              onClick={(event) => onShowModal(event, ModalType.ADD)}
-            >
+            <input ref={linkRef} className="folder_title_input" placeholder="링크를 추가해 보세요." />
+            <div className="folder_title_button" onClick={(event) => onShowModal(event, ModalType.ADD)}>
               <div>추가하기</div>
             </div>
           </div>
         </div>
-        {showModal && (
-          <Modal>
-            {<BaseModal modalType={modalType} onClose={onCloseModal} />}
-          </Modal>
-        )}
+        {showModal && <ModalPortal>{<BaseModal modalType={modalType} onClose={onCloseModal} />}</ModalPortal>}
       </section>
     </>
   );

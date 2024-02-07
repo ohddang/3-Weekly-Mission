@@ -3,16 +3,13 @@ import "components/contents/contents.css";
 
 import { useEffect, useState, useRef } from "react";
 
-import {
-  getFolderGroup,
-  getAllFolderLinksOfUser,
-  getSelectionFolderLinks,
-  setFolderLinksFromItems,
-} from "api/api";
+import { getFolderGroup, getAllFolderLinksOfUser, getSelectionFolderLinks, setFolderLinksFromItems } from "api/api";
 import CardList from "components/contents/cardList/cardList";
 import FolderGroup from "./FolderGroup";
 import SearchBar from "components/contents/searchBar/SearchBar";
-import { Modal, BaseModal, ModalType } from "components/modal";
+
+import ModalPortal from "components/modal/ModalPortal";
+import { BaseModal, ModalType } from "components/modal";
 
 // component
 const FolderContents = () => {
@@ -23,21 +20,19 @@ const FolderContents = () => {
   const [modalType, setModalType] = useState(0);
   const [modalParams, setModalParams] = useState({});
 
-  const titleRef = useRef();
+  const titleRef = useRef<HTMLDivElement>(null);
 
   // 폴더를 클릭했을 때 해당하는 링크목록을 가져옴
-  const onClickFolderGroup = (event, key) => {
+  const onClickFolderGroup = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, key: string) => {
     event.preventDefault();
     setFolderId(key);
 
-    const selectionFolder = folderGroup.find((folder) => key === folder.id);
-    titleRef.current.innerHTML = selectionFolder.name;
+    const selectionFolder: any = folderGroup.find((folder: any) => key === folder.id); // TODO : type
+    if (titleRef.current) titleRef.current.innerHTML = selectionFolder.name;
 
     if (selectionFolder.linkCount > 0) {
       selectionFolder.id === "전체"
-        ? getAllFolderLinksOfUser().then((rsp) =>
-            setFolderLinks(setFolderLinksFromItems(rsp.data))
-          )
+        ? getAllFolderLinksOfUser().then((rsp) => setFolderLinks(setFolderLinksFromItems(rsp.data)))
         : getSelectionFolderLinks(selectionFolder.id).then((rsp) => {
             setFolderLinks(setFolderLinksFromItems(rsp.data));
           });
@@ -46,7 +41,7 @@ const FolderContents = () => {
     }
   };
 
-  const updateModalParams = (modalType) => {
+  const updateModalParams = (modalType: number) => {
     switch (modalType) {
       case ModalType.SHARE:
         setModalParams({
@@ -59,7 +54,7 @@ const FolderContents = () => {
     }
   };
 
-  const onShowModal = (event, modalType) => {
+  const onShowModal = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, modalType: number) => {
     event.stopPropagation();
 
     updateModalParams(modalType);
@@ -75,7 +70,8 @@ const FolderContents = () => {
   useEffect(() => {
     getFolderGroup().then((rsp) => {
       let allLinkCount = 0;
-      const folderGroupInfo = rsp.data.map((folder) => {
+      const folderGroupInfo = rsp.data.map((folder: any) => {
+        // TODO : type
         allLinkCount += folder.link.count;
 
         return {
@@ -103,11 +99,7 @@ const FolderContents = () => {
         <div className="card_list_container">
           <SearchBar />
           <div className="folder_group_container">
-            <FolderGroup
-              folderGroup={folderGroup}
-              onClickFolderGroup={onClickFolderGroup}
-              toggleIndex={folderId}
-            />
+            <FolderGroup folderGroup={folderGroup} onClickFolderGroup={onClickFolderGroup} toggleIndex={folderId} />
             <img
               src="/images/add.svg"
               className="add_folder_button"
@@ -126,21 +118,14 @@ const FolderContents = () => {
                   <img src="/images/pen.svg" />
                   <div>이름변경</div>
                 </div>
-                <div
-                  onClick={(event) =>
-                    onShowModal(event, ModalType.DELETE_FOLDER)
-                  }
-                >
+                <div onClick={(event) => onShowModal(event, ModalType.DELETE_FOLDER)}>
                   <img src="/images/delete.svg" />
                   <div>삭제</div>
                 </div>
               </div>
             )}
           </div>
-          <div
-            className="add_folder_button_floating"
-            onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
-          >
+          <div className="add_folder_button_floating" onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}>
             <div>폴더 추가</div>
             <img src="/images/floating_add.svg" />
           </div>
@@ -153,15 +138,7 @@ const FolderContents = () => {
           )}
 
           {showModal && (
-            <Modal>
-              {
-                <BaseModal
-                  modalType={modalType}
-                  onClose={onCloseModal}
-                  params={modalParams}
-                />
-              }
-            </Modal>
+            <ModalPortal>{<BaseModal modalType={modalType} onClose={onCloseModal} params={modalParams} />}</ModalPortal>
           )}
         </div>
       </section>
