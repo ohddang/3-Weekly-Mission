@@ -3,7 +3,13 @@ import "components/contents/contents.css";
 
 import { useEffect, useState, useRef } from "react";
 
-import { getFolderGroup, getAllFolderLinksOfUser, getSelectionFolderLinks, setFolderLinksFromItems } from "api/api";
+import {
+  getFolderGroup,
+  getAllFolderLinksOfUser,
+  getSelectionFolderLinks,
+  setFolderLinksFromItems,
+  FolderLink,
+} from "api/api";
 import CardList from "components/contents/cardList/cardList";
 import FolderGroup from "./FolderGroup";
 import SearchBar from "components/contents/searchBar/SearchBar";
@@ -14,11 +20,13 @@ import { BaseModal, ModalType } from "components/modal";
 // component
 const FolderContents = () => {
   const [folderGroup, setFolderGroup] = useState([]);
-  const [folderLinks, setFolderLinks] = useState([]);
+  const [folderLinks, setFolderLinks] = useState<FolderLink[]>([]);
   const [folderId, setFolderId] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(0);
   const [modalParams, setModalParams] = useState({});
+  const [filterFolderLinks, setFilterFolderLinks] = useState<FolderLink[]>([]);
+  const [searchText, setSearchText] = useState("");
 
   const titleRef = useRef<HTMLDivElement>(null);
 
@@ -66,12 +74,28 @@ const FolderContents = () => {
     setShowModal(false);
   };
 
-  // 생성 시 폴더 목록을 가져옴
+  const searchFilterChange = (filter: string) => {
+    setSearchText(filter);
+    console.log(filter);
+  };
+
+  useEffect(() => {
+    if (searchText === "") {
+      setFilterFolderLinks(folderLinks);
+    } else {
+      const filteredLinks = folderLinks.filter((link: FolderLink) => {
+        return (
+          link.title?.includes(searchText) || link.description?.includes(searchText) || link.url?.includes(searchText)
+        );
+      });
+      setFilterFolderLinks(filteredLinks);
+    }
+  }, [searchText, folderLinks]);
+
   useEffect(() => {
     getFolderGroup().then((rsp) => {
       let allLinkCount = 0;
       const folderGroupInfo = rsp.data.map((folder: any) => {
-        // TODO : type
         allLinkCount += folder.link.count;
 
         return {
@@ -97,7 +121,7 @@ const FolderContents = () => {
     <>
       <section className="contents">
         <div className="card_list_container">
-          <SearchBar />
+          <SearchBar handleChange={searchFilterChange} />
           <div className="folder_group_container">
             <FolderGroup folderGroup={folderGroup} onClickFolderGroup={onClickFolderGroup} toggleIndex={folderId} />
             <img
@@ -129,11 +153,11 @@ const FolderContents = () => {
             <div>폴더 추가</div>
             <img src="/images/floating_add.svg" />
           </div>
-          {folderLinks.length === 0 ? (
+          {filterFolderLinks.length === 0 ? (
             <div className="empty_card_list">저장된 링크가 없습니다.</div>
           ) : (
             <ul className="card_list">
-              <CardList items={folderLinks} isFunctional={true} />
+              <CardList folderLinks={filterFolderLinks} isFunctional={true} />
             </ul>
           )}
 

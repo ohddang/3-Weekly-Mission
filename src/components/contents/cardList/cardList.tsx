@@ -3,19 +3,21 @@ import "index.css";
 
 import { useState, useEffect } from "react";
 import KebabPopover from "./KebebPopover";
+import { FolderLink } from "api/api";
 
-interface CardListProps {
-  items: {
-    id: number;
-    created_at: string;
-    url: string;
-    description: string;
-    image_source: string;
-  }[];
+export interface CardListProps {
+  // id: number;
+  // created_at: string;
+  // url: string;
+  // title: string;
+  // description: string;
+  // image_source: string;
+  folderLinks: FolderLink[];
+
   isFunctional: boolean;
 }
 
-const CardList: React.FC<CardListProps> = ({ items, isFunctional }) => {
+const CardList: React.FC<CardListProps> = ({ folderLinks, isFunctional }) => {
   const [popoverKey, setPopoverKey] = useState<number>(0);
 
   const calculateCreateAtAfter = (createAt: string) => {
@@ -97,7 +99,7 @@ const CardList: React.FC<CardListProps> = ({ items, isFunctional }) => {
     };
   }, []);
 
-  const item_list = items.map((item, _index) => {
+  const item_list = folderLinks.map((item, _index) => {
     const { id, created_at, url, description, image_source } = item;
 
     const newCreatedAt = convertCreateAt(created_at);

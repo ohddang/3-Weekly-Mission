@@ -16,41 +16,51 @@ export const getFolderInfo = async () => {
   };
 };
 
-export const getFolderGroup = async (userId = 1) => {
+export const getFolderGroup = async (userId = 11) => {
   const response = await fetch(`${BASE_URL}/api/users/${userId}/folders`);
   const rsp = await response.json();
   return rsp;
 };
 
-export const getAllFolderLinksOfUser = async (userId = 1) => {
+export const getAllFolderLinksOfUser = async (userId = 11) => {
   const response = await fetch(`${BASE_URL}/api/users/${userId}/links`);
   const rsp = await response.json();
   return rsp;
 };
 
-export const getSelectionFolderLinks = async (folderId: string, userId = 1) => {
+export const getSelectionFolderLinks = async (folderId: string, userId = 11) => {
   const response = await fetch(`${BASE_URL}/api/users/${userId}/links?folderId=${folderId}`);
   const rsp = await response.json();
   return rsp;
 };
 
-export const setFolderLinksFromItems = (links: any) => {
+export const setFolderLinksFromItems = (links: FolderLink[]) => {
   // TODO : type
-  return links.map((link: any) => {
+  return links.map((link: FolderLink) => {
     return {
       id: link.id,
       created_at: link.created_at,
       url: link.url,
+      title: link.title,
       description: link.description,
       image_source: link.image_source,
     };
   });
 };
 
-export const getSharedCurrentFolderLocalURL = (folderId: string, userId = 1) => {
+export const getSharedCurrentFolderLocalURL = (folderId: string, userId = 11) => {
   return `${LOCAL_URL}/shared?user=${userId}&folder=${folderId}`;
 };
 
-export const getSharedCurrentFolderDevURL = (folderId: string, userId = 1) => {
+export const getSharedCurrentFolderDevURL = (folderId: string, userId = 11) => {
   return `${DEV_URL}/shared?user=${userId}&folder=${folderId}`;
 };
+
+export interface FolderLink {
+  id: number;
+  created_at: string;
+  url: string;
+  title: string;
+  description: string;
+  image_source: string;
+}

@@ -10,6 +10,7 @@
   position: fixed;
   bottom: 0;
   z-index: 1;
+  padding: 1.75rem 2rem 1.75rem 2rem;
 }
 
 .title_container > .display_none {

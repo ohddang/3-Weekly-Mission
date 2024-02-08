@@ -26,6 +26,17 @@
   outline: none;
 }
 
+.search_delete {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.search_delete:hover {
+  filter: brightness(0.8);
+}
+
 .card_list_container {
   position: releative;
   display: flex;
