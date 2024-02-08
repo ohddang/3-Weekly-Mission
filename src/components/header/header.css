@@ -6,6 +6,16 @@
   background-color: var(--gray5);
 }
 
+.title_container > .move_to_bottom {
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+
+.title_container > .display_none {
+  display: none;
+}
+
 .navigation_container {
   background-color: var(--gray5);
   display: flex;
@@ -51,10 +61,7 @@
   gap: 0.625rem;
 
   border-radius: 0.5rem;
-  background: var(
-    --gra-purpleblue-to-skyblue,
-    linear-gradient(91deg, var(--primary) 0.12%, #6ae3fe 101.84%)
-  );
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, var(--primary) 0.12%, #6ae3fe 101.84%));
 }
 
 .profile {
@@ -140,6 +147,8 @@
   justify-content: center;
   gap: 0.5rem;
   align-self: stretch;
+  background-color: var(--gray5);
+  width: 100%;
 }
 
 .folder_title_input_container {
@@ -188,10 +197,7 @@
   white-space: nowrap;
 
   border-radius: 0.5rem;
-  background: var(
-    --gra-purpleblue-to-skyblue,
-    linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%)
-  );
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%));
 }
 
 .folder_title_button > div {
