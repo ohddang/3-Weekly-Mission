@@ -1,5 +1,5 @@
 // if (!window.Kakao.isInitialized()) {
-//   window.Kakao.init("9689f3bf08e90e99b3853de68837a33f");
+// window.Kakao.init("9689f3bf08e90e99b3853de68837a33f");
 // }
 
 const shareKakao = (shareURL = "") => {
@@ -21,3 +21,25 @@ const shareKakao = (shareURL = "") => {
 };
 
 export default shareKakao;
+
+// document 파일에서 카카오 sdk 추가하기
+// import Document, { Html, Head, Main, NextScript } from 'next/document';
+
+// class MyDocument extends Document {
+//   render() {
+//     return (
+//       <Html>
+//         <Head>
+//           <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+//           {/* Other head elements */}
+//         </Head>
+//         <body>
+//           <Main />
+//           <NextScript />
+//         </body>
+//       </Html>
+//     );
+//   }
+// }
+
+// export default MyDocument;

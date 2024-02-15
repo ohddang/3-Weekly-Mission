@@ -1,8 +1,5 @@
-"use client";
-
 import "./folderContents.css";
 import Link from "next/link";
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 interface FolderGroupProps {
