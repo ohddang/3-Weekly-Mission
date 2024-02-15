@@ -21,6 +21,7 @@
 
 npm-debug.log*
 yarn-error.log*
+.next
 .next/cache/
 .next/server/
 .next/static/
