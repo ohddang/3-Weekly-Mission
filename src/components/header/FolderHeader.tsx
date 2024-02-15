@@ -1,7 +1,9 @@
+"use client";
+
 import "./header.css";
 
 import { useState, useRef, useEffect } from "react";
-import ModalPortal from "components/modal/ModalPortal";
+import ModalPortal from "../modal/ModalPortal";
 import { BaseModal, ModalType } from "../modal";
 
 const FolderHeader = () => {
@@ -26,29 +28,29 @@ const FolderHeader = () => {
     setShowModal(false);
   };
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (titleRef.current) {
-        if (entry.target.className === "title_container") {
-          if (entry.intersectionRatio <= 0) {
-            titleRef.current.classList.add("move_to_bottom");
-          }
-        } else if (entry.target.className === "footer_list") {
-          if (entry.intersectionRatio > 0) {
-            titleRef.current.classList.add("move_to_bottom", "display_none");
-          } else {
-            titleRef.current.classList.remove("display_none");
-          }
-        } else if (entry.target.className === "navigation_container") {
-          if (entry.intersectionRatio > 0) {
-            titleRef.current.classList.remove("move_to_bottom");
+  useEffect(() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (titleRef.current) {
+          if (entry.target.className === "title_container") {
+            if (entry.intersectionRatio <= 0) {
+              titleRef.current.classList.add("move_to_bottom");
+            }
+          } else if (entry.target.className === "footer_list") {
+            if (entry.intersectionRatio > 0) {
+              titleRef.current.classList.add("move_to_bottom", "display_none");
+            } else {
+              titleRef.current.classList.remove("display_none");
+            }
+          } else if (entry.target.className === "navigation_container") {
+            if (entry.intersectionRatio > 0) {
+              titleRef.current.classList.remove("move_to_bottom");
+            }
           }
         }
-      }
-    });
-  }, {});
+      });
+    }, {});
 
-  useEffect(() => {
     const title = document.querySelector(".title_container");
     if (title) {
       io.observe(title);

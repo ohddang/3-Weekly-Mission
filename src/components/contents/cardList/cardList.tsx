@@ -1,9 +1,11 @@
+"use client";
+
 import "./cardList.css";
-import "index.css";
+import "../../../index.css";
 
 import { useState, useEffect } from "react";
 import KebabPopover from "./KebebPopover";
-import { FolderLink } from "api/api";
+import { FolderLink } from "../../../api/api";
 
 export interface CardListProps {
   // id: number;

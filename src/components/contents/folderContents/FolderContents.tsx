@@ -1,5 +1,7 @@
+"use client";
+
 import "./folderContents.css";
-import "components/contents/contents.css";
+import "../contents.css";
 
 import { useEffect, useState, useRef } from "react";
 
@@ -9,13 +11,13 @@ import {
   getSelectionFolderLinks,
   setFolderLinksFromItems,
   FolderLink,
-} from "api/api";
-import CardList from "components/contents/cardList/cardList";
+} from "../../../api/api";
+import CardList from "../../contents/cardList/cardList";
 import FolderGroup from "./FolderGroup";
-import SearchBar from "components/contents/searchBar/SearchBar";
+import SearchBar from "../../contents/searchBar/SearchBar";
 
-import ModalPortal from "components/modal/ModalPortal";
-import { BaseModal, ModalType } from "components/modal";
+import ModalPortal from "../../modal/ModalPortal";
+import { BaseModal, ModalType } from "../../modal";
 
 // component
 const FolderContents = () => {

@@ -1,20 +1,20 @@
-import "components/contents/contents.css";
+"use client";
+
+import "../contents.css";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
+import { useRouter } from "next/router";
 
-import CardList from "components/contents/cardList/cardList";
-import { FolderLink, getSelectionFolderLinks, setFolderLinksFromItems } from "api/api";
-import SearchBar from "components/contents/searchBar/SearchBar";
+import SearchBar from "../searchBar/SearchBar";
+import CardList from "../cardList/cardList";
+import { FolderLink, getSelectionFolderLinks, setFolderLinksFromItems } from "../../../api/api";
 
 const SharedContents = () => {
-  const [searchParams, _setSearchParams] = useSearchParams();
+  // const [searchParams, _setSearchParams] = useSearchParams();
   const [folderLinks, setFolderLinks] = useState<FolderLink[]>([]);
   const [searchText, setSearchText] = useState("");
   const [filterFolderLinks, setFilterFolderLinks] = useState<FolderLink[]>([]);
-
-  const userParam = Number(searchParams.get("user"));
-  const folderParam = searchParams.get("folder");
 
   const searchFilterChange = (filter: string) => {
     setSearchText(filter);
@@ -32,6 +32,10 @@ const SharedContents = () => {
   }, [searchText, folderLinks]);
 
   useEffect(() => {
+    const router = useRouter();
+    const userParam = Number(router.query.user); //Number(searchParams.get("user"));
+    const folderParam = String(router.query.folder); // searchParams.get("folder");
+
     if (userParam == undefined || folderParam == undefined) return;
 
     getSelectionFolderLinks(folderParam, userParam).then((rsp) => {

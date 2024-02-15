@@ -1,8 +1,11 @@
+"use client";
+
 import "./header.css";
 
 import { useEffect, useState } from "react";
-import { getFolderInfo, getFolderGroup } from "api/api";
-import { useSearchParams } from "react-router-dom";
+import { getFolderInfo, getFolderGroup } from "../../api/api";
+// import { useSearchParams } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const SharedHeader = () => {
   const [sharedInfo, setSharedInfo] = useState({
@@ -10,12 +13,18 @@ const SharedHeader = () => {
     owner_profile_image: "./images/profile.svg", // default image
   });
   const [folderName, setFolderName] = useState("");
-  const [searchParams, _setSearchParams] = useSearchParams();
+  const [isMount, setIsMount] = useState(false);
+  // const [searchParams, _setSearchParams] = useSearchParams();
+  let router;
+  if (isMount) router = useRouter();
+  // router = useRouter();
 
-  const userParam = Number(searchParams.get("user"));
-  const folderParam = searchParams.get("folder");
+  const userParam = Number(router?.query.user); // Number(searchParams.get("user"));
+  const folderParam = String(router?.query.folder); // searchParams.get("folder");
 
   useEffect(() => {
+    setIsMount(true);
+
     if (userParam == undefined || folderParam == undefined) return;
 
     getFolderGroup(userParam).then((result) => {

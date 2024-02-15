@@ -1,8 +1,10 @@
+"use client";
+
 import "../modal.css";
 import { useState, useEffect } from "react";
-import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL } from "api/api";
+import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL } from "../../../api/api";
 
-import shareKakao from "utils/share/shareKakao";
+import shareKakao from "../../../utils/share/shareKakao";
 
 interface ShareModalProps {
   params: {

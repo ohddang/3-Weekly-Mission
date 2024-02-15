@@ -1,3 +1,5 @@
+"use client";
+
 import "./modal.css";
 
 import { useEffect } from "react";
