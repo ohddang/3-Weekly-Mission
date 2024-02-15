@@ -1,8 +1,8 @@
-// File: C:\Users\82103\Desktop\Codeit\Git\Weekly-Mission\src\app\(home)\layout.tsx
-import * as entry from '../../../../src/app/(home)/layout.js'
+// File: C:\Users\82103\Desktop\Codeit\Git\Weekly-Mission\src\app\layout.tsx
+import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../src/app/(home)/layout.js')
+type TEntry = typeof import('../../../src/app/layout.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

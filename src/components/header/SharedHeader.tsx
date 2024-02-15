@@ -1,58 +1,36 @@
-"use client";
-
 import "./header.css";
 
-import { useEffect, useState } from "react";
 import { getFolderInfo, getFolderGroup } from "../../api/api";
-// import { useSearchParams } from "react-router-dom";
-import { useRouter } from "next/router";
 
-const SharedHeader = () => {
-  const [sharedInfo, setSharedInfo] = useState({
-    owner_name: "",
-    owner_profile_image: "./images/profile.svg", // default image
-  });
-  const [folderName, setFolderName] = useState("");
-  const [isMount, setIsMount] = useState(false);
-  // const [searchParams, _setSearchParams] = useSearchParams();
-  let router;
-  if (isMount) router = useRouter();
-  // router = useRouter();
+const getFolderName = async (userParam: number, folderParam: string) => {
+  if (userParam == undefined || folderParam == undefined) return;
 
-  const userParam = Number(router?.query.user); // Number(searchParams.get("user"));
-  const folderParam = String(router?.query.folder); // searchParams.get("folder");
+  const result = await getFolderGroup(userParam);
+  if (result.data == undefined) return;
 
-  useEffect(() => {
-    setIsMount(true);
+  const items = result.data;
+  console.log(items);
+  const findItem = items.find((item: any) => String(item.id) == String(folderParam)); // FixME: type any
 
-    if (userParam == undefined || folderParam == undefined) return;
+  return findItem == undefined ? "" : findItem.name;
+};
 
-    getFolderGroup(userParam).then((result) => {
-      if (result.data == undefined) return;
+const getFolder = async () => {
+  const result = await getFolderInfo();
 
-      const items = result.data;
-      console.log(items);
-      const findItem = items.find((item: any) => String(item.id) == String(folderParam)); // FixME: type any
+  return result.owner;
+};
 
-      findItem == undefined ? setFolderName("") : setFolderName(findItem.name);
-    });
-
-    getFolderInfo().then((result) => {
-      const { owner } = result;
-
-      setSharedInfo({
-        owner_name: owner.name,
-        owner_profile_image: owner.profileImageSource,
-      });
-    });
-  }, []);
+const SharedHeader = async ({ userParam, folderParam }: { userParam: number; folderParam: string }) => {
+  const folderName = await getFolderName(userParam, folderParam);
+  const folderInfo = await getFolder();
 
   return (
     <>
       <section className="title_container">
         <div className="shared_title_container">
-          <img src={sharedInfo.owner_profile_image} className="profile_image_folder" />
-          <div className="owner_name">{sharedInfo.owner_name}</div>
+          <img src={folderInfo.owner_profile_image} className="profile_image_folder" />
+          <div className="owner_name">{folderInfo.owner_name}</div>
           <div className="folder_name">{folderName}</div>
         </div>
       </section>

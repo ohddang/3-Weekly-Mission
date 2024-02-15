@@ -34,7 +34,7 @@ export const getSelectionFolderLinks = async (folderId: string, userId = 11) => 
   return rsp;
 };
 
-export const setFolderLinksFromItems = (links: FolderLink[]) => {
+export const setFolderLinksFromItems = (links: FolderLink[]): FolderLink[] => {
   // TODO : type
   return links.map((link: FolderLink) => {
     return {

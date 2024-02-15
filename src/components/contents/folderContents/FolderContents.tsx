@@ -123,7 +123,7 @@ const FolderContents = () => {
     <>
       <section className="contents">
         <div className="card_list_container">
-          <SearchBar handleChange={searchFilterChange} />
+          <SearchBar />
           <div className="folder_group_container">
             <FolderGroup folderGroup={folderGroup} onClickFolderGroup={onClickFolderGroup} toggleIndex={folderId} />
             <img

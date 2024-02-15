@@ -2,21 +2,21 @@
 
 import { useRef } from "react";
 
-interface SearchBarProps {
-  handleChange: (filter: string) => void;
-}
+// interface SearchBarProps {
+//   handleChange: (filter: string) => void;
+// }
 
-const SearchBar: React.FC<SearchBarProps> = ({ handleChange }) => {
+const SearchBar = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onChange = () => {
-    if (inputRef.current) handleChange(inputRef.current?.value);
+    // if (inputRef.current) handleChange(inputRef.current?.value);
   };
 
   const onClickDelete = () => {
     if (inputRef.current) {
       inputRef.current.value = "";
-      handleChange("");
+      // handleChange("");
     }
   };
 
