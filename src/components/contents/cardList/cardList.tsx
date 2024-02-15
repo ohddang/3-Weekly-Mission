@@ -8,14 +8,7 @@ import KebabPopover from "./KebebPopover";
 import { FolderLink } from "../../../api/api";
 
 export interface CardListProps {
-  // id: number;
-  // created_at: string;
-  // url: string;
-  // title: string;
-  // description: string;
-  // image_source: string;
   folderLinks: FolderLink[];
-
   isFunctional: boolean;
 }
 

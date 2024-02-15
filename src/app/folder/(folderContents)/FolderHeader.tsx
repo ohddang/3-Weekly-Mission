@@ -1,10 +1,10 @@
 "use client";
 
-import "./header.css";
+import "../../header.css";
 
 import { useState, useRef, useEffect } from "react";
-import ModalPortal from "../modal/ModalPortal";
-import { BaseModal, ModalType } from "../modal";
+import ModalPortal from "../../../components/modal/ModalPortal";
+import { BaseModal, ModalType } from "../../../components/modal";
 
 const FolderHeader = () => {
   const [showModal, setShowModal] = useState(false);
@@ -72,7 +72,7 @@ const FolderHeader = () => {
       <section className="title_container">
         <div className="folder_title_container" ref={titleRef}>
           <div className="folder_title_input_container">
-            <img src="./images/link.svg" className="link_image" />
+            {/* <img src="/images/link.svg" className="link_image" /> */}
             <input ref={linkRef} className="folder_title_input" placeholder="링크를 추가해 보세요." />
             <div className="folder_title_button" onClick={(event) => onShowModal(event, ModalType.ADD)}>
               <div>추가하기</div>

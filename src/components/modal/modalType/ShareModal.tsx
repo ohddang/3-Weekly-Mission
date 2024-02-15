@@ -60,9 +60,9 @@ const ShareModal: React.FC<ShareModalProps> = (props) => {
             <div className="share_icon_text">페이스북</div>
           </div>
           <div className="share_item" onClick={onCopyClipboard}>
-            <div className="share_icon">
+            {/* <div className="share_icon">
               <img src="./images/link.svg" />
-            </div>
+            </div> */}
             <div className="share_icon_text">링크 복사</div>
           </div>
         </div>

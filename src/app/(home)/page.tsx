@@ -7,7 +7,7 @@ const Page = () => {
         <Link href="/shared">Shared Page</Link>
       </p>
       <p>
-        <Link href="/folder">Folder Page</Link>
+        <Link href="/folder/전체">Folder Page</Link>
       </p>
     </div>
   );
