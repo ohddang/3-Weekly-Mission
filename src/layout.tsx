@@ -2,7 +2,7 @@ import "./index.css";
 import "./common.css";
 import Footer from "./components/footer/footer";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
       <body>
@@ -11,6 +11,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </body>
     </html>
   );
-};
-
-export default Layout;
+}
