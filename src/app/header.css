@@ -18,7 +18,7 @@
 }
 
 .navigation_container {
-  background-color: var(--gray5);
+  background-color: #f0f6ff;
   display: flex;
   position: fixed;
   height: 80px;
@@ -30,7 +30,7 @@
 
 .navigation_bar {
   align-items: center;
-  background-color: var(--gray5);
+  background-color: #f0f6ff;
   display: flex;
   height: 100%;
   justify-content: space-between;
@@ -148,7 +148,7 @@
   justify-content: center;
   gap: 0.5rem;
   align-self: stretch;
-  background-color: var(--gray5);
+  background-color: #f0f6ff;
   width: 100%;
 }
 

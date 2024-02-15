@@ -1,6 +1,6 @@
 import SharedContents from "./(sharedContents)/SharedContents";
 import SharedHeader from "./(sharedContents)/SharedHeader";
-// import NavigatorBar from "../../components/navigatorBar/NavigatorBar";
+import NavigatorBar from "../(navigatorBar)/NavigatorBar";
 
 import { getFolderInfo, getFolderGroup, getSelectionFolderLinks, setFolderLinksFromItems } from "../../api/api";
 
@@ -43,7 +43,7 @@ export default async function Shared({
 
   return (
     <>
-      {/* <NavigatorBar /> */}
+      <NavigatorBar />
       <SharedHeader folderName={folderName} folderInfo={folderInfo} />
       <SharedContents folderLinks={folderLinks} />
     </>

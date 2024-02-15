@@ -1,7 +1,7 @@
 import { getAllFolderLinksOfUser, getFolderGroup, getSelectionFolderLinks, setFolderLinksFromItems } from "@/api/api";
 import FolderContents from "../(folderContents)/FolderContents";
 import FolderHeader from "../(folderContents)/FolderHeader";
-// import NavigatorBar from "../../components/navigatorBar/NavigatorBar";
+import NavigatorBar from "../../(navigatorBar)/NavigatorBar";
 
 const getFolderLinks = async (folderId: string) => {
   if (folderId === "전체") {
@@ -41,7 +41,7 @@ export default async function Folder({ params: { id } }: { params: { id: string 
 
   return (
     <>
-      {/* <NavigatorBar /> */}
+      <NavigatorBar />
       <FolderHeader />
       <FolderContents folderGroup={folderGroup} folderLinks={folderLinks} />
     </>

@@ -34,6 +34,19 @@ export const getSelectionFolderLinks = async (folderId: string, userId = 11) => 
   return rsp;
 };
 
+export const getUserProfile = async (user_id = 11) => {
+  const response = await fetch(`https://bootcamp-api.codeit.kr/api/users/${user_id}`);
+  const find_user = await response.json().then((result) => {
+    return result.data?.find((user: any) => user.id === user_id);
+  });
+
+  return {
+    name: find_user.name,
+    email: find_user.email,
+    image_source: find_user.image_source,
+  };
+};
+
 export const setFolderLinksFromItems = (links: FolderLink[]): FolderLink[] => {
   // TODO : type
   return links.map((link: FolderLink) => {
