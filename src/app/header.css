@@ -1,9 +1,5 @@
-* {
-  box-sizing: border-box;
-}
-
 .title_container {
-  background-color: var(--gray5);
+  background-color: #f0f6ff;
 }
 
 .title_container > .move_to_bottom {

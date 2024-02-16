@@ -1,30 +1,31 @@
 "use client";
 
 import "./folderContents.css";
-import "../../contents.css";
+import "@/app/contents.css";
 
 import { useState, useRef } from "react";
 
-import { FolderLink } from "../../../api/api";
-import CardList from "../../../components/contents/cardList/cardList";
+import { FolderLink } from "@/api/api";
+import CardList from "@/components/contents/cardList/cardList";
 import FolderGroup from "./FolderGroup";
-import SearchBar from "../../../components/contents/searchBar/SearchBar";
+import SearchBar from "@/components/contents/searchBar/SearchBar";
 
-import ModalPortal from "../../../components/modal/ModalPortal";
-import { BaseModal, ModalType } from "../../../components/modal";
+import ModalPortal from "@/components/modal/ModalPortal";
+import { BaseModal, ModalType } from "@/components/modal";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+
+import Image from "next/image";
 
 // component
 const FolderContents = ({ folderGroup, folderLinks }: { folderGroup: any; folderLinks: FolderLink[] }) => {
-  const [folderId, setFolderId] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState(0);
-  const [modalParams, setModalParams] = useState({});
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<number>(0);
 
-  const titleRef = useRef<HTMLDivElement>(null);
-
+  const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const folderId = pathname.split("/")[2];
 
   const filter = searchParams.get("search");
   const filteredLinks =
@@ -34,23 +35,9 @@ const FolderContents = ({ folderGroup, folderLinks }: { folderGroup: any; folder
           return link.title?.includes(filter) || link.description?.includes(filter) || link.url?.includes(filter);
         });
 
-  const updateModalParams = (modalType: number) => {
-    switch (modalType) {
-      case ModalType.SHARE:
-        setModalParams({
-          userId: 1, // TODO : context
-          folderId: folderId,
-        });
-        break;
-      default:
-        break;
-    }
-  };
-
   const onShowModal = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, modalType: number) => {
     event.stopPropagation();
 
-    updateModalParams(modalType);
     setShowModal(true);
     setModalType(modalType);
   };
@@ -66,26 +53,29 @@ const FolderContents = ({ folderGroup, folderLinks }: { folderGroup: any; folder
           <SearchBar isFolder={true} />
           <div className="folder_group_container">
             <FolderGroup folderGroup={folderGroup} />
-            <img
+            <Image
               src="/images/add.svg"
               className="add_folder_button"
               onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}
+              alt="add_folder"
+              width="16"
+              height="16"
             />
           </div>
           <div className="folder_group_title">
-            <div className="folder_title" ref={titleRef}></div>
-            {"전체" !== folderId && (
+            <div className="folder_title"></div>
+            {"전체" !== decodeURIComponent(folderId) && (
               <div className="folder_editor">
                 <div onClick={(event) => onShowModal(event, ModalType.SHARE)}>
-                  <img src="/images/share.svg" />
+                  <Image src="/images/share.svg" alt="share" width="16" height="16" />
                   <div>공유</div>
                 </div>
                 <div onClick={(event) => onShowModal(event, ModalType.EDIT)}>
-                  <img src="/images/pen.svg" />
+                  <Image src="/images/pen.svg" alt="pen" width="16" height="16" />
                   <div>이름변경</div>
                 </div>
                 <div onClick={(event) => onShowModal(event, ModalType.DELETE_FOLDER)}>
-                  <img src="/images/delete.svg" />
+                  <Image src="/images/delete.svg" alt="delete" width="16" height="16" />
                   <div>삭제</div>
                 </div>
               </div>
@@ -93,7 +83,7 @@ const FolderContents = ({ folderGroup, folderLinks }: { folderGroup: any; folder
           </div>
           <div className="add_folder_button_floating" onClick={(event) => onShowModal(event, ModalType.ADD_FOLDER)}>
             <div>폴더 추가</div>
-            <img src="/images/floating_add.svg" />
+            <Image src="/images/floating_add.svg" alt="add" width="16" height="16" />
           </div>
           {filteredLinks.length === 0 ? (
             <div className="empty_card_list">저장된 링크가 없습니다.</div>
@@ -104,7 +94,7 @@ const FolderContents = ({ folderGroup, folderLinks }: { folderGroup: any; folder
           )}
 
           {showModal && (
-            <ModalPortal>{<BaseModal modalType={modalType} onClose={onCloseModal} params={modalParams} />}</ModalPortal>
+            <ModalPortal>{<BaseModal modalType={modalType} onClose={onCloseModal} folderId={folderId} />}</ModalPortal>
           )}
         </div>
       </section>

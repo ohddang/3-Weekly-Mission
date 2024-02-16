@@ -1,12 +1,29 @@
-import "../../header.css";
+import "@/app/header.css";
 
-const SharedHeader = async ({ folderName, folderInfo }: { folderName: string; folderInfo: any }) => {
+import Image from "next/image";
+
+interface SharedHeaderProps {
+  folderName: string;
+  folderInfo: {
+    id: number;
+    name: string;
+    profileImageSource: string;
+  };
+}
+
+const SharedHeader: React.FC<SharedHeaderProps> = async ({ folderName, folderInfo }) => {
   return (
     <>
       <section className="title_container">
         <div className="shared_title_container">
-          <img src={folderInfo.owner_profile_image} className="profile_image_folder" />
-          <div className="owner_name">{folderInfo.owner_name}</div>
+          <Image
+            src={folderInfo.profileImageSource === "" ? "/images/profile.svg" : folderInfo.profileImageSource}
+            className="profile_image_folder"
+            alt="profile"
+            width="60"
+            height="60"
+          />
+          <div className="owner_name">{folderInfo.name}</div>
           <div className="folder_name">{folderName}</div>
         </div>
       </section>

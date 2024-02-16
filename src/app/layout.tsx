@@ -1,5 +1,5 @@
 import Footer from "@/components/footer/footer";
-import Head from "next/head";
+import "./index.css";
 
 export const metadata = {
   title: "Next.js",
@@ -9,13 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <Head>
-        <link rel="stylesheet" href="@/common.css" />
-        <link rel="stylesheet" href="@/index.css" />
-      </Head>
       <body>
         {children}
         <Footer />
+        <div id="modal_root"></div>
       </body>
     </html>
   );

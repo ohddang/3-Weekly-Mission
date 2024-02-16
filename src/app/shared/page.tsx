@@ -2,25 +2,25 @@ import SharedContents from "./(sharedContents)/SharedContents";
 import SharedHeader from "./(sharedContents)/SharedHeader";
 import NavigatorBar from "../(navigatorBar)/NavigatorBar";
 
-import { getFolderInfo, getFolderGroup, getSelectionFolderLinks, setFolderLinksFromItems } from "../../api/api";
+import { getFolderInfo, getFolderGroup, getSelectionFolderLinks, setFolderLinksFromItems } from "@/api/api";
 
-const getFolderLink = async (userParam: number, folderParam: string) => {
-  if (userParam == undefined || folderParam == undefined) return [];
+const getFolderLink = async (user: number, folder: string) => {
+  if (user == undefined || folder == undefined) return [];
 
-  const response = await getSelectionFolderLinks(folderParam, userParam);
+  const response = await getSelectionFolderLinks(folder, user);
 
   if (response.data == undefined) return [];
   return setFolderLinksFromItems(response.data);
 };
 
-const getFolderName = async (userParam: number, folderParam: string) => {
-  if (userParam == undefined || folderParam == undefined) return "";
+const getFolderName = async (user: number, folder: string) => {
+  if (user == undefined || folder == undefined) return "";
 
-  const result = await getFolderGroup(userParam);
+  const result = await getFolderGroup(user);
   if (result.data == undefined) return "";
 
   const items = result.data;
-  const findItem = items.find((item: any) => String(item.id) == String(folderParam)); // FixME: type any
+  const findItem = items.find((item: any) => String(item.id) == String(folder)); // FixME: type any
 
   return findItem == undefined ? "" : findItem.name;
 };

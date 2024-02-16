@@ -1,7 +1,7 @@
-import "../../contents.css";
+import "@/app/contents.css";
 
-import SearchBar from "../../../components/contents/searchBar/SearchBar";
-import CardList from "../../../components/contents/cardList/cardList";
+import SearchBar from "@/components/contents/searchBar/SearchBar";
+import CardList from "@/components/contents/cardList/cardList";
 import { FolderLink } from "@/api/api";
 
 const SharedContents = async ({ folderLinks }: { folderLinks: FolderLink[] }) => {

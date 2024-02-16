@@ -48,7 +48,8 @@ export const getUserProfile = async (user_id = 11) => {
 };
 
 export const setFolderLinksFromItems = (links: FolderLink[]): FolderLink[] => {
-  // TODO : type
+  if (links == undefined || links.length === 0) return [];
+
   return links.map((link: FolderLink) => {
     return {
       id: link.id,

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import ModalPortal from "../../modal/ModalPortal";
-import { BaseModal, ModalType } from "../../modal";
+import ModalPortal from "@/components/modal/ModalPortal";
+import { BaseModal, ModalType } from "@/components/modal";
 
 interface KebabPopoverProps {
   onClose: () => void;

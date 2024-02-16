@@ -1,4 +1,5 @@
 import "./footer.css";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -16,16 +17,16 @@ export default function Footer() {
           </li>
           <li className="sns">
             <a target="_blank" href="https://www.facebook.com/">
-              <img src="/images/facebook.svg" className="facebook" alt="facebook" />
+              <Image src="/images/facebook.svg" className="facebook" alt="facebook" width="16" height="16" />
             </a>
             <a target="_blank" href="https://twitter.com/">
-              <img src="/images/twitter.svg" className="twitter" alt="twitter" />
+              <Image src="/images/twitter.svg" className="twitter" alt="twitter" width="16" height="16" />
             </a>
             <a target="_blank" href="https://www.youtube.com/">
-              <img src="/images/youtube.svg" className="youtube" alt="youtube" />
+              <Image src="/images/youtube.svg" className="youtube" alt="youtube" width="16" height="16" />
             </a>
             <a target="_blank" href="https://www.instagram.com/">
-              <img src="/images/instargram.svg" className="instargram" alt="instargram" />
+              <Image src="/images/instargram.svg" className="instargram" alt="instargram" width="16" height="16" />
             </a>
           </li>
         </ul>

@@ -22,11 +22,11 @@ export const ModalType = {
 interface BaseModalProps {
   modalType: number;
   onClose: () => void;
-  params?: any;
+  folderId?: string;
 }
 
 const BaseModal: React.FC<BaseModalProps> = (props) => {
-  const { modalType, onClose, params } = props;
+  const { modalType, onClose, folderId } = props;
 
   const onModal = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
@@ -53,7 +53,7 @@ const BaseModal: React.FC<BaseModalProps> = (props) => {
             {
               [ModalType.EDIT]: <EditModal />,
               [ModalType.ADD_FOLDER]: <AddFolderModal />,
-              [ModalType.SHARE]: <ShareModal params={params} />,
+              [ModalType.SHARE]: <ShareModal folderId={folderId || ""} />,
               [ModalType.DELETE_FOLDER]: <DeleteModal modalType={modalType} />,
               [ModalType.DELETE_LINK]: <DeleteModal modalType={modalType} />,
               [ModalType.ADD]: <AddModal />,

@@ -2,31 +2,29 @@
 
 import "../modal.css";
 import { useState, useEffect } from "react";
-import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL } from "../../../api/api";
+import Image from "next/image";
+import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL } from "@/api/api";
 
-import shareKakao from "../../../utils/share/shareKakao";
+import shareKakao from "@/utils/share/shareKakao";
 
 interface ShareModalProps {
-  params: {
-    userId: number;
-    folderId: string;
-  };
+  folderId: string;
 }
 
-const ShareModal: React.FC<ShareModalProps> = (props) => {
-  const { userId, folderId } = props.params;
+const ShareModal: React.FC<ShareModalProps> = ({ folderId }) => {
   const [shareURL, setShareURL] = useState("");
+  console.log(folderId);
 
   useEffect(() => {
-    setShareURL(getSharedCurrentFolderLocalURL(folderId, userId));
-  }, [userId, folderId]);
+    setShareURL(getSharedCurrentFolderLocalURL(folderId));
+  }, [folderId]);
 
   const onKakaoShare = () => {
     shareKakao(shareURL);
   };
 
   const onFacebookShare = () => {
-    const tempURL = getSharedCurrentFolderDevURL(folderId, userId);
+    const tempURL = getSharedCurrentFolderDevURL(folderId);
     const encodedURL = encodeURIComponent(tempURL);
     window.open("http://www.facebook.com/sharer.php?u=" + encodedURL);
   };
@@ -35,7 +33,7 @@ const ShareModal: React.FC<ShareModalProps> = (props) => {
     window.navigator.clipboard
       .writeText(shareURL)
       .then((rsp) => {
-        alert("링크가 복사되었습니다.");
+        alert(`${shareURL} 링크가 복사되었습니다.`);
         return rsp;
       })
       .catch((_rsp) => alert("링크 복사에 실패했습니다."));
@@ -49,20 +47,20 @@ const ShareModal: React.FC<ShareModalProps> = (props) => {
         <div>
           <div className="share_item" id="kakao_link_btn" onClick={onKakaoShare}>
             <div className="share_icon kakao">
-              <img src="./images/kakao.svg" />
+              <Image src="/images/kakao.svg" alt="kakao" width="18" height="18" />
             </div>
             <div className="share_icon_text">카카오톡</div>
           </div>
           <div className="share_item" onClick={onFacebookShare}>
             <div className="share_icon facebook">
-              <img src="./images/facebook.svg" />
+              <Image src="/images/facebook.svg" alt="facebook" width="18" height="18" />
             </div>
             <div className="share_icon_text">페이스북</div>
           </div>
           <div className="share_item" onClick={onCopyClipboard}>
-            {/* <div className="share_icon">
-              <img src="./images/link.svg" />
-            </div> */}
+            <div className="share_icon">
+              <Image src="/images/link.svg" alt="link" width="18" height="18" />
+            </div>
             <div className="share_icon_text">링크 복사</div>
           </div>
         </div>
