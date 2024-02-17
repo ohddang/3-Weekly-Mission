@@ -12,9 +12,7 @@ const SharedContents = async ({ folderLinks }: { folderLinks: FolderLink[] }) =>
         {folderLinks.length === 0 ? (
           <div className="empty_card_list">저장된 링크가 없습니다.</div>
         ) : (
-          <ul className="card_list">
-            <CardList folderLinks={folderLinks} isFunctional={false} />
-          </ul>
+          <CardList folderLinks={folderLinks} isFunctional={false} />
         )}
       </div>
     </section>
