@@ -83,17 +83,6 @@ const CardList: React.FC<CardListProps> = ({ folderLinks, isFunctional }) => {
     setPopoverKey(0);
   };
 
-  const onClick = () => {
-    setPopoverKey(0);
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", onClick);
-    return () => {
-      document.removeEventListener("click", onClick);
-    };
-  }, []);
-
   const item_list = folderLinks.map((item, _index) => {
     const { id, created_at, url, description, image_source } = item;
 
@@ -126,7 +115,11 @@ const CardList: React.FC<CardListProps> = ({ folderLinks, isFunctional }) => {
     );
   });
 
-  return <>{item_list}</>;
+  return (
+    <>
+      <ul className="card_list">{item_list}</ul>
+    </>
+  );
 };
 
 export default CardList;

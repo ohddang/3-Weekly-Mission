@@ -3,7 +3,7 @@
 import "./folderContents.css";
 import "@/app/contents.css";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import { FolderLink } from "@/api/api";
 import CardList from "@/components/contents/cardList/cardList";
@@ -88,9 +88,7 @@ const FolderContents = ({ folderGroup, folderLinks }: { folderGroup: any; folder
           {filteredLinks.length === 0 ? (
             <div className="empty_card_list">저장된 링크가 없습니다.</div>
           ) : (
-            <ul className="card_list">
-              <CardList folderLinks={filteredLinks} isFunctional={true} />
-            </ul>
+            <CardList folderLinks={filteredLinks} isFunctional={true} />
           )}
 
           {showModal && (

@@ -1,0 +1,17 @@
+.input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+}
+
+.input_edit {
+  border: 1px solid #6d6afe;
+}
+
+.input_password {
+}
+
+.input_error {
+  border: 1px solid #ff0000;
+}
