@@ -1,6 +1,7 @@
 "use client";
 
 import "./textInput.css";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 const enum InputType {
@@ -14,23 +15,51 @@ interface TextInputProps {
 }
 
 const TextInput: React.FC<TextInputProps> = ({ type }) => {
-  const inputTagType = type === InputType.PASSWORD ? "password" : "text";
+  const [showToggle, setShowToggle] = useState(false);
+  const [errorCase, setErrorCase] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  let showPassword = false;
+  const onHandleBlur = () => {
+    console.log("focus out");
+  };
 
   const onHandleClick = () => {
-    showPassword = !showPassword;
+    setShowToggle(!showToggle);
   };
+
+  const onError = (error: boolean) => {
+    if (!inputRef.current) return;
+
+    if (error) inputRef.current.classList.add("input_error");
+    else inputRef.current.classList.remove("input_error");
+
+    setErrorCase(error);
+  };
+
+  const inputTagType = type === InputType.PASSWORD ? "password" : "text";
 
   return (
     <div>
       <div>
-        <input className="input" type={showPassword ? "password" : inputTagType} placeholder="내용 입력" />
+        <input
+          className="input"
+          type={showToggle ? "password" : inputTagType}
+          placeholder="내용 입력"
+          onBlur={onHandleBlur}
+          ref={inputRef}
+        />
         {type === InputType.PASSWORD ? (
-          <Image className="eye" src="/images/pen.svg" alt="eye" width="16" height="16" onClick={onHandleClick} />
+          <Image
+            className="input_eye"
+            src="/images/eye_off.svg"
+            alt="eye"
+            width="16"
+            height="16"
+            onClick={onHandleClick}
+          />
         ) : null}
       </div>
-      <div></div>
+      {errorCase && <div>내용을 다시 작성해주세요</div>}
     </div>
   );
 };
