@@ -1,0 +1,88 @@
+footer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 10rem;
+
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: #111322;
+  color: #ffffff;
+
+  margin-top: auto;
+}
+
+.footer_list {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  list-style-type: none;
+  padding: 0 40px;
+}
+
+.footer_font {
+  font-family: Abel;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.codeit {
+  color: #676767;
+  justify-content: flex-start;
+}
+
+.policy_faq {
+  display: flex;
+  justify-content: center;
+  gap: 1.88rem;
+}
+
+.policy_faq > * {
+  color: #cfcfcf;
+  cursor: pointer;
+}
+
+.sns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.sns > * {
+  cursor: pointer;
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+  .footer_list {
+    height: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer_list .codeit {
+    width: 50%;
+    height: 50%;
+    order: 3;
+  }
+
+  .footer_list .policy_faq {
+    width: 50%;
+    height: 50%;
+    justify-content: flex-start;
+    order: 1;
+  }
+
+  .footer_list .sns {
+    width: 50%;
+    height: 50%;
+    justify-content: flex-end;
+    order: 2;
+  }
+}
