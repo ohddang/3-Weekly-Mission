@@ -14,7 +14,7 @@ interface TextInputProps {
   type: InputType;
 }
 
-const TextInput: React.FC<TextInputProps> = ({ type }) => {
+const TextInput = ({ type }: TextInputProps) => {
   const [showToggle, setShowToggle] = useState(false);
   const [errorCase, setErrorCase] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);

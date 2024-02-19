@@ -11,7 +11,7 @@ interface ShareModalProps {
   folderId: string;
 }
 
-const ShareModal: React.FC<ShareModalProps> = ({ folderId }) => {
+const ShareModal = ({ folderId }: ShareModalProps) => {
   const [shareURL, setShareURL] = useState("");
   console.log(folderId);
 

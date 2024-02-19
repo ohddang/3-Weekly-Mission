@@ -6,11 +6,10 @@ import { useEffect, useState } from "react";
 import { ModalType } from "../BaseModal";
 
 interface DeleteModalProps {
-  modalType: number;
+  modalType: ModalType;
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = (props) => {
-  const { modalType } = props;
+const DeleteModal = ({ modalType }: DeleteModalProps) => {
   const [title, setTitle] = useState("");
   const [subTitle, setSubTitle] = useState("");
 

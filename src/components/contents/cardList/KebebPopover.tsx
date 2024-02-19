@@ -6,14 +6,12 @@ import ModalPortal from "@/components/modal/ModalPortal";
 import { BaseModal, ModalType } from "@/components/modal";
 
 interface KebabPopoverProps {
-  onClose: () => void;
+  onClose: VoidFunction;
 }
 
-const KebabPopover: React.FC<KebabPopoverProps> = (props) => {
+const KebabPopover = ({ onClose }: KebabPopoverProps) => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(ModalType.EDIT);
-
-  const { onClose } = props;
 
   const onShowModal = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, modalType: number) => {
     event.stopPropagation();
@@ -22,7 +20,7 @@ const KebabPopover: React.FC<KebabPopoverProps> = (props) => {
     setModalType(modalType);
   };
 
-  const onCloseModal = () => {
+  const onCloseModal: VoidFunction = () => {
     setShowModal(false);
     onClose();
   };
