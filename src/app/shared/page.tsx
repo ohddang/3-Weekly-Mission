@@ -31,11 +31,7 @@ const getFolder = async () => {
   return result.owner;
 };
 
-export default async function Shared({
-  searchParams: { user, folder },
-}: {
-  searchParams: { user: number; folder: string };
-}) {
+const Shared = async ({ searchParams: { user, folder } }: { searchParams: { user: number; folder: string } }) => {
   const folderName: string = await getFolderName(user, folder);
   const folderInfo: any = await getFolder();
 
@@ -48,4 +44,6 @@ export default async function Shared({
       <SharedContents folderLinks={folderLinks} />
     </>
   );
-}
+};
+
+export default Shared;

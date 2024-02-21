@@ -4,13 +4,13 @@ import "./textInput.css";
 import { useState, useRef } from "react";
 import Image from "next/image";
 
-const enum InputType {
+export const enum InputType {
   TEXT = 0,
   PASSWORD,
   EMAIL,
 }
 
-interface TextInputProps {
+export interface TextInputProps {
   type: InputType;
 }
 
@@ -41,6 +41,7 @@ const TextInput = ({ type }: TextInputProps) => {
   return (
     <div>
       <div>
+        <label>내용</label>
         <input
           className="input"
           type={showToggle ? "password" : inputTagType}
@@ -57,7 +58,9 @@ const TextInput = ({ type }: TextInputProps) => {
             height="16"
             onClick={onHandleClick}
           />
-        ) : null}
+        ) : (
+          <></>
+        )}
       </div>
       {errorCase && <div>내용을 다시 작성해주세요</div>}
     </div>

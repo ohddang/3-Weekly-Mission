@@ -6,9 +6,9 @@ import "@/app/contents.css";
 import { useState } from "react";
 
 import { FolderGroupInfo, FolderLink } from "@/api/api";
-import CardList from "@/components/contents/cardList/cardList";
+import CardList from "@/components/cardList/cardList";
 import FolderGroup, { FolderGroupProps } from "./FolderGroup";
-import SearchBar from "@/components/contents/searchBar/SearchBar";
+import SearchBar from "@/components/searchBar/SearchBar";
 
 import ModalPortal from "@/components/modal/ModalPortal";
 import { BaseModal, ModalType } from "@/components/modal";
