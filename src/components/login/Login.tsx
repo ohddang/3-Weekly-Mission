@@ -1,7 +1,6 @@
 "use client";
 
-import "./textInput.css";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 
 export const enum InputType {
@@ -13,6 +12,27 @@ export const enum InputType {
 export interface TextInputProps {
   type: InputType;
 }
+
+export const Login = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <form>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { ...child.props });
+        }
+        return child;
+      })}
+    </form>
+  );
+};
+
+const Header = () => {
+  return (
+    <div>
+      <h1>Login Header</h1>
+    </div>
+  );
+};
 
 const TextInput = ({ type }: TextInputProps) => {
   const [showToggle, setShowToggle] = useState(false);
@@ -67,4 +87,15 @@ const TextInput = ({ type }: TextInputProps) => {
   );
 };
 
-export default TextInput;
+const Button = () => {
+  return <button>버튼 버튼 버튼</button>;
+};
+
+const SocialButton = () => {
+  return <button>소셜 버튼</button>;
+};
+
+Login.Header = Header;
+Login.TextInput = TextInput;
+Login.Button = Button;
+Login.SocialButton = SocialButton;

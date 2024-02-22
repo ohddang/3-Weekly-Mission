@@ -1,19 +1,18 @@
-import Button from "@/components/button/Button";
-import LoginHeader from "@/components/loginHeader/LoginHeader";
-import SocialButton from "@/components/socialButton/SocialButton";
-import TextInput, { InputType } from "@/components/textInput/TextInput";
+"use client";
+
+import { Login } from "@/components/login/Login";
 
 // FIX IT : InputType is not exported from TextInput.tsx
 const Signup = async () => {
   return (
-    <>
-      <LoginHeader />
-      <TextInput type={0} />
-      <TextInput type={1} />
-      <TextInput type={1} />
-      <Button />
-      <SocialButton />
-    </>
+    <Login>
+      <Login.Header />
+      <Login.TextInput type={0} />
+      <Login.TextInput type={1} />
+      <Login.TextInput type={1} />
+      <Login.Button />
+      <Login.SocialButton />
+    </Login>
   );
 };
 

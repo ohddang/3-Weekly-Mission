@@ -7,7 +7,7 @@ export interface FolderGroupProps {
   folderGroup: FolderGroupInfo[];
 }
 
-const FolderGroup: React.FC<FolderGroupProps> = ({ folderGroup }) => {
+const FolderGroup = ({ folderGroup }: FolderGroupProps) => {
   const path = decodeURIComponent(usePathname()).split("/")[2];
 
   const createFolderGroup = () => {

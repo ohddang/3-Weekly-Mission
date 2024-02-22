@@ -22,7 +22,7 @@ export interface FolderContentsProps {
   folderLinks: FolderLink[];
 }
 
-const FolderContents: React.FC<FolderContentsProps> = ({ folderGroup, folderLinks }) => {
+const FolderContents = ({ folderGroup, folderLinks }: FolderContentsProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<number>(0);
 
