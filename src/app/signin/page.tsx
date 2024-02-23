@@ -1,15 +1,13 @@
 "use client";
 
-import { Login } from "@/components/login/Login";
+import { InputType, Login } from "@/components/login/Login";
 
-// FIX IT : InputType is not exported from TextInput.tsx
-const Signin = async () => {
+const Signin = () => {
   return (
     <Login>
-      <Login.Header />
-      <Login.TextInput type={0} />
-      <Login.TextInput type={1} />
-      <Login.TextInput type={1} />
+      <Login.Header desc="회원이 아니신가요?" linkTitle="회원가입 하기" linkPath="/signup" />
+      <Login.TextInput label="이메일" type={InputType.TEXT} />
+      <Login.TextInput label="비밀번호" type={InputType.PASSWORD} />
       <Login.Button />
       <Login.SocialButton />
     </Login>
