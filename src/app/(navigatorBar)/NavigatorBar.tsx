@@ -1,5 +1,7 @@
+import "../header.css";
 import { getUserProfile } from "@/api/api";
 import { headers } from "next/headers";
+import Link from "next/link";
 
 const getUser = async () => {
   const response = await getUserProfile();
@@ -27,9 +29,9 @@ const NavigatorBar = async () => {
               <span className="font_profile">{profile.email}</span>
             </div>
           ) : (
-            <a href="signin/signin.html" className="login font_button">
+            <Link href="/signin" className="login font_button">
               로그인
-            </a>
+            </Link>
           )}
         </div>
       </section>

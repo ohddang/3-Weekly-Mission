@@ -122,7 +122,7 @@
   gap: 16px;
 }
 
-.social_button_container > div {
+.social_button_container > a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,6 +132,10 @@
   border-radius: 50%;
 
   border: 1px solid #ccd5e3;
+}
+
+.social_button_container > .google_icon {
+  background: #fff;
 }
 
 .input_desc_error {

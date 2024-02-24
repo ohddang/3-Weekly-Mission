@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { postUserLogin } from "@/api/api";
+import { postCheckEmail, postUserLogin, postUserSignup } from "@/api/api";
 import { Login } from "@/components/login/Login";
+import { useRouter } from "next/navigation";
 
-interface SubmitFields {
+interface LoginFields {
   email: string;
   password: string;
 }
@@ -22,20 +23,46 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
   });
   const watchAllFields = watch();
   const [submitError, setSubmitError] = useState(false);
-  const [submitData, setSubmitData] = useState<SubmitFields>({ email: "", password: "" });
+  const [emailError, setEmailError] = useState(false);
+  const [loginData, setLoginData] = useState<LoginFields>({ email: "", password: "" });
+  const router = useRouter();
+
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    router.push("/folder/전체");
+  }
+
+  const onCheckEmail = async (email: string) => {
+    const res = await postCheckEmail(email);
+    if (res === null) setEmailError(true);
+  };
 
   useEffect(() => {
-    setSubmitError(!(watchAllFields.email !== submitData.email || watchAllFields.password !== submitData.password));
+    setSubmitError(!(watchAllFields.email !== loginData.email || watchAllFields.password !== loginData.password));
+    setEmailError(!(watchAllFields.email !== loginData.email || watchAllFields.password !== loginData.password));
   }, [watchAllFields.email, watchAllFields.password]);
+
+  useEffect(() => {
+    if (!errors.email) console.log("update email");
+  }, [!errors]);
 
   return (
     <>
       <Login
         onSubmit={handleSubmit(async (data) => {
-          setSubmitData({ email: data.email, password: data.password });
-          const res = await postUserLogin(data.email, data.password);
+          setLoginData({ email: data.email, password: data.password });
+
+          let res = null;
+          if (pathname === "signin") res = await postUserLogin(data.email, data.password);
+          else if (pathname === "signup") res = await postUserSignup(data.email, data.password);
+
           if (res === null) {
             setSubmitError(true);
+          } else {
+            // TODO : redirect /folder -> /folder/전체
+            localStorage.setItem("accessToken", res.accessToken);
+            localStorage.setItem("refreshToken", res.refreshToken);
+            router.push("/folder/전체");
           }
         })}>
         {pathname === "signin" ? (
@@ -48,6 +75,8 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
           register={register}
           formState={{ isSubmitting, isSubmitted, errors }}
           submitError={submitError}
+          emailError={emailError}
+          onCheckEmail={onCheckEmail}
         />
         <Login.PasswordInput
           label="비밀번호"
@@ -62,6 +91,7 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
             check={true}
             register={register}
             formState={{ isSubmitting, isSubmitted, errors }}
+            comparePassword={watchAllFields.password === watchAllFields.passwordCheck}
           />
         )}
         <Login.Button />

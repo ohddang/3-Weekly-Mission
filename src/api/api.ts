@@ -58,7 +58,45 @@ export const postUserLogin = async (email: string, password: string) => {
   })
     .then((res) => {
       if (res.status === 400) return null;
+      else if (!res.ok) throw new Error(res.statusText);
+
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  return response;
+};
+
+export const postUserSignup = async (email: string, password: string) => {
+  const response = await fetch(`${BASE_URL}/api/sign-up`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  })
+    .then((res) => {
       if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+export const postCheckEmail = async (email: string) => {
+  const response = await fetch(`${BASE_URL}/api/check-email`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  })
+    .then((res) => {
+      if (res.status === 409) return null;
+      else if (!res.ok) throw new Error(res.statusText);
 
       return res.json();
     })

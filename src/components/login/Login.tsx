@@ -2,10 +2,11 @@
 
 import "@/app/index.css";
 import "./login.css";
-import React, { DOMAttributes, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { postCheckEmail } from "@/api/api";
 
 export interface EmailInputProps {
   label: string;
@@ -16,6 +17,8 @@ export interface EmailInputProps {
     errors: FieldErrors<FieldValues>;
   };
   submitError?: boolean;
+  emailError?: boolean;
+  onCheckEmail: (email: string) => void;
 }
 
 export interface PasswordInputProps {
@@ -28,6 +31,7 @@ export interface PasswordInputProps {
     errors: FieldErrors<FieldValues>;
   };
   submitError?: boolean;
+  comparePassword?: boolean;
 }
 
 export interface LoginHeaderProps {
@@ -69,12 +73,23 @@ const Header = ({ desc, linkTitle, linkPath }: LoginHeaderProps) => {
   );
 };
 
-const EmailInput = ({ label, register, submitError, formState }: EmailInputProps) => {
+const EmailInput = ({ label, register, formState, submitError, emailError, onCheckEmail }: EmailInputProps) => {
   const { isSubmitted, isSubmitting, errors } = formState;
 
-  const errorMsg = submitError ? "이메일을 확인해주세요" : errors.email?.message || "";
+  const errorMsg = submitError
+    ? "이메일을 확인해주세요"
+    : emailError
+    ? "이미 사용중인 이메일입니다."
+    : errors.email?.message || "";
   const errorStyle = submitError ? "error" : errors.email ? "error" : "";
   const inputKey = "email";
+
+  const onBlurHandle = async (event: any) => {
+    if (errors.email) return;
+
+    const email = (event.target as HTMLInputElement).value;
+    onCheckEmail(email);
+  };
 
   return (
     <div className="login_textInput_container">
@@ -93,6 +108,7 @@ const EmailInput = ({ label, register, submitError, formState }: EmailInputProps
                 value: /\S+@\S+\.\S+/,
                 message: "이메일 형식에 맞지 않습니다.",
               },
+              onBlur: (event) => onBlurHandle(event),
             })}
           />
         </div>
@@ -106,17 +122,28 @@ const EmailInput = ({ label, register, submitError, formState }: EmailInputProps
   );
 };
 
-const PasswordInput = ({ label, check, register, submitError, formState }: PasswordInputProps) => {
-  const [passwordToggle, setPasswordToggle] = useState(false);
+const PasswordInput = ({
+  label,
+  check,
+  register,
+  formState,
+  submitError,
+  comparePassword = true,
+}: PasswordInputProps) => {
+  const [passwordToggle, setPasswordToggle] = useState<boolean>(true);
   const { isSubmitted, isSubmitting, errors } = formState;
 
   const onHandleClick = () => {
     setPasswordToggle(!passwordToggle);
   };
 
-  const errorMsg = submitError ? "비밀번호를 확인해주세요" : errors.password?.message || "";
+  const errorMsg = !comparePassword
+    ? "비밀번호가 일치하지 않아요."
+    : submitError
+    ? "비밀번호를 확인해주세요"
+    : errors.password?.message || "";
   const errorStyle = submitError ? "error" : errors.password ? "error" : "";
-  const inputKey = "password";
+  const inputKey = check ? "passwordCheck" : "password";
 
   return (
     <div className="login_textInput_container">
@@ -143,7 +170,7 @@ const PasswordInput = ({ label, check, register, submitError, formState }: Passw
           />
           <Image
             className="eye_toggle"
-            src="/images/eye_off.svg"
+            src={passwordToggle ? "/images/eye_off.svg" : "/images/eye_on.svg"}
             alt="eye"
             width="16"
             height="16"
@@ -173,12 +200,12 @@ const SocialButton = () => {
     <div className="login_social_container">
       <span>소셜 버튼</span>
       <div className="social_button_container">
-        <div className="google_icon">
+        <Link href="https://www.google.com" target="_blank" className="google_icon">
           <Image src="/images/google_login.svg" alt="google" width="22" height="22" />
-        </div>
-        <div className="kakao_icon">
+        </Link>
+        <Link href="https://www.kakaocorp.com/page" target="_blank" className="kakao_icon">
           <Image src="/images/kakao_login.svg" alt="kakao" width="22" height="22" />
-        </div>
+        </Link>
       </div>
     </div>
   );
