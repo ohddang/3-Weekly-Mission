@@ -36,7 +36,7 @@ export const getSelectionFolderLinks = async (folderId: string, userId = USER_ID
 };
 
 export const getUserProfile = async (user_id = USER_ID) => {
-  const response = await fetch(`https://bootcamp-api.codeit.kr/api/users/${user_id}`);
+  const response = await fetch(`${BASE_URL}/api/users/${user_id}`);
   const find_user = await response.json().then((result) => {
     return result.data?.find((user: any) => user.id === user_id);
   });
@@ -47,6 +47,47 @@ export const getUserProfile = async (user_id = USER_ID) => {
     image_source: find_user.image_source,
   };
 };
+
+export const postUserLogin = async (email: string, password: string) => {
+  const response = await fetch(`${BASE_URL}/api/sign-in`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  })
+    .then((res) => {
+      if (res.status === 400) return null;
+      if (!res.ok) throw new Error(res.statusText);
+
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  return response;
+};
+
+export interface FolderLink {
+  id: number;
+  created_at: string;
+  url: string;
+  title: string;
+  description: string;
+  image_source: string;
+}
+
+export interface FolderGroupInfo {
+  id: number | string;
+  created_at: string;
+  name: string;
+  user_id: number;
+  favorite: boolean;
+  link: {
+    count: number;
+  };
+}
 
 export const setFolderLinksFromItems = (links: FolderLink[]): FolderLink[] => {
   if (links.length === 0) return [];
@@ -70,23 +111,3 @@ export const getSharedCurrentFolderLocalURL = (folderId: string, userId = USER_I
 export const getSharedCurrentFolderDevURL = (folderId: string, userId = USER_ID) => {
   return `${DEV_URL}/shared?user=${userId}&folder=${folderId}`;
 };
-
-export interface FolderLink {
-  id: number;
-  created_at: string;
-  url: string;
-  title: string;
-  description: string;
-  image_source: string;
-}
-
-export interface FolderGroupInfo {
-  id: number | string;
-  created_at: string;
-  name: string;
-  user_id: number;
-  favorite: boolean;
-  link: {
-    count: number;
-  };
-}

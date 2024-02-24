@@ -71,6 +71,11 @@
   outline: 1px solid #6d6afe;
 }
 
+.textInput_container > input.error,
+.textInput_container > input.error:focus {
+  outline: 1px solid #ff4d4f;
+}
+
 .eye_toggle {
   position: absolute;
   right: 15px;
@@ -127,6 +132,11 @@
   border-radius: 50%;
 
   border: 1px solid #ccd5e3;
+}
+
+.input_desc_error {
+  color: #ff4d4f;
+  font-size: 12px;
 }
 
 .kakao_icon {
