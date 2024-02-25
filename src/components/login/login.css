@@ -1,0 +1,158 @@
+.login_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f6ff;
+}
+
+.login_container > form {
+  display: flex;
+  flex-direction: column;
+
+  width: 325px;
+  gap: 30px;
+}
+
+.login_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 16px;
+}
+
+.login_header > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.login_logo {
+  width: 210px;
+  height: 38px;
+}
+
+.login_textInput_container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  font-size: 14px;
+  gap: 12px;
+}
+
+.login_textInput_container > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 12px;
+}
+
+.textInput_container {
+  position: relative;
+
+  width: 100%;
+}
+
+.textInput_container > input {
+  width: 100%;
+  height: 60px;
+
+  border-radius: 8px;
+  border: 1px solid #d3e2e5;
+  padding: 18px 15px;
+}
+
+.textInput_container > input:focus {
+  outline: 1px solid #6d6afe;
+}
+
+.textInput_container > input.error,
+.textInput_container > input.error:focus {
+  outline: 1px solid #ff4d4f;
+}
+
+.eye_toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.login_button {
+  width: 100%;
+  height: 60px;
+
+  border-radius: 8px;
+  border: none;
+
+  background: linear-gradient(90deg, #6d6afe 0%, #6ae3fe 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.login_social_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 66px;
+
+  background-color: #e7effb;
+  border-radius: 8px;
+  border: 1px solid #ccd5e3;
+
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.social_button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 16px;
+}
+
+.social_button_container > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  border: 1px solid #ccd5e3;
+}
+
+.social_button_container > .google_icon {
+  background: #fff;
+}
+
+.input_desc_error {
+  color: #ff4d4f;
+  font-size: 12px;
+}
+
+.kakao_icon {
+  background: #f7e317;
+}
+
+.google_icon {
+  background: #fff;
+}
+
+@media (min-width: 1199px) {
+  .login_container > form {
+    width: 400px;
+  }
+}

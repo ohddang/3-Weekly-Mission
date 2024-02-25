@@ -11,7 +11,7 @@ interface SharedHeaderProps {
   };
 }
 
-const SharedHeader: React.FC<SharedHeaderProps> = async ({ folderName, folderInfo }) => {
+const SharedHeader = async ({ folderName, folderInfo }: SharedHeaderProps) => {
   return (
     <>
       <section className="title_container">

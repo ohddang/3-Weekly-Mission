@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
 import "./searchBar.css";
+import { usePathname, useRouter } from "next/navigation";
 import { useRef } from "react";
 
 const SearchBar = ({ isFolder }: { isFolder: boolean }) => {

@@ -11,7 +11,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body>
         {children}
-        <Footer />
         <div id="modal_root"></div>
       </body>
     </html>

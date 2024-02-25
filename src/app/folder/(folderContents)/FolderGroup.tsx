@@ -1,12 +1,13 @@
+import { FolderGroupInfo } from "@/api/api";
 import "./folderContents.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-interface FolderGroupProps {
-  folderGroup: { id: string; name: string }[];
+export interface FolderGroupProps {
+  folderGroup: FolderGroupInfo[];
 }
 
-const FolderGroup: React.FC<FolderGroupProps> = ({ folderGroup }) => {
+const FolderGroup = ({ folderGroup }: FolderGroupProps) => {
   const path = decodeURIComponent(usePathname()).split("/")[2];
 
   const createFolderGroup = () => {

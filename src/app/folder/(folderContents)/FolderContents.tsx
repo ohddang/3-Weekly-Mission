@@ -5,10 +5,10 @@ import "@/app/contents.css";
 
 import { useState } from "react";
 
-import { FolderLink } from "@/api/api";
-import CardList from "@/components/contents/cardList/cardList";
-import FolderGroup from "./FolderGroup";
-import SearchBar from "@/components/contents/searchBar/SearchBar";
+import { FolderGroupInfo, FolderLink } from "@/api/api";
+import CardList from "@/components/cardList/cardList";
+import FolderGroup, { FolderGroupProps } from "./FolderGroup";
+import SearchBar from "@/components/searchBar/SearchBar";
 
 import ModalPortal from "@/components/modal/ModalPortal";
 import { BaseModal, ModalType } from "@/components/modal";
@@ -17,8 +17,12 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 import Image from "next/image";
 
-// component
-const FolderContents = ({ folderGroup, folderLinks }: { folderGroup: any; folderLinks: FolderLink[] }) => {
+export interface FolderContentsProps {
+  folderGroup: FolderGroupInfo[];
+  folderLinks: FolderLink[];
+}
+
+const FolderContents = ({ folderGroup, folderLinks }: FolderContentsProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<number>(0);
 
