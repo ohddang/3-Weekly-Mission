@@ -6,9 +6,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { postCheckEmail } from "@/api/api";
 
-export interface EmailInputProps {
+export interface ReactHookFormProps {
   label: string;
   register: UseFormRegister<FieldValues>;
   formState: {
@@ -16,21 +15,16 @@ export interface EmailInputProps {
     isSubmitting: boolean;
     errors: FieldErrors<FieldValues>;
   };
-  submitError?: boolean;
+  submitError: boolean | undefined;
+}
+
+export interface EmailInputProps extends ReactHookFormProps {
   emailError?: boolean;
   onCheckEmail: (email: string) => void;
 }
 
-export interface PasswordInputProps {
-  label: string;
+export interface PasswordInputProps extends ReactHookFormProps {
   check: boolean;
-  register: UseFormRegister<FieldValues>;
-  formState: {
-    isSubmitted: boolean;
-    isSubmitting: boolean;
-    errors: FieldErrors<FieldValues>;
-  };
-  submitError?: boolean;
   comparePassword?: boolean;
 }
 
@@ -81,7 +75,8 @@ const EmailInput = ({ label, register, formState, submitError, emailError, onChe
     : emailError
     ? "이미 사용중인 이메일입니다."
     : errors.email?.message || "";
-  const errorStyle = submitError ? "error" : errors.email ? "error" : "";
+
+  const errorStyle = submitError || errors.email ? "error" : "";
   const inputKey = "email";
 
   const onBlurHandle = async (event: any) => {
@@ -100,7 +95,7 @@ const EmailInput = ({ label, register, formState, submitError, emailError, onChe
             id={inputKey}
             className={errorStyle}
             type="text"
-            aria-invalid={isSubmitted ? (errors.email ? "true" : "false") : "false"}
+            aria-invalid={errors.email ? "true" : "false"}
             placeholder="내용 입력"
             {...register(inputKey, {
               required: "이메일을 입력해 주세요.",

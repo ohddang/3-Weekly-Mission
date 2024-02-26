@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { postCheckEmail, postUserLogin, postUserSignup } from "@/api/api";
 import { Login } from "@/components/login/Login";
 import { useRouter } from "next/navigation";

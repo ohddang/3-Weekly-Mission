@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { FolderGroupInfo, FolderLink } from "@/api/api";
 import CardList from "@/components/cardList/cardList";
-import FolderGroup, { FolderGroupProps } from "./FolderGroup";
+import FolderGroup from "./FolderGroup";
 import SearchBar from "@/components/searchBar/SearchBar";
 
 import ModalPortal from "@/components/modal/ModalPortal";

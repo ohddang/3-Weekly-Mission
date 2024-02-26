@@ -3,6 +3,15 @@ const LOCAL_URL = "http://localhost:3000";
 const DEV_URL = "http://10.130.100.229:3000";
 const USER_ID = 11; // TODO : login 기능 추가 시 제거
 
+export interface UserInfo {
+  id: number;
+  created_at: string;
+  name: string;
+  image_source: string;
+  email: string;
+  auth_id: string;
+}
+
 export const getFolderInfo = async () => {
   const response = await fetch(
     `${BASE_URL}/api/sample/folder` // sample api
@@ -38,7 +47,7 @@ export const getSelectionFolderLinks = async (folderId: string, userId = USER_ID
 export const getUserProfile = async (user_id = USER_ID) => {
   const response = await fetch(`${BASE_URL}/api/users/${user_id}`);
   const find_user = await response.json().then((result) => {
-    return result.data?.find((user: any) => user.id === user_id);
+    return result.data?.find((user: UserInfo) => user.id === user_id);
   });
 
   return {
