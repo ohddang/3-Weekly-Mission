@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL } from "@/api/api";
 
-import shareKakao from "@/utils/share/shareKakao";
+import shareKakao from "@/utils/shareKakao";
 
 interface ShareModalProps {
   folderId: string;

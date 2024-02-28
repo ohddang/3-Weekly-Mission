@@ -36,8 +36,13 @@ export const getFolderGroup = async (userId = USER_ID) => {
   return rsp.data;
 };
 
-export const getAllFolderLinksOfUser = async (userId = USER_ID) => {
-  const response = await fetch(`${BASE_URL}/api/users/${userId}/links`);
+// access token을 헤더에 추가하여 요청
+export const getAllFolderLinksOfUser = async (accessToken: string) => {
+  const response = await fetch(`${BASE_URL}/api/links`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
   const rsp = await response.json();
   return rsp;
 };
@@ -61,12 +66,14 @@ export const getUserProfile = async (user_id = USER_ID) => {
   };
 };
 
-export const postUserLogin = async (email: string, password: string) => {
+export const postUserLogin = async (email: string, password: string, accessToken: string) => {
   const response = await fetch(`${BASE_URL}/api/sign-in`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Cookie: `next-auth.access-token=${accessToken};path=/;expires=Session`,
     },
+    cache: "no-cache",
     body: JSON.stringify({ email, password }),
   })
     .then((res) => {
@@ -161,4 +168,27 @@ export const getSharedCurrentFolderLocalURL = (folderId: string, userId = USER_I
 
 export const getSharedCurrentFolderDevURL = (folderId: string, userId = USER_ID) => {
   return `${DEV_URL}/shared/${folderId}?user=${userId}`;
+};
+
+// next server connect
+
+export const postAccessToken = async (accessToken: string) => {
+  const response = await fetch(`${LOCAL_URL}/api/accessToken`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      accessToken: `${accessToken}`,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  return response;
 };

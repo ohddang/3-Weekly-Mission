@@ -1,19 +1,17 @@
-import {
-  FolderGroupInfo,
-  getAllFolderLinksOfUser,
-  getFolderGroup,
-  getSelectionFolderLinks,
-  setFolderLinksFromItems,
-} from "@/api/api";
-import FolderContents from "../(folderContents)/FolderContents";
-import FolderHeader from "../(folderContents)/FolderHeader";
-import NavigatorBar from "../../(navigatorBar)/NavigatorBar";
+import { FolderGroupInfo, getAllFolderLinksOfUser, getFolderGroup } from "@/api/api";
+import FolderContents from "./(folderContents)/FolderContents";
+import FolderHeader from "./(folderContents)/FolderHeader";
+import NavigatorBar from "../(navigatorBar)/NavigatorBar";
+import { cookies } from "next/headers";
 
-const getFolderLinks = async (folderId: string) => {
-  {
-    const results = await getSelectionFolderLinks(folderId);
-    return setFolderLinksFromItems(results.data);
+const getAllFolderLinks = async () => {
+  const accessToken = cookies().get("accessToken");
+  if (!accessToken) {
+    return [];
   }
+
+  const results = await getAllFolderLinksOfUser(accessToken.value);
+  return results.data.folder;
 };
 
 const getFolderGroupInfo = async () => {
@@ -44,8 +42,8 @@ const getFolderGroupInfo = async () => {
   return groupInfo;
 };
 
-export default async function Folder({ params: { id } }: { params: { id: string } }) {
-  const folderLinks = await getFolderLinks(decodeURIComponent(id));
+export default async function Folder() {
+  const folderLinks = await getAllFolderLinks();
   const folderGroup = await getFolderGroupInfo();
 
   return (
