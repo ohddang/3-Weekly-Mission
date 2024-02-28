@@ -12,18 +12,22 @@ export interface UserInfo {
   auth_id: string;
 }
 
-export const getFolderInfo = async () => {
+export interface FolderInfo {
+  id: number;
+  created_at: string;
+  name: string;
+  user_id: number;
+  favorite: boolean;
+}
+
+export const getFolderInfo = async (folderId: number) => {
   const response = await fetch(
-    `${BASE_URL}/api/sample/folder` // sample api
+    `${BASE_URL}/api/folders/${folderId}` // sample api
   );
   const rsp = await response.json();
-  const rspFolder = rsp.folder;
+  const result: FolderInfo = rsp.data.find((folder: FolderInfo) => folder.id === folderId);
 
-  return {
-    name: rspFolder.name,
-    owner: rspFolder.owner,
-    links: rspFolder.links,
-  };
+  return result;
 };
 
 export const getFolderGroup = async (userId = USER_ID) => {
@@ -152,9 +156,9 @@ export const setFolderLinksFromItems = (links: FolderLink[]): FolderLink[] => {
 };
 
 export const getSharedCurrentFolderLocalURL = (folderId: string, userId = USER_ID) => {
-  return `${LOCAL_URL}/shared?user=${userId}&folder=${folderId}`;
+  return `${LOCAL_URL}/shared/${folderId}?user=${userId}`;
 };
 
 export const getSharedCurrentFolderDevURL = (folderId: string, userId = USER_ID) => {
-  return `${DEV_URL}/shared?user=${userId}&folder=${folderId}`;
+  return `${DEV_URL}/shared/${folderId}?user=${userId}`;
 };

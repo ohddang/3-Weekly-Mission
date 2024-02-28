@@ -4,26 +4,26 @@ import Image from "next/image";
 
 interface SharedHeaderProps {
   folderName: string;
-  folderInfo: {
-    id: number;
-    name: string;
-    profileImageSource: string;
+  userInfo: {
+    name: number;
+    email: string;
+    image_source: string;
   };
 }
 
-const SharedHeader = async ({ folderName, folderInfo }: SharedHeaderProps) => {
+const SharedHeader = async ({ folderName, userInfo }: SharedHeaderProps) => {
   return (
     <>
       <section className="title_container">
         <div className="shared_title_container">
           <Image
-            src={folderInfo.profileImageSource === "" ? "/images/profile.svg" : folderInfo.profileImageSource}
+            src={userInfo.image_source === "" ? "/images/profile.svg" : userInfo.image_source}
             className="profile_image_folder"
             alt="profile"
             width="60"
             height="60"
           />
-          <div className="owner_name">{folderInfo.name}</div>
+          <div className="owner_name">{userInfo.name}</div>
           <div className="folder_name">{folderName}</div>
         </div>
       </section>
