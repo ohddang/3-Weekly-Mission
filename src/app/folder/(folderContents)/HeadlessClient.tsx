@@ -1,6 +1,7 @@
 "use client";
 
 import { postRequestCookies } from "@/api/api";
+import { useRouter } from "next/navigation";
 
 //
 // next/headers cookies()
@@ -11,7 +12,18 @@ import { postRequestCookies } from "@/api/api";
 // Server Component [ok] cookies().get()
 // Client Component [x] cookies().get()
 
-const HeadlessClient = ({ userId }: { userId: string }) => {
+interface HeadlessClientProps {
+  userId: string;
+  accessToken: {
+    name: string;
+    value: string;
+  };
+}
+
+const HeadlessClient = ({ userId, accessToken }: HeadlessClientProps) => {
+  const router = useRouter();
+  if (!accessToken) router.push("/signin");
+
   postRequestCookies("userId", userId);
 
   return <></>;

@@ -24,7 +24,7 @@ export default async function Folder() {
   return (
     <>
       <FolderContainer />
-      <HeadlessClient userId={profile.id} />
+      <HeadlessClient userId={profile.id} accessToken={accessToken} />
     </>
   );
 }
