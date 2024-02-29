@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { postAccessToken, postCheckEmail, postUserLogin, postUserSignup } from "@/api/api";
+import { postRequestCookies, postCheckEmail, postUserLogin, postUserSignup } from "@/api/api";
 import { Login } from "@/components/login/Login";
 import { useRouter } from "next/navigation";
 
@@ -51,13 +51,13 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
           setLoginData({ email: data.email, password: data.password });
 
           let res = null;
-          if (pathname === "signin") res = await postUserLogin(data.email, data.password, "");
+          if (pathname === "signin") res = await postUserLogin(data.email, data.password);
           else if (pathname === "signup") res = await postUserSignup(data.email, data.password);
 
           if (res === null) {
             setSubmitError(true);
           } else {
-            const cookiesResponse = await postAccessToken(res.data.accessToken);
+            const cookiesResponse = await postRequestCookies("accessToken", res.data.accessToken);
             if (cookiesResponse === null) return;
 
             // TODO : redirect /folder -> /folder/전체

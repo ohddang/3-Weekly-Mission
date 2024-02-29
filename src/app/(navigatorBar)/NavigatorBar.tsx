@@ -1,6 +1,6 @@
 import "../header.css";
-import { getUserProfile } from "@/api/api";
-import { headers } from "next/headers";
+import { getUserProfile, getUserProfileAuth } from "@/api/api";
+import { cookies, headers } from "next/headers";
 import Link from "next/link";
 
 const getUser = async () => {
@@ -8,12 +8,22 @@ const getUser = async () => {
   return response;
 };
 
+const getUserAuth = async (accessToken: string) => {
+  const response = await getUserProfileAuth(accessToken);
+  return response.data[0];
+};
+
 const NavigatorBar = async () => {
+  const accessToken = cookies().get("accessToken");
+  if (!accessToken) {
+    return;
+  }
+  const profile = accessToken ? await getUserAuth(accessToken.value) : await getUser();
+
   const header = headers();
   const pathname = header.get("next-url")?.split("/")[1] || "";
   const isShared = String(pathname).includes("shared");
 
-  const profile = await getUser();
   const isExistProfile = profile.name !== "" && profile.email !== "";
 
   return (

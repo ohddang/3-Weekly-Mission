@@ -1,7 +1,7 @@
 const BASE_URL = "https://bootcamp-api.codeit.kr";
 const LOCAL_URL = "http://localhost:3000";
 const DEV_URL = "http://10.130.100.229:3000";
-const USER_ID = 11; // TODO : login 기능 추가 시 제거
+const USER_ID = "11"; // TODO : login 기능 추가 시 제거
 
 export interface UserInfo {
   id: number;
@@ -20,72 +20,140 @@ export interface FolderInfo {
   favorite: boolean;
 }
 
-export const getFolderInfo = async (folderId: number) => {
-  const response = await fetch(
-    `${BASE_URL}/api/folders/${folderId}` // sample api
-  );
-  const rsp = await response.json();
-  const result: FolderInfo = rsp.data.find((folder: FolderInfo) => folder.id === folderId);
+export const getFolderInfo = async (folderId: string) => {
+  const response = await fetch(`${BASE_URL}/api/folders/${folderId}`)
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
+    });
 
+  const result: FolderInfo = response.data.find((folder: FolderInfo) => String(folder.id) === folderId);
   return result;
 };
 
-export const getFolderGroup = async (userId = USER_ID) => {
-  const response = await fetch(`${BASE_URL}/api/users/${userId}/folders`);
-  const rsp = await response.json();
-  return rsp.data;
-};
-
-// access token을 헤더에 추가하여 요청
-export const getAllFolderLinksOfUser = async (accessToken: string) => {
-  const response = await fetch(`${BASE_URL}/api/links`, {
+export const getFolderGroupAuth = async (accessToken: string) => {
+  const response = await fetch(`${BASE_URL}/api/folders`, {
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-  });
-  const rsp = await response.json();
-  return rsp;
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
+    });
+  return response;
+};
+
+export const getAllFolderLinksAuth = async (accessToken: string) => {
+  const response = await fetch(`${BASE_URL}/api/links`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
+    });
+
+  return response;
+};
+
+export const getSelectionFolderLinksAuth = async (folderId: string, accessToken: string) => {
+  const response = await fetch(`${BASE_URL}/api/links?folderId=${folderId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
+    });
+
+  return response;
 };
 
 export const getSelectionFolderLinks = async (folderId: string, userId = USER_ID) => {
-  const response = await fetch(`${BASE_URL}/api/users/${userId}/links?folderId=${folderId}`);
-  const rsp = await response.json();
-  return rsp;
+  const response = await fetch(`${BASE_URL}/api/users/${userId}/links?folderId=${folderId}`)
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
+    });
+
+  return response;
 };
 
 export const getUserProfile = async (user_id = USER_ID) => {
-  const response = await fetch(`${BASE_URL}/api/users/${user_id}`);
-  const find_user = await response.json().then((result) => {
-    return result.data?.find((user: UserInfo) => user.id === user_id);
-  });
+  const response = await fetch(`${BASE_URL}/api/users/${user_id}`)
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
+    });
 
-  return {
-    name: find_user.name,
-    email: find_user.email,
-    image_source: find_user.image_source,
-  };
+  return response;
 };
 
-export const postUserLogin = async (email: string, password: string, accessToken: string) => {
+export const getUserProfileAuth = async (accessToken: string) => {
+  const response = await fetch(`${BASE_URL}/api/users`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
+    });
+  return response;
+};
+
+export const postUserLogin = async (email: string, password: string) => {
   const response = await fetch(`${BASE_URL}/api/sign-in`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `next-auth.access-token=${accessToken};path=/;expires=Session`,
     },
-    cache: "no-cache",
     body: JSON.stringify({ email, password }),
   })
     .then((res) => {
       if (res.status === 400) return null;
       else if (!res.ok) throw new Error(res.statusText);
-
       return res.json();
     })
     .catch((error) => {
       console.error("Error:", error);
+      return null;
     });
-
   return response;
 };
 
@@ -103,7 +171,9 @@ export const postUserSignup = async (email: string, password: string) => {
     })
     .catch((error) => {
       console.error("Error:", error);
+      return null;
     });
+  return response;
 };
 
 export const postCheckEmail = async (email: string) => {
@@ -122,8 +192,8 @@ export const postCheckEmail = async (email: string) => {
     })
     .catch((error) => {
       console.error("Error:", error);
+      return null;
     });
-
   return response;
 };
 
@@ -137,14 +207,11 @@ export interface FolderLink {
 }
 
 export interface FolderGroupInfo {
-  id: number | string;
+  id: number;
   created_at: string;
   name: string;
   user_id: number;
   favorite: boolean;
-  link: {
-    count: number;
-  };
 }
 
 export const setFolderLinksFromItems = (links: FolderLink[]): FolderLink[] => {
@@ -170,16 +237,16 @@ export const getSharedCurrentFolderDevURL = (folderId: string, userId = USER_ID)
   return `${DEV_URL}/shared/${folderId}?user=${userId}`;
 };
 
-// next server connect
-
-export const postAccessToken = async (accessToken: string) => {
-  const response = await fetch(`${LOCAL_URL}/api/accessToken`, {
+// request router handler
+export const postRequestCookies = async (key: string, value: string) => {
+  const response = await fetch(`${LOCAL_URL}/api/cookies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      accessToken: `${accessToken}`,
+      key: key,
+      value: value,
     }),
   })
     .then((res) => {
@@ -188,6 +255,26 @@ export const postAccessToken = async (accessToken: string) => {
     })
     .catch((error) => {
       console.error("Error:", error);
+      return null;
+    });
+
+  return response;
+};
+
+export const getRequestCookies = async (key: string) => {
+  const response = await fetch(`${LOCAL_URL}/api/cookies?key=${encodeURIComponent(key)}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return null;
     });
 
   return response;

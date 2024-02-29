@@ -4,7 +4,7 @@ import NavigatorBar from "../../(navigatorBar)/NavigatorBar";
 
 import { getFolderInfo, getSelectionFolderLinks, setFolderLinksFromItems, getUserProfile } from "@/api/api";
 
-const getFolderLink = async (user: number, folder: string) => {
+const getFolderLink = async (user: string, folder: string) => {
   if (user == undefined || folder == undefined) return [];
 
   const response = await getSelectionFolderLinks(folder, user);
@@ -13,11 +13,12 @@ const getFolderLink = async (user: number, folder: string) => {
   return setFolderLinksFromItems(response.data);
 };
 
-const getUser = async () => {
-  return await getUserProfile();
+const getUser = async (user: string) => {
+  const response = await getUserProfile(user);
+  return response.data[0];
 };
 
-const getFolderName = async (folderId: number) => {
+const getFolderName = async (folderId: string) => {
   const response = await getFolderInfo(folderId);
   return response.name;
 };
@@ -27,10 +28,10 @@ const Shared = async ({
   searchParams: { user },
 }: {
   params: { id: string };
-  searchParams: { user: number };
+  searchParams: { user: string };
 }) => {
-  const userInfo = await getUser();
-  const folderName = await getFolderName(Number(id));
+  const userInfo = await getUser(user);
+  const folderName = await getFolderName(id);
 
   const folderLinks = await getFolderLink(user, id);
 

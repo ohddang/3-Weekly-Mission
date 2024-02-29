@@ -1,5 +1,8 @@
 import "@/app/index.css";
 import Footer from "@/components/footer/footer";
+import NavigatorBar from "../(navigatorBar)/NavigatorBar";
+import FolderHeader from "./(folderContents)/FolderHeader";
+import { cookies } from "next/headers";
 
 export const metadata = {
   title: "Next.js",
@@ -9,6 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
+      <NavigatorBar />
+      <FolderHeader />
       {children}
       <Footer />
     </div>

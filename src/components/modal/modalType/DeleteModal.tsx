@@ -20,7 +20,6 @@ const DeleteModal = ({ modalType }: DeleteModalProps) => {
       case ModalType.DELETE_FOLDER:
         setTitle("폴더 삭제");
         setSubTitle("폴더명");
-        console.log("폴더 삭제");
         break;
       case ModalType.DELETE_LINK:
         setTitle("링크 삭제");

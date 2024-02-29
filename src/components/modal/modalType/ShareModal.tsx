@@ -3,7 +3,7 @@
 import "../modal.css";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL } from "@/api/api";
+import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL, getRequestCookies } from "@/api/api";
 
 import shareKakao from "@/utils/shareKakao";
 
@@ -11,13 +11,20 @@ interface ShareModalProps {
   folderId: string;
 }
 
+const getUserId = async () => {
+  const response = await getRequestCookies("userId");
+  return response;
+};
+
 const ShareModal = ({ folderId }: ShareModalProps) => {
+  const [userId, setUserId] = useState("");
   const [shareURL, setShareURL] = useState("");
-  console.log(folderId);
+
+  getUserId().then((rsp) => setUserId(rsp.value));
 
   useEffect(() => {
-    setShareURL(getSharedCurrentFolderLocalURL(folderId));
-  }, [folderId]);
+    setShareURL(getSharedCurrentFolderLocalURL(folderId, userId));
+  }, [folderId, userId]);
 
   const onKakaoShare = () => {
     shareKakao(shareURL);
