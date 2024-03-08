@@ -1,6 +1,7 @@
 const BASE_URL = "https://bootcamp-api.codeit.kr";
 const LOCAL_URL = "http://localhost:3000";
 const DEV_URL = "http://10.130.100.229:3000";
+const VERCEL_URL = "https://3-weekly-mission-beryl.vercel.app"
 const USER_ID = "11"; // TODO : login 기능 추가 시 제거
 
 export interface UserInfo {
@@ -239,7 +240,7 @@ export const getSharedCurrentFolderDevURL = (folderId: string, userId = USER_ID)
 
 // request router handler
 export const postRequestCookies = async (key: string, value: string) => {
-  const response = await fetch(`${LOCAL_URL}/api/cookies`, {
+  const response = await fetch(`${VERCEL_URL}/api/cookies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -262,7 +263,7 @@ export const postRequestCookies = async (key: string, value: string) => {
 };
 
 export const getRequestCookies = async (key: string) => {
-  const response = await fetch(`${LOCAL_URL}/api/cookies?key=${encodeURIComponent(key)}`, {
+  const response = await fetch(`${VERCEL_URL}/api/cookies?key=${encodeURIComponent(key)}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
