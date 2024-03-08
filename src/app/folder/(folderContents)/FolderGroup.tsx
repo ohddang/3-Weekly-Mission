@@ -21,7 +21,7 @@ const FolderGroup = ({ folderGroup }: FolderGroupProps) => {
       return (
         <>
           <li className={toggleClass} key={folder.id}>
-            <Link href={`/folder/${folder.id !== 0 ? folder.id : ""}`}>{folder.name}</Link>
+            <Link href={{ pathname: `/folder/${folder.id !== 0 ? folder.id : ""}`}} prefetch={false}>{folder.name}</Link>
           </li>
         </>
       );
