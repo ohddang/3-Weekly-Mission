@@ -38,6 +38,7 @@ export const getFolderInfo = async (folderId: string) => {
 
 export const getFolderGroupAuth = async (accessToken: string) => {
   const response = await fetch(`${BASE_URL}/api/folders`, {
+    cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
@@ -75,6 +76,7 @@ export const getAllFolderLinksAuth = async (accessToken: string) => {
 
 export const getSelectionFolderLinksAuth = async (folderId: string, accessToken: string) => {
   const response = await fetch(`${BASE_URL}/api/links?folderId=${folderId}`, {
+    cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
