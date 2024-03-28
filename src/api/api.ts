@@ -1,7 +1,5 @@
-const BASE_URL = "https://bootcamp-api.codeit.kr";
-const LOCAL_URL = "http://localhost:3000";
+const API_URL = "https://bootcamp-api.codeit.kr";
 const DEV_URL = "http://10.130.100.229:3000";
-const VERCEL_URL = "https://3-weekly-mission-beryl.vercel.app"
 const USER_ID = "11"; // TODO : login 기능 추가 시 제거
 
 export interface UserInfo {
@@ -22,7 +20,7 @@ export interface FolderInfo {
 }
 
 export const getFolderInfo = async (folderId: string) => {
-  const response = await fetch(`${BASE_URL}/api/folders/${folderId}`)
+  const response = await fetch(`${API_URL}/api/folders/${folderId}`)
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText);
       return res.json();
@@ -37,7 +35,7 @@ export const getFolderInfo = async (folderId: string) => {
 };
 
 export const getFolderGroupAuth = async (accessToken: string) => {
-  const response = await fetch(`${BASE_URL}/api/folders`, {
+  const response = await fetch(`${API_URL}/api/folders`, {
     cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
@@ -56,7 +54,7 @@ export const getFolderGroupAuth = async (accessToken: string) => {
 };
 
 export const getAllFolderLinksAuth = async (accessToken: string) => {
-  const response = await fetch(`${BASE_URL}/api/links`, {
+  const response = await fetch(`${API_URL}/api/links`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
@@ -75,7 +73,7 @@ export const getAllFolderLinksAuth = async (accessToken: string) => {
 };
 
 export const getSelectionFolderLinksAuth = async (folderId: string, accessToken: string) => {
-  const response = await fetch(`${BASE_URL}/api/links?folderId=${folderId}`, {
+  const response = await fetch(`${API_URL}/api/links?folderId=${folderId}`, {
     cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
@@ -95,7 +93,7 @@ export const getSelectionFolderLinksAuth = async (folderId: string, accessToken:
 };
 
 export const getSelectionFolderLinks = async (folderId: string, userId = USER_ID) => {
-  const response = await fetch(`${BASE_URL}/api/users/${userId}/links?folderId=${folderId}`)
+  const response = await fetch(`${API_URL}/api/users/${userId}/links?folderId=${folderId}`)
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText);
       return res.json();
@@ -109,7 +107,7 @@ export const getSelectionFolderLinks = async (folderId: string, userId = USER_ID
 };
 
 export const getUserProfile = async (user_id = USER_ID) => {
-  const response = await fetch(`${BASE_URL}/api/users/${user_id}`)
+  const response = await fetch(`${API_URL}/api/users/${user_id}`)
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText);
       return res.json();
@@ -123,7 +121,7 @@ export const getUserProfile = async (user_id = USER_ID) => {
 };
 
 export const getUserProfileAuth = async (accessToken: string) => {
-  const response = await fetch(`${BASE_URL}/api/users`, {
+  const response = await fetch(`${API_URL}/api/users`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
@@ -141,7 +139,7 @@ export const getUserProfileAuth = async (accessToken: string) => {
 };
 
 export const postUserLogin = async (email: string, password: string) => {
-  const response = await fetch(`${BASE_URL}/api/sign-in`, {
+  const response = await fetch(`${API_URL}/api/sign-in`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -161,7 +159,7 @@ export const postUserLogin = async (email: string, password: string) => {
 };
 
 export const postUserSignup = async (email: string, password: string) => {
-  const response = await fetch(`${BASE_URL}/api/sign-up`, {
+  const response = await fetch(`${API_URL}/api/sign-up`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -180,7 +178,7 @@ export const postUserSignup = async (email: string, password: string) => {
 };
 
 export const postCheckEmail = async (email: string) => {
-  const response = await fetch(`${BASE_URL}/api/check-email`, {
+  const response = await fetch(`${API_URL}/api/check-email`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -232,17 +230,13 @@ export const setFolderLinksFromItems = (links: FolderLink[]): FolderLink[] => {
   });
 };
 
-export const getSharedCurrentFolderLocalURL = (folderId: string, userId = USER_ID) => {
-  return `${LOCAL_URL}/shared/${folderId}?user=${userId}`;
-};
-
-export const getSharedCurrentFolderDevURL = (folderId: string, userId = USER_ID) => {
-  return `${DEV_URL}/shared/${folderId}?user=${userId}`;
+export const getSharedCurrentFolderURL = (folderId: string, userId = USER_ID) => {
+  return `${process.env.NEXT_PUBLIC_BASE_URL}/shared/${folderId}?user=${userId}`;
 };
 
 // request router handler
 export const postRequestCookies = async (key: string, value: string) => {
-  const response = await fetch(`${VERCEL_URL}/api/cookies`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -265,7 +259,7 @@ export const postRequestCookies = async (key: string, value: string) => {
 };
 
 export const getRequestCookies = async (key: string) => {
-  const response = await fetch(`${VERCEL_URL}/api/cookies?key=${encodeURIComponent(key)}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cookies?key=${encodeURIComponent(key)}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

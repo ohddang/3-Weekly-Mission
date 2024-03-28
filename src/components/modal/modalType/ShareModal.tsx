@@ -3,7 +3,7 @@
 import "../modal.css";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { getSharedCurrentFolderLocalURL, getSharedCurrentFolderDevURL, getRequestCookies } from "@/api/api";
+import { getSharedCurrentFolderURL, getRequestCookies } from "@/api/api";
 
 import shareKakao from "@/utils/shareKakao";
 
@@ -23,7 +23,7 @@ const ShareModal = ({ folderId }: ShareModalProps) => {
   getUserId().then((rsp) => setUserId(rsp.value));
 
   useEffect(() => {
-    setShareURL(getSharedCurrentFolderLocalURL(folderId, userId));
+    setShareURL(getSharedCurrentFolderURL(folderId, userId));
   }, [folderId, userId]);
 
   const onKakaoShare = () => {
@@ -31,7 +31,7 @@ const ShareModal = ({ folderId }: ShareModalProps) => {
   };
 
   const onFacebookShare = () => {
-    const tempURL = getSharedCurrentFolderDevURL(folderId);
+    const tempURL = getSharedCurrentFolderURL(folderId);
     const encodedURL = encodeURIComponent(tempURL);
     window.open("http://www.facebook.com/sharer.php?u=" + encodedURL);
   };
