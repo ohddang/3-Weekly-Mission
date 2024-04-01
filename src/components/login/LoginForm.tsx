@@ -52,8 +52,6 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
     mutation.mutate({ email: loginData.email, password: loginData.password });
   }, [loginData]);
 
-  console.log(mutation);
-
   return (
     <>
       <Login

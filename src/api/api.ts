@@ -1,5 +1,5 @@
 export const API_URL = "https://bootcamp-api.codeit.kr";
-export const LINKBRARY_URL = "https://bootcamp-api.codeit.kr/linkbrary/v1";
+export const LINKBRARY_URL = "https://bootcamp-api.codeit.kr/api/linkbrary/v1";
 const USER_ID = "11"; // TODO : login 기능 추가 시 제거
 
 export interface UserInfo {
