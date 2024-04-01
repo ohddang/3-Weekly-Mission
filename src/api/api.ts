@@ -1,5 +1,5 @@
-const API_URL = "https://bootcamp-api.codeit.kr";
-const DEV_URL = "http://10.130.100.229:3000";
+export const API_URL = "https://bootcamp-api.codeit.kr";
+export const LINKBRARY_URL = "https://bootcamp-api.codeit.kr/linkbrary/v1";
 const USER_ID = "11"; // TODO : login 기능 추가 시 제거
 
 export interface UserInfo {
@@ -126,45 +126,6 @@ export const getUserProfileAuth = async (accessToken: string) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error(res.statusText);
-      return res.json();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      return null;
-    });
-  return response;
-};
-
-export const postUserLogin = async (email: string, password: string) => {
-  const response = await fetch(`${API_URL}/api/sign-in`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  })
-    .then((res) => {
-      if (res.status === 400) return null;
-      else if (!res.ok) throw new Error(res.statusText);
-      return res.json();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      return null;
-    });
-  return response;
-};
-
-export const postUserSignup = async (email: string, password: string) => {
-  const response = await fetch(`${API_URL}/api/sign-up`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
   })
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText);

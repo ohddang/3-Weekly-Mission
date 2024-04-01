@@ -1,6 +1,4 @@
 const shareKakao = (shareURL = "") => {
-  console.log(shareURL);
-
   window.Kakao.Share.sendDefault({
     objectType: "feed",
     content: {

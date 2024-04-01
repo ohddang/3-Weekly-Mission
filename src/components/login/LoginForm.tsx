@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { postRequestCookies, postCheckEmail, postUserLogin, postUserSignup } from "@/api/api";
+import { postRequestCookies, postCheckEmail } from "@/api/api";
+import { loginFn, postUserLogin, postUserLoginMutation, postUserSignup } from "@/api/authApi";
 import { Login } from "@/components/login/Login";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 
 interface LoginFields {
   email: string;
@@ -32,6 +34,8 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
     if (res === null) setEmailError(true);
   };
 
+  const mutation = useMutation({ mutationFn: loginFn });
+
   useEffect(() => {
     setSubmitError(!(watchAllFields.email !== loginData.email || watchAllFields.password !== loginData.password));
     setEmailError(!(watchAllFields.email !== loginData.email || watchAllFields.password !== loginData.password));
@@ -44,6 +48,12 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
     }
   }, []);
 
+  useEffect(() => {
+    mutation.mutate({ email: loginData.email, password: loginData.password });
+  }, [loginData]);
+
+  console.log(mutation);
+
   return (
     <>
       <Login
@@ -51,8 +61,9 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
           setLoginData({ email: data.email, password: data.password });
 
           let res = null;
-          if (pathname === "signin") res = await postUserLogin(data.email, data.password);
-          else if (pathname === "signup") res = await postUserSignup(data.email, data.password);
+          if (pathname === "signin") {
+            if (mutation.status === "success") res = mutation.data;
+          } else if (pathname === "signup") res = await postUserSignup(data.email, data.password);
 
           if (res === null) {
             setSubmitError(true);

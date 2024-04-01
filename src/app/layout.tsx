@@ -1,5 +1,6 @@
-import Footer from "@/components/footer/footer";
 import "./index.css";
+import ReactQueryWrapper from "./reactQueryWrapper";
+import React from "react";
 
 export const metadata = {
   title: "Next.js",
@@ -9,10 +10,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body>
-        {children}
-        <div id="modal_root"></div>
-      </body>
+      <ReactQueryWrapper>
+        <body>
+          {children}
+          <div id="modal_root"></div>
+        </body>
+      </ReactQueryWrapper>
     </html>
   );
 }
