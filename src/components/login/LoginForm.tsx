@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { postRequestCookies, postCheckEmail } from "@/api/api";
-import { loginFn, postUserLogin, postUserLoginMutation, postUserSignup } from "@/api/authApi";
+import { loginFn, signupFn } from "@/api/authApi";
 import { Login } from "@/components/login/Login";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { checkEmailFn } from "@/api/userApi";
 
 interface LoginFields {
   email: string;
@@ -29,12 +30,24 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
   const [loginData, setLoginData] = useState<LoginFields>({ email: "", password: "" });
   const router = useRouter();
 
+  const loginMutation = useMutation({ mutationFn: loginFn });
+  const signupMutation = useMutation({ mutationFn: signupFn });
+  const checkEmailMutation = useMutation({ mutationFn: checkEmailFn });
+
   const onCheckEmail = async (email: string) => {
-    const res = await postCheckEmail(email);
-    if (res === null) setEmailError(true);
+    checkEmailMutation.mutate({ email: email });
   };
 
-  const mutation = useMutation({ mutationFn: loginFn });
+  // if (checkEmailMutation === null) {
+  //   setEmailError(true);
+  // } else {
+  //   setEmailError(false);
+  // }
+
+  useEffect(() => {
+    console.log("checkEmailMutation", checkEmailMutation);
+    setEmailError(checkEmailMutation.data?.isUsableEmail ? false : true);
+  }, [checkEmailMutation.data]);
 
   useEffect(() => {
     setSubmitError(!(watchAllFields.email !== loginData.email || watchAllFields.password !== loginData.password));
@@ -49,7 +62,11 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
   }, []);
 
   useEffect(() => {
-    mutation.mutate({ email: loginData.email, password: loginData.password });
+    loginMutation.mutate({ email: loginData.email, password: loginData.password });
+  }, [loginData]);
+
+  useEffect(() => {
+    signupMutation.mutate({ email: loginData.email, password: loginData.password });
   }, [loginData]);
 
   return (
@@ -60,8 +77,8 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
 
           let res = null;
           if (pathname === "signin") {
-            if (mutation.status === "success") res = mutation.data;
-          } else if (pathname === "signup") res = await postUserSignup(data.email, data.password);
+            if (loginMutation.status === "success") res = loginMutation.data;
+          } else if (pathname === "signup") if (signupMutation.status === "success") res = signupMutation.data;
 
           if (res === null) {
             setSubmitError(true);
@@ -69,7 +86,6 @@ const LoginForm = ({ pathname }: { pathname: string }) => {
             const cookiesResponse = await postRequestCookies("accessToken", res.data.accessToken);
             if (cookiesResponse === null) return;
 
-            // TODO : redirect /folder -> /folder/전체
             localStorage.setItem("accessToken", res.data.accessToken);
             localStorage.setItem("refreshToken", res.data.refreshToken);
 
